@@ -32,16 +32,17 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(name='concept',
-      version='0.1.0',
+      version='0.2.0',
       description='concepts and ideas in Python',
+      long_description=read('README.md'),
       author='Thomas Lehmann',
       author_email='thomas.lehmann.private@googlemail.com',
       license="MIT",
       requires=['coverage', 'nose', 'radon'],
       py_modules=['concept', 'concept.primes'],
+      data_files=[('concept', ['README.md'])],
       keywords="concepts ideas",
       url="https://github.com/Nachtfeuer/concept-py",
-      long_description=read('README.md'),
       classifiers=[
           "Programming Language :: Python",
           "Topic :: Software Development :: Libraries :: Python Modules",
