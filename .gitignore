@@ -1,0 +1,10 @@
+coverage.xml
+nosetests.xml
+coverage.html
+__pycache__
+.coverage
+flake8.log
+pep8.log
+ccm.xml
+pep257.log
+pylint.log
