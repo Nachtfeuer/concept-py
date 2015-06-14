@@ -4,6 +4,7 @@ tests/tests.xml
 dist/
 build/
 MANIFEST
+*.pyc
 __pycache__
 .coverage
 flake8.log
