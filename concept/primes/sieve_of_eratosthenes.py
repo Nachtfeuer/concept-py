@@ -32,7 +32,7 @@
 import math
 
 
-class sieve_of_eratosthenes:
+class sieve_of_eratosthenes(object):
 
     """ Prime sieve. """
 

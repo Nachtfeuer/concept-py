@@ -32,7 +32,7 @@
 import math
 
 
-class sieve_of_eratosthenes_optimized:
+class sieve_of_eratosthenes_optimized(object):
 
     """ Prime sieve. """
 
@@ -51,7 +51,7 @@ class sieve_of_eratosthenes_optimized:
         while value_i <= limit:
             if self.sieve[value_i]:
                 value_j = value_i**2
-                offset  = 2*value_i
+                offset = 2*value_i
                 while value_j <= self.max_n:
                     self.sieve[value_j//2] = False
                     value_j += offset

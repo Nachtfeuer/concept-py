@@ -9,14 +9,14 @@
 radon cc -a concept
 
 # creating XML report
-radon cc -a --xml concept > ccm.xml
+radon cc -a --xml concept examples > ccm.xml
 
 # creating pylint report
-pylint --rcfile=./.rclint.2.x concept > pylint.log
+pylint --rcfile=./.rclint.2.x concept examples > pylint.log
 grep "rated at" pylint.log
 
 # creating pep8 report
-pep8 --max-line-length=100 concept > pep8.log
+pep8 --max-line-length=100 concept examples > pep8.log
 echo "`cat pep8.log | wc -l` pep8 warnings/errors (see pep8.log)"
 
 # creating pep257 report
