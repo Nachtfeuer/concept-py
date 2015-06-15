@@ -1,0 +1,23 @@
+# Travis configuration
+language: Python
+
+python:
+    - 2.7
+
+# whitelist
+branches:
+    only:
+        - master
+
+install:
+    - pip install -r requirements.txt
+
+scripts:
+    - ./runTests.sh
+
+notifications:
+    email:
+        recipients:
+           - thomas.lehmann.private@gmail.com
+        on_success: always
+        on_failure: always

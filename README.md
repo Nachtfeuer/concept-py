@@ -5,6 +5,7 @@
 [**Quick start**](#quick-start)  
 [**Current Content**](#current-content)  
 [**Next Action Items (planned)**](#next-action-items-planned)  
+[**Requirements**](#requirements)  
 [**Level Of Done**](#level-of-done)  
 [**Version Policy**](#version-policy)  
 
@@ -46,7 +47,18 @@ Next Action Items (planned)
  - math classes
    - prime function/classes
      - segmented sieve
+ - enable Travis CI build.
 
+Requirements
+------------
+ - for checking the requirements do following:
+   ```
+   cat requirements.txt | sed "s/=.*$//g" | xargs -i pip show {}
+   ```
+ - for installing all requirements do following:
+   ```
+   pip install -r requirements.txt
+   ```
 
 Level Of Done
 -------------

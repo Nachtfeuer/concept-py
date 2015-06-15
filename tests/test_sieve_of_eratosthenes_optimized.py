@@ -35,5 +35,6 @@ class TestSieveOfEratosthenesOptimized(unittest.TestCase):
         sieve = sieve_of_eratosthenes_optimized(20)
         sieve.calculate()
 
-        primes = [n for n in range(20) if sieve.is_prime(n)]
+        # this sieve does ignore even values
+        primes = [2] + [n for n in range(1, 20+1, 2) if sieve.is_prime(n)]
         assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(primes))

@@ -39,7 +39,7 @@ class sieve_of_eratosthenes_optimized(object):
     def __init__(self, max_n):
         """ Initialize sieve. """
         self.max_n = max_n
-        self.sieve = [True] * (self.max_n//2+1)
+        self.sieve = [True] * (self.max_n//2)
         self.sieve[0] = False
         self.sieve[1] = True
 
@@ -49,7 +49,7 @@ class sieve_of_eratosthenes_optimized(object):
 
         value_i = 3
         while value_i <= limit:
-            if self.sieve[value_i]:
+            if self.sieve[value_i//2]:
                 value_j = value_i**2
                 offset = 2*value_i
                 while value_j <= self.max_n:
@@ -62,10 +62,10 @@ class sieve_of_eratosthenes_optimized(object):
         """
         Checking sieve for value.
 
+        It's expected that given value is a odd value since
+        the sieve does ignore even values.
+
         :param value: value to be checked to be a prime.
         :returns: True when given number is a prime.
         """
-        if value % 2 == 0:
-            return 2 == value
-
         return self.sieve[value//2]

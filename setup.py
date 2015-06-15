@@ -32,13 +32,13 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(name='concept',
-      version='0.4.0',
+      version='0.5.0',
       description='concepts and ideas in Python',
       long_description=read('README.md'),
       author='Thomas Lehmann',
       author_email='thomas.lehmann.private@googlemail.com',
       license="MIT",
-      requires=['coverage', 'nose', 'radon'],
+      requires=['coverage', 'nose', 'radon', "pep8", "pep257"],
       py_modules=['concept', 'concept.primes'],
       data_files=[('concept', ['README.md'])],
       keywords="concepts ideas",
