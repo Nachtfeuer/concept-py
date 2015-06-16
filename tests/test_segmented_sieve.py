@@ -23,15 +23,24 @@
 """
 import unittest
 from hamcrest import assert_that, equal_to
-from concept.primes.sieve_of_eratosthenes_optimized import sieve_of_eratosthenes_optimized
+from concept.primes.segmented_sieve import segmented_sieve
+from concept.primes.is_prime import is_prime
 
 
-class TestSieveOfEratosthenesOptimized(unittest.TestCase):
+class TestSegmentedSieve(unittest.TestCase):
 
-    """ Testing prime sieve. """
+    """ Testing segmented prime sieve. """
 
     def test_sieve(self):
         """ Testing prime generation. """
-        sieve = sieve_of_eratosthenes_optimized(20)
+        sieve = segmented_sieve(20)
         sieve.calculate()
         assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(sieve.get_primes()))
+
+    def test_sieve_with_is_prime(self):
+        sieve = segmented_sieve(10000)
+        sieve.calculate()
+        primes = [n for n in range(10000+1) if is_prime(n)]
+        assert_that(primes, equal_to(sieve.get_primes()))
+
+

@@ -34,6 +34,4 @@ class TestSieveOfEratosthenes(unittest.TestCase):
         """ Testing prime generation. """
         sieve = sieve_of_eratosthenes(20)
         sieve.calculate()
-
-        primes = [n for n in range(20) if sieve.is_prime(n)]
-        assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(primes))
+        assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(sieve.get_primes()))

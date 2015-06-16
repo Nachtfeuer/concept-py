@@ -58,6 +58,10 @@ class sieve_of_eratosthenes_optimized(object):
 
             value_i += 2
 
+    def get_primes(self):
+        """ :returns: list of primes """
+        return [2]+[n for n in range(3, self.max_n+1, 2) if self.sieve[n//2]]
+
     def is_prime(self, value):
         """
         Checking sieve for value.

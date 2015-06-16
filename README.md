@@ -6,6 +6,7 @@
 [**Current Content**](#current-content)  
 [**Next Action Items (planned)**](#next-action-items-planned)  
 [**Requirements**](#requirements)  
+[**Examples**](#examples)  
 [**Level Of Done**](#level-of-done)  
 [**Version Policy**](#version-policy)  
 
@@ -37,17 +38,17 @@ Current Content
 ---------------
  - math classes
    - prime function/classes
-     - is_prime and sieve_of_eratosthenes
+     - is_prime and sieve_of_eratosthenes and its optimized version
+     - segmented sieve (a first - working - version)
  - example folder added (using this library)
    - prime tool
 
 
 Next Action Items (planned)
 ---------------------------
- - math classes
-   - prime function/classes
-     - segmented sieve
- - enable Travis CI build.
+ - enable Travis CI build (soon).
+ - statistic mechanism for different algorithms enable using R.
+ - crypt/decrypt functions/classes
 
 Requirements
 ------------
@@ -59,6 +60,30 @@ Requirements
    ```
    pip install -r requirements.txt
    ```
+
+Examples
+--------
+ - using the prime generation tool:
+   ```
+   examples/primes.py --max-number=80000000 --sieve=optimized --columns=-1 > primes.txt
+   ```
+   On my small and relative slow notebook I was able to get it with following results:
+   ```
+   prime tool
+     ... Python 2.7.6 (default, Mar 22 2014, 22:59:56) [GCC 4.8.2]
+     ... Platform Linux-3.13.0-24-generic-x86_64-with-LinuxMint-17-qiana
+     ... using algorithm "optimized"
+     ... searching primes <= 80000000
+
+     >> output of primes <<
+
+     ... 4669382 primes found.
+     ... sieve calculation took 43.863128 seconds
+     ... prime calculation took 105.560736 seconds
+   ```
+   Obvious the generation of the final prime list is expensive.
+   Requires some investigation.
+
 
 Level Of Done
 -------------

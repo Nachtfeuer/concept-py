@@ -29,6 +29,7 @@ import platform
 import click
 from concept.primes.sieve_of_eratosthenes import sieve_of_eratosthenes
 from concept.primes.sieve_of_eratosthenes_optimized import sieve_of_eratosthenes_optimized
+from concept.primes.segmented_sieve import segmented_sieve
 from concept.performance.measurement import track_duration_of
 
 
@@ -69,24 +70,29 @@ def main(max_number, sieve, columns):
     """
     print("prime tool")
     print(" ... Python %s" % sys.version.replace("\n", ""))
-    print(" ... Platform %s\n" % platform.platform())
+    print(" ... Platform %s" % platform.platform())
 
     if max_number < 2:
         print(" ... no primes for max. number %d" % max_number)
         sys.exit(1)
+
 
     sieve_algorithm = None
     if sieve == "default":
         sieve_algorithm = sieve_of_eratosthenes(max_number)
     elif sieve == "optimized":
         sieve_algorithm = sieve_of_eratosthenes_optimized(max_number)
+    elif sieve == "segmented":
+        sieve_algorithm = segmented_sieve(max_number)
+
+    print(" ... using algorithm \"%s\"" % sieve)
+    print(" ... searching primes <= %d\n" % max_number)
 
     sieve_duration = track_duration_of(sieve_algorithm.calculate)
 
-    primes = [2]
+    primes = []
     primes_duration = track_duration_of(
-        lambda: primes.extend([n for n in range(3, max_number+1, 2)
-                              if sieve_algorithm.is_prime(n)]))
+        lambda: primes.extend(sieve_algorithm.get_primes()))
 
     print_primes(primes, columns)
     print(" ... %d primes found." % len(primes))
