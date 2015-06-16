@@ -44,6 +44,7 @@ Current Content
    - prime tool
  - crypt/decrypt functions/classes
    - rail fence cipher
+   - caesar cipher
 
 
 Next Action Items (planned)
@@ -51,6 +52,10 @@ Next Action Items (planned)
  - enable Travis CI build (soon).
  - statistic mechanism for different algorithms enable using R.
  - crypt/decrypt functions/classes
+   -  Vigenère cipher
+ - example folder
+   - encrypt tool (choosable algorithm)
+   - decrypt tool (choosable algorithm)
 
 Requirements
 ------------

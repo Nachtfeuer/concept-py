@@ -30,22 +30,22 @@ class TestRailFenceCipher(unittest.TestCase):
 
     """ Testing rail fence cipher. """
 
-    def test_encrpy_with_two_rails(self):
+    def test_encrypt_with_two_rails(self):
         """ Testing encryption with two rails """
         plaintext = "HELLO WORLD"
         assert_that("HLOWRD EL OL", equal_to(encrypt(plaintext, 2)))
 
-    def test_encrpy_with_three_rails(self):
-        """ Testing encryption with three rails """
-        plaintext = "NO MORE SEGRETS"
-        assert_that("NMEEE OO GT  RSRS", equal_to(encrypt(plaintext, 3)))
-
-    def test_decrpy_with_two_rails(self):
+    def test_decrypt_with_two_rails(self):
         """ Testing decryption with two rails. """
         ciphertext = "HLOWRD EL OL"
         assert_that("HELLO WORLD", equal_to(decrypt(ciphertext, 2)))
 
-    def test_decrpy_with_three_rails(self):
+    def test_encrypt_with_three_rails(self):
+        """ Testing encryption with three rails """
+        plaintext = "NO MORE SEGRETS"
+        assert_that("NMEEE OO GT  RSRS", equal_to(encrypt(plaintext, 3)))
+
+    def test_decrypt_with_three_rails(self):
         """ Testing decryption with three rails. """
         ciphertext = "NMEEE OO GT  RSRS"
         assert_that("NO MORE SEGRETS", equal_to(decrypt(ciphertext, 3)))
