@@ -76,7 +76,6 @@ def main(max_number, sieve, columns):
         print(" ... no primes for max. number %d" % max_number)
         sys.exit(1)
 
-
     sieve_algorithm = None
     if sieve == "default":
         sieve_algorithm = sieve_of_eratosthenes(max_number)

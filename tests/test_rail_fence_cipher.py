@@ -23,22 +23,29 @@
 """
 import unittest
 from hamcrest import assert_that, equal_to
-from concept.primes.segmented_sieve import segmented_sieve
-from concept.primes.is_prime import is_prime
+from concept.crypto.rail_fence_cipher import encrypt, decrypt
 
 
-class TestSegmentedSieve(unittest.TestCase):
+class TestRailFenceCipher(unittest.TestCase):
 
-    """ Testing segmented prime sieve. """
+    """ Testing rail fence cipher. """
 
-    def test_sieve(self):
-        """ Testing prime generation. """
-        sieve = segmented_sieve(20)
-        sieve.calculate()
-        assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(sieve.get_primes()))
+    def test_encrpy_with_two_rails(self):
+        """ Testing encryption with two rails """
+        plaintext = "HELLO WORLD"
+        assert_that("HLOWRD EL OL", equal_to(encrypt(plaintext, 2)))
 
-    def test_sieve_with_is_prime(self):
-        sieve = segmented_sieve(10000)
-        sieve.calculate()
-        primes = [n for n in range(10000+1) if is_prime(n)]
-        assert_that(primes, equal_to(sieve.get_primes()))
+    def test_encrpy_with_three_rails(self):
+        """ Testing encryption with three rails """
+        plaintext = "NO MORE SEGRETS"
+        assert_that("NMEEE OO GT  RSRS", equal_to(encrypt(plaintext, 3)))
+
+    def test_decrpy_with_two_rails(self):
+        """ Testing decryption with two rails. """
+        ciphertext = "HLOWRD EL OL"
+        assert_that("HELLO WORLD", equal_to(decrypt(ciphertext, 2)))
+
+    def test_decrpy_with_three_rails(self):
+        """ Testing decryption with three rails. """
+        ciphertext = "NMEEE OO GT  RSRS"
+        assert_that("NO MORE SEGRETS", equal_to(decrypt(ciphertext, 3)))

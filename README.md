@@ -42,6 +42,8 @@ Current Content
      - segmented sieve (a first - working - version)
  - example folder added (using this library)
    - prime tool
+ - crypt/decrypt functions/classes
+   - rail fence cipher
 
 
 Next Action Items (planned)
@@ -95,15 +97,14 @@ should do - at least for this project (also you should do it for all):
    - don't leave commented code (remove it)
    - ensure consistent style and don't do unfavorable things like long methods, high nested depths,
      too many parameters for a function or method or mixing spaces and tabs (don't use tabs).
+   - check issues with ./runAnalyse.sh (pylint.log, pep8.log, pep257.log, flake8.log)
  - <b>clean design</b>
    - ensure re-usable code (DRY)
    - KISS (keep it simple software)
  - <b>proper source code documentation</b>
-   - use C++ comment style /// (not C style)
    - provide example(s) on how to use things where possible
    - don't document things that are obvious
-   - when possible also provide formulas (see math::number for examples)
-   - check your documentation before you commit (make doc)
+   - check your documentation before you commit (./createDoc.sh)
  - <b>writing unit tests</b>
    - always write unit tests
    - ensure a line coverage above 90%
@@ -115,7 +116,7 @@ should do - at least for this project (also you should do it for all):
    - read [**Version Policy**](#version-policy)
    - provide a version on each commit (see git log for examples)
  - <b>using other tools</b>
-   - check for memory leaks and violatios (make memcheck)
+   - check for memory leaks and violations
 
 
 Version Policy

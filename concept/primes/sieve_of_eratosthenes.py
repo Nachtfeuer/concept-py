@@ -58,7 +58,11 @@ class sieve_of_eratosthenes(object):
             value_i += 1
 
     def get_primes(self):
-        """ :returns: list of primes """
+        """
+        Get all primes.
+
+        :returns: list of primes
+        """
         return [2]+[n for n in range(3, self.max_n+1, 2) if self.sieve[n]]
 
     def is_prime(self, value):

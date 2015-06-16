@@ -38,19 +38,21 @@ class segmented_sieve(object):
     """ Segmented prime sieve. """
 
     def __init__(self, max_n):
+        """ initializing sieve for given maximum value. """
         self.max_n = max_n
         self.initial_limit = int(math.sqrt(max_n))
         self.sieve = sieve_of_eratosthenes(self.initial_limit)
         self.primes = []
 
     def calculate(self):
+        """ calculating all primes. """
         # calculating primes up to to square root of maximum number
         self.sieve.calculate()
         self.primes = [2] + [n for n in range(3, self.initial_limit+1, 2) if self.sieve.is_prime(n)]
 
         segment_size = max(10, (self.max_n - self.initial_limit) // 10)
         other_primes = []
- 
+
         low = self.initial_limit
         high = min(low + segment_size, self.max_n)
         current = low
@@ -78,5 +80,9 @@ class segmented_sieve(object):
         self.primes.extend(other_primes)
 
     def get_primes(self):
-        """ :returns: list of primes """
+        """
+        Providing all primes.
+
+        :returns: list of primes
+        """
         return self.primes
