@@ -1,4 +1,7 @@
-# concept-py
+README
+======
+
+[![Build Status](https://travis-ci.org/Nachtfeuer/concept-py.svg?branch=master)](https://travis-ci.org/Nachtfeuer/concept-py)
 
 ### Table Of Contents
 [**Welcome**](#welcome)  
@@ -36,6 +39,7 @@ Quick start
 
 Current Content
 ---------------
+ - enabled Travis CI build.
  - math classes
    - prime function/classes
      - is_prime and sieve_of_eratosthenes and its optimized version
@@ -44,15 +48,15 @@ Current Content
    - prime tool
  - crypt/decrypt functions/classes
    - rail fence cipher
-   - caesar cipher
+   - Caesar cipher
+   - Vigenère cipher
 
 
 Next Action Items (planned)
 ---------------------------
- - enable Travis CI build (soon).
  - statistic mechanism for different algorithms enable using R.
  - crypt/decrypt functions/classes
-   -  Vigenère cipher
+   - other
  - example folder
    - encrypt tool (choosable algorithm)
    - decrypt tool (choosable algorithm)

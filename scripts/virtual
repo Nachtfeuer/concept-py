@@ -1,0 +1,4 @@
+#!/bin/bash
+mkdir virt_env
+virtualenv virt_env/$1
+source virt_env/$1/bin/activate
