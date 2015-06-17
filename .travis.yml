@@ -1,15 +1,20 @@
 # Travis configuration
-language: Python
+language: python
 
 python:
-    - 2.7
+    - "2.7"
 
 # whitelist
 branches:
     only:
         - master
 
+before_install:
+    - sudo apt-get update -qq
+    - pip --version
+
 install:
+    - sudo apt-get install -qq sloccount
     - pip install -r requirements.txt
 
 scripts:
