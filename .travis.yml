@@ -17,7 +17,7 @@ install:
     - sudo apt-get install -qq sloccount
     - pip install -r requirements.txt
 
-scripts:
+script:
     - ./runAnalyse.sh
     - ./runTests.sh
 
