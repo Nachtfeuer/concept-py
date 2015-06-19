@@ -33,6 +33,7 @@ Quick start
 ```
  git clone https://github.com/Nachtfeuer/concept-py.git
  cd concept-py
+ source srcipts/virtual
  ./runAnalyse.sh
  ./runTests.sh
 ```
@@ -40,6 +41,7 @@ Quick start
 Current Content
 ---------------
  - enabled Travis CI build.
+ - enabled for virtual environment
  - math classes
    - prime function/classes
      - is_prime and sieve_of_eratosthenes and its optimized version

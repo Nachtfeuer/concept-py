@@ -31,6 +31,7 @@ from concept.primes.sieve_of_eratosthenes import sieve_of_eratosthenes
 from concept.primes.sieve_of_eratosthenes_optimized import sieve_of_eratosthenes_optimized
 from concept.primes.segmented_sieve import segmented_sieve
 from concept.performance.measurement import track_duration_of
+from concept import version
 
 
 def print_primes(primes, columns):
@@ -68,7 +69,7 @@ def main(max_number, sieve, columns):
     :param sieve: sieve algorithms ("default" or "optimized")
     :param columns: number of prime columns
     """
-    print("prime tool")
+    print("prime tool (version %s)" % version)
     print(" ... Python %s" % sys.version.replace("\n", ""))
     print(" ... Platform %s" % platform.platform())
 

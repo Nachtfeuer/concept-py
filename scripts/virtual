@@ -1,4 +1,24 @@
 #!/bin/bash
-mkdir virt_env
-virtualenv virt_env/$1
-source virt_env/$1/bin/activate
+# default Python binary to use
+PYTHON=/usr/bin/python
+
+# possibility to override Python version to use (full path and filename)
+if [ -n "$1" ] && [ -e "$1" ]; then
+    PYTHON=$1
+fi
+
+# evaluate Python version
+VERSION=`${PYTHON} -c "import sys;print(sys.version.split()[0])"`
+BASENAME=$(basename ${PYTHON})
+NAME=${BASENAME}-${VERSION}
+
+if [ ! -d virt_env ]; then
+    echo "mkdir -p virt_env"
+    mkdir -p virt_env
+fi
+
+echo "virtualenv --python=${PYTHON} virt_env/${NAME}"
+virtualenv --python=${PYTHON} virt_env/${NAME}
+
+echo "source virt_env/${NAME}/bin/activate"
+source virt_env/${NAME}/bin/activate

@@ -3,6 +3,7 @@ tests/coverage.xml
 tests/tests.xml
 dist/
 build/
+virt_env/
 MANIFEST
 *.pyc
 __pycache__

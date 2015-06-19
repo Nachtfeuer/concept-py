@@ -16,13 +16,13 @@ pylint --rcfile=./.rclint.2.x concept examples > pylint.log
 grep "rated at" pylint.log
 
 # creating pep8 report
-pep8 --max-line-length=100 concept examples > pep8.log
+pep8 --max-line-length=100 concept tests examples > pep8.log
 echo "`cat pep8.log | wc -l` pep8 warnings/errors (see pep8.log)"
 
 # creating pep257 report
-pep257 2> pep257.log
+pep257 concept tests examples 2> pep257.log
 echo "`cat pep257.log | wc -l` pep257 warnings/errors (see pep257.log)"
 
 # creating flake8 report
-flake8 --max-line-length=120 * | grep "\.py" > flake8.log
+flake8 --max-line-length=120 --exclude=virt_env * | grep "\.py" > flake8.log
 echo "`cat flake8.log |  wc -l` flake8 warnings/errors (see flake8.log)"
