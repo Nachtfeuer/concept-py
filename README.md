@@ -48,6 +48,7 @@ Current Content
      - segmented sieve (a first - working - version)
  - example folder added (using this library)
    - prime tool
+   - sequence generator tool
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher
@@ -59,6 +60,13 @@ Next Action Items (planned)
  - statistic mechanism for different algorithms enable using R.
  - crypt/decrypt functions/classes
    - other
+ - math sequence generator
+   - writing generated sequences to a database
+   - being able to group all sequence which generate same sequence
+   - allowing to repeat a formula 'n' times
+   - adding integer division function
+   - adding integer square root function
+   - adding pow function (examples: 2^10 = 1024 or (-1)^x)
  - example folder
    - encrypt tool (choosable algorithm)
    - decrypt tool (choosable algorithm)
