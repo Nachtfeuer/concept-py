@@ -55,13 +55,13 @@ class square(function):
     256
     """
 
-    def __init__(self, function=None):
+    def __init__(self, func=None):
         """
         Initializing fields.
 
-        :param function: optional another function to be decoratored.
+        :param func: optional another function to be decoratored.
         """
-        super(square, self).__init__(function)
+        super(square, self).__init__(func)
 
     def __call__(self, value):
         """
@@ -92,14 +92,14 @@ class increment(function):
     10
     """
 
-    def __init__(self, function=None, offset=1):
+    def __init__(self, func=None, offset=1):
         """
         Initializing fields.
 
-        :param function: another function that can be defined.
+        :param func: another function that can be defined.
         :param offset: the value to increment (default: 1)
         """
-        super(increment, self).__init__(function)
+        super(increment, self).__init__(func)
         self.offset = offset
 
     def __call__(self, value):
@@ -131,14 +131,14 @@ class decrement(function):
     7
     """
 
-    def __init__(self, function=None, offset=1):
+    def __init__(self, func=None, offset=1):
         """
         Initializing fields.
 
-        :param function: another function that can be defined.
+        :param func: another function that can be defined.
         :param offset: the value to decrement (default: 1)
         """
-        super(decrement, self).__init__(function)
+        super(decrement, self).__init__(func)
         self.offset = offset
 
     def __call__(self, value):
@@ -170,14 +170,14 @@ class multiply(function):
     8
     """
 
-    def __init__(self, function=None, factor=2):
+    def __init__(self, func=None, factor=2):
         """
         Initializing fields.
 
-        :param function: another function that can be defined.
+        :param func: another function that can be defined.
         :param factor: the value to multiply (default: 2)
         """
-        super(multiply, self).__init__(function)
+        super(multiply, self).__init__(func)
         self.factor = factor
 
     def __call__(self, value):

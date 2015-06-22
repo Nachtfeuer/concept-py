@@ -47,6 +47,8 @@ Current Content
      - is_prime and sieve_of_eratosthenes and its optimized version
      - segmented sieve (a first - working - version)
    - digit functions: sum_digits, count_digits, is_pandigital, is_palindrome
+   - factorization: probe.
+   - number functions: is_square, triangle, is_triangle
  - example folder added (using this library)
    - prime tool
    - sequence generator tool

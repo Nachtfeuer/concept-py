@@ -49,7 +49,7 @@ def sum_digits(n):
     result = 0
     while n > 0:
         result += n % 10
-        n /= 10
+        n //= 10
     return result
 
 
@@ -76,7 +76,7 @@ def count_digits(n):
     result = 0
     while n > 0:
         result += 1
-        n /= 10
+        n //= 10
     return result
 
 
@@ -104,7 +104,7 @@ def is_pandigital(n):
     while n > 0:
         digits.add(n % 10)
         dc += 1
-        n /= 10
+        n //= 10
     return dc == len(digits)
 
 
@@ -124,7 +124,7 @@ def is_palindrome(n):
     digits = []
     while n > 0:
         digits.append(n % 10)
-        n /= 10
+        n //= 10
 
     left = 0
     right = len(digits)-1
