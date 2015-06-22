@@ -40,12 +40,13 @@ Quick start
 
 Current Content
 ---------------
- - enabled Travis CI build.
+ - enabled Travis CI build (tested with Python 2.7.x, 3.2.x, 3.3.x, 3.4.x and PyPy).
  - enabled for virtual environment
  - math classes
    - prime function/classes
      - is_prime and sieve_of_eratosthenes and its optimized version
      - segmented sieve (a first - working - version)
+   - digit functions: sum_digits, count_digits, is_pandigital, is_palindrome
  - example folder added (using this library)
    - prime tool
    - sequence generator tool
