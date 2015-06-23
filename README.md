@@ -48,7 +48,7 @@ Current Content
      - segmented sieve (a first - working - version)
    - digit functions: sum_digits, count_digits, is_pandigital, is_palindrome
    - factorization: probe.
-   - number functions: is_square, triangle, is_triangle
+   - number functions: is_square, triangle, is_triangle, pentagonal, is_pentagonal
  - example folder added (using this library)
    - prime tool
    - sequence generator tool

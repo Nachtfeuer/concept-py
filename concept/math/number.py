@@ -52,6 +52,7 @@ def triangle(nth):
 
     :param nth: index for n'th triangle
     :returns: n'th triangle number
+    see http://en.wikipedia.org/wiki/Triangular_number
 
     >>> triangle(3)
     6
@@ -61,16 +62,50 @@ def triangle(nth):
     return (nth * (nth + 1)) // 2
 
 
-def is_triangle(value):
+def is_triangle(number):
     """
     Check given number to be a triangle number.
 
-    :param value: value to be checked to be a triangle number.
+    :param number: value to be checked to be a triangle number.
     :returns: True when given value is a triangle number
+    see http://en.wikipedia.org/wiki/Triangular_number
 
     >>> is_triangle(10)
     True
     >>> is_triangle(4)
     False
     """
-    return is_square(8 * value + 1)
+    return is_square(8 * number + 1)
+
+
+def pentagonal(nth):
+    """
+    Providing n'th pentagonal number.
+
+    :param nth: index for n'th pentagonal
+    :returns: n'th pentagonal number
+    see http://en.wikipedia.org/wiki/Pentagonal_number
+
+    >>> pentagonal(3)
+    12
+    >>> pentagonal(4)
+    22
+    """
+    return (nth * (3 * nth - 1)) // 2
+
+
+def is_pentagonal(number):
+    """
+    Check given number to be a pentagonal number.
+
+    :param number: value to be checked to be a pentagonal number.
+    :returns: True when given value is a pentagonal number
+    see http://en.wikipedia.org/wiki/Pentagonal_number
+
+    >>> is_pentagonal(12)
+    True
+    >>> is_pentagonal(13)
+    False
+    """
+    value = (math.sqrt(24 * number + 1) + 1) / 6.0
+    return value > 0.0 and value == int(value)

@@ -25,7 +25,7 @@
 """
 import unittest
 from hamcrest import assert_that, equal_to
-from concept.math.number import is_square, triangle, is_triangle
+from concept.math.number import is_square, triangle, is_triangle, pentagonal, is_pentagonal
 
 
 class TestNumber(unittest.TestCase):
@@ -48,3 +48,15 @@ class TestNumber(unittest.TestCase):
         """ Testing is_triangle function. """
         assert_that(is_triangle(10), equal_to(True))
         assert_that(is_triangle(4), equal_to(False))
+
+    def test_penatgonal(self):
+        """ Testing pentagonal function. """
+        given = [pentagonal(n) for n in range(1, 10+1)]
+        expected = [1, 5, 12, 22, 35, 51, 70, 92, 117, 145]
+        assert_that(given, equal_to(expected))
+
+    def test_is_pentagonal(self):
+        """ Testing is_pentagonal function. """
+        assert_that(is_pentagonal(23), equal_to(False))
+        assert_that(is_pentagonal(22), equal_to(True))
+        assert_that(is_pentagonal(21), equal_to(False))
