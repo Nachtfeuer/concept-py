@@ -109,3 +109,36 @@ def is_pentagonal(number):
     """
     value = (math.sqrt(24 * number + 1) + 1) / 6.0
     return value > 0.0 and value == int(value)
+
+
+def hexagonal(nth):
+    """
+    Providing n'th hexagonal number.
+
+    :param nth: index for n'th hexagonal
+    :returns: n'th hexagonal number
+    see http://en.wikipedia.org/wiki/Hexagonal_number
+
+    >>> hexagonal(3)
+    15
+    >>> hexagonal(4)
+    28
+    """
+    return nth * (2 * nth - 1)
+
+
+def is_hexagonal(number):
+    """
+    Check given number to be a hexagonal number.
+
+    :param number: value to be checked to be a hexagonal number.
+    :returns: True when given value is a hexagonal number
+    see http://en.wikipedia.org/wiki/Hexagonal_number
+
+    >>> is_hexagonal(15)
+    True
+    >>> is_hexagonal(14)
+    False
+    """
+    value = (math.sqrt(8 * number + 1) + 1) / 4.0
+    return value == int(value)

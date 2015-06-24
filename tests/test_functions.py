@@ -23,12 +23,22 @@
 """
 import unittest
 from hamcrest import assert_that, equal_to
-from concept.math.functions import square, increment, decrement, multiply
+from concept.math.functions import function, square, increment, decrement, multiply
 
 
 class TestFunctions(unittest.TestCase):
 
     """ Testing of function objects. """
+
+    def test_base(self):
+        """ Testing base class. """
+        func1 = function(lambda x: 2*x)
+        assert_that(func1.other_function(10), equal_to(20))
+
+        func2 = function()
+        assert_that(func2.other_function, equal_to(None))
+        func2.decorate(lambda x: x+1)
+        assert_that(func2.other_function(10), equal_to(11))
 
     def test_square(self):
         """ Testing square function. """

@@ -26,6 +26,7 @@
 import unittest
 from hamcrest import assert_that, equal_to
 from concept.math.number import is_square, triangle, is_triangle, pentagonal, is_pentagonal
+from concept.math.number import hexagonal, is_hexagonal
 
 
 class TestNumber(unittest.TestCase):
@@ -60,3 +61,15 @@ class TestNumber(unittest.TestCase):
         assert_that(is_pentagonal(23), equal_to(False))
         assert_that(is_pentagonal(22), equal_to(True))
         assert_that(is_pentagonal(21), equal_to(False))
+
+    def test_hexagonal(self):
+        """ Testing hexagonal function. """
+        given = [hexagonal(n) for n in range(1, 10+1)]
+        expected = [1, 6, 15, 28, 45, 66, 91, 120, 153, 190]
+        assert_that(given, equal_to(expected))
+
+    def test_is_hexagonal(self):
+        """ Testing is_hexagonal function. """
+        assert_that(is_hexagonal(44), equal_to(False))
+        assert_that(is_hexagonal(45), equal_to(True))
+        assert_that(is_hexagonal(46), equal_to(False))
