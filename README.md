@@ -2,6 +2,7 @@ README
 ======
 
 [![Build Status](https://travis-ci.org/Nachtfeuer/concept-py.svg?branch=master)](https://travis-ci.org/Nachtfeuer/concept-py)
+[![Coverage Status](https://coveralls.io/repos/Nachtfeuer/concept-py/badge.svg?branch=master)](https://coveralls.io/r/Nachtfeuer/concept-py?branch=master)
 
 ### Table Of Contents
 [**Welcome**](#welcome)  

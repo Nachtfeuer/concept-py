@@ -7,9 +7,9 @@ rm -f pylint.log
 rm -f pep8.log
 rm -f pep257.log
 rm -f flake8.log
-rm -f tests/.coverage
-rm -f tests/coverage.xml
-rm -rf tests/coverage
-rm -f tests/tests.xml
+rm -f .coverage
+rm -f coverage.xml
+rm -rf coverage
+rm -f tests.xml
 rm -f `find . -name "*.pyc"`
 rm -f ccm.xml

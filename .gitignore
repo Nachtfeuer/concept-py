@@ -1,6 +1,6 @@
-tests/coverage
-tests/coverage.xml
-tests/tests.xml
+coverage
+coverage.xml
+tests.xml
 dist/
 build/
 virt_env/

@@ -11,7 +11,5 @@ OPTIONS="$OPTIONS --with-doctest"
 OPTIONS="$OPTIONS --with-xunit"
 OPTIONS="$OPTIONS --xunit-file=tests.xml"
 OPTIONS="$OPTIONS --failure-detail"
-cd tests
 echo "nosetests $OPTIONS"
-nosetests $OPTIONS test_*.py
-cd ..
+nosetests ${OPTIONS}
