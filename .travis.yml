@@ -20,10 +20,14 @@ before_install:
 install:
     - sudo apt-get install -qq sloccount
     - pip install -r requirements.txt
+    - pip install coveralls
 
 script:
     - ./runAnalyse.sh
     - ./runTests.sh
+
+after_success:
+    - coveralls
 
 notifications:
     email:
