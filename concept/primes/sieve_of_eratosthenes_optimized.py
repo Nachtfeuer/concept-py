@@ -39,7 +39,7 @@ class sieve_of_eratosthenes_optimized(object):
     def __init__(self, max_n):
         """ Initialize sieve. """
         self.max_n = max_n
-        self.sieve = [True] * (self.max_n//2)
+        self.sieve = [True] * (self.max_n//2 + 1)
         self.sieve[0] = False
         self.sieve[1] = True
 

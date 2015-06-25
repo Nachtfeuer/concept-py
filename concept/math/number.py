@@ -30,6 +30,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 import math
+from concept.math.factorization import probe
 
 
 def is_square(value):
@@ -142,3 +143,18 @@ def is_hexagonal(number):
     """
     value = (math.sqrt(8 * number + 1) + 1) / 4.0
     return value == int(value)
+
+
+def is_abundant(number):
+    """
+    Check number to be a abundant number; 12 is the first (1+2+3+4+6=16 which is greater than 12).
+
+    :returns: true when the sum of the divisors of the given number is greater as the number
+    see http://en.wikipedia.org/wiki/Abundant_number
+
+    >>> is_abundant(12)
+    True
+    >>> is_abundant(13)
+    False
+    """
+    return (sum(probe(number)) - number) > number

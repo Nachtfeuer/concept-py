@@ -26,7 +26,7 @@
 import unittest
 from hamcrest import assert_that, equal_to
 from concept.math.number import is_square, triangle, is_triangle, pentagonal, is_pentagonal
-from concept.math.number import hexagonal, is_hexagonal
+from concept.math.number import hexagonal, is_hexagonal, is_abundant
 
 
 class TestNumber(unittest.TestCase):
@@ -73,3 +73,8 @@ class TestNumber(unittest.TestCase):
         assert_that(is_hexagonal(44), equal_to(False))
         assert_that(is_hexagonal(45), equal_to(True))
         assert_that(is_hexagonal(46), equal_to(False))
+
+    def test_is_abundant(self):
+        """ Testing is_abundant function. """
+        assert_that(is_abundant(12), equal_to(True))
+        assert_that(is_abundant(13), equal_to(False))

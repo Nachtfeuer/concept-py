@@ -22,26 +22,18 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 import unittest
-from hamcrest import assert_that, equal_to
-from concept.primes.is_prime import is_prime
-from concept.primes.sieve_of_eratosthenes_optimized import sieve_of_eratosthenes_optimized
+import time
+from hamcrest import assert_that, greater_than_or_equal_to
+from concept.performance.measurement import track_duration_of
 
 
-class TestSieveOfEratosthenesOptimized(unittest.TestCase):
+class TestMeasurement(unittest.TestCase):
 
-    """ Testing prime sieve. """
+    """ Testing of performance measurement function. """
 
-    def test_sieve(self):
-        """ Testing prime generation. """
-        sieve = sieve_of_eratosthenes_optimized(20)
-        sieve.calculate()
-        assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(sieve.get_primes()))
-
-    def test_is_sieve(self):
-        """ Testing is_sieve method. """
-        sieve = sieve_of_eratosthenes_optimized(101)
-        sieve.calculate()
-
-        expected = [n for n in range(1, 100+1) if is_prime(n)]
-        given = [2] + [n for n in range(3, 100+1, 2) if sieve.is_prime(n)]
-        assert_that(given, equal_to(expected))
+    def test_track_duration_for(self):
+        """ Testing measurement. """
+        duration = track_duration_of(lambda: time.sleep(0.25))
+        assert_that(duration, greater_than_or_equal_to(0.25))
+        duration = track_duration_of(lambda: time.sleep(0.5))
+        assert_that(duration, greater_than_or_equal_to(0.5))

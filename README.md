@@ -51,6 +51,7 @@ Current Content
    - factorization: probe.
    - number functions: is_square, triangle, is_triangle, pentagonal, is_pentagonal,
      hexagonal, is_hexagonal.
+ - container query with 'where' and 'transform'
  - example folder added (using this library)
    - prime tool
    - sequence generator tool
