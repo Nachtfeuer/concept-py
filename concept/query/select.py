@@ -84,3 +84,52 @@ class select(object):
                     entry = transform_function(entry)
                 results.append(entry)
         return results
+
+    def sum(self):
+        """
+        Calculate sum of entries.
+
+        :returns: sum of entries.
+
+        >>> select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).sum()
+        55
+        >>> select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).transform(lambda n: n**2).sum()
+        385
+        """
+        return sum(self.build())
+
+    def average(self):
+        """
+        Calculate average of entries.
+
+        :returns: average of entries.
+
+        >>> select([1, 2, 3]).average()
+        2.0
+        >>> select([1, 2]).average()
+        1.5
+        """
+        results = self.build()
+        return sum(results) / len(results)
+
+    def min(self):
+        """
+        Calculate minimum of entries.
+
+        :returns: minimum of entries.
+
+        >>> select([3, 2, 1]).min()
+        1
+        """
+        return min(self.build())
+
+    def max(self):
+        """
+        Calculate maximum of entries.
+
+        :returns: maximum of entries.
+
+        >>> select([1, 2, 3]).max()
+        3
+        """
+        return max(self.build())

@@ -70,3 +70,29 @@ class TestQuerySelect(unittest.TestCase):
             .transform(lambda n: n+1) \
             .build()
         assert_that(given, equal_to(expected))
+
+    def test_sum(self):
+        """ Testing sum of elements. """
+        assert_that(select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).sum(), equal_to(55))
+
+    def test_sum_with_where_clause(self):
+        """ Testing sum of elements. """
+        assert_that(select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    .where(lambda n: n % 2 == 0).sum(), equal_to(30))
+
+    def test_average(self):
+        """ Testing average of elements. """
+        assert_that(select([1, 2, 3]).average(), equal_to(2))
+        assert_that(select([1, 2]).average(), equal_to(1.5))
+
+    def test_average_with_where_clause(self):
+        assert_that(select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    .where(lambda n: n % 2 == 0).average(), equal_to(6))
+
+    def test_min(self):
+        """ Testing minimum of elements. """
+        assert_that(select([3, 2, 1]).min(), equal_to(1))
+
+    def test_max(self):
+        """ Testing maximum of elements. """
+        assert_that(select([1, 2, 3]).max(), equal_to(3))

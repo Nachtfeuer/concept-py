@@ -51,14 +51,17 @@ Current Content
    - factorization: probe.
    - number functions: is_square, triangle, is_triangle, pentagonal, is_pentagonal,
      hexagonal, is_hexagonal.
- - container query with 'where' and 'transform'
+ - container query with
+   - 'where' and 'transform'
+   - 'sum' and 'average'
+   - 'min' and 'max'
  - example folder added (using this library)
    - prime tool
    - sequence generator tool
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher
-   - Vigenère cipher
+   - Vigenere cipher
 
 
 Next Action Items (planned)
