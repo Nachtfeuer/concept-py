@@ -67,8 +67,9 @@ Current Content
 Next Action Items (planned)
 ---------------------------
  - statistic mechanism for different algorithms enable using R.
- - crypt/decrypt functions/classes
-   - other
+ - writing a script that runs tests across multiple python versions
+   using the virtual environment.
+ - range select functionality like query (like concept-cpp)
  - math sequence generator
    - writing generated sequences to a database
    - being able to group all sequence which generate same sequence
@@ -76,9 +77,9 @@ Next Action Items (planned)
    - adding integer division function
    - adding integer square root function
    - adding pow function (examples: 2^10 = 1024 or (-1)^x)
- - example folder
-   - encrypt tool (choosable algorithm)
-   - decrypt tool (choosable algorithm)
+   - detection of two formula being opposites like (x+1) and (x-1)
+     to avoid to have those as chain.
+ - upload to python package index.
 
 Requirements
 ------------

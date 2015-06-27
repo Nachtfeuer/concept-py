@@ -110,7 +110,7 @@ class select(object):
         1.5
         """
         results = self.build()
-        return sum(results) / len(results)
+        return sum(results) / float(len(results))
 
     def min(self):
         """
