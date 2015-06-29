@@ -31,6 +31,12 @@ well documented. Please keep in mind and read:
 
 Quick start
 -----------
+Installing latest released version:
+```
+pip install concept-py
+```
+
+Development on this project:
 ```
  git clone https://github.com/Nachtfeuer/concept-py.git
  cd concept-py
@@ -55,6 +61,7 @@ Current Content
    - 'where' and 'transform'
    - 'sum' and 'average'
    - 'min' and 'max'
+ - range select functionality like container query (like concept-cpp)
  - example folder added (using this library)
    - prime tool
    - sequence generator tool
@@ -69,7 +76,6 @@ Next Action Items (planned)
  - statistic mechanism for different algorithms enable using R.
  - writing a script that runs tests across multiple python versions
    using the virtual environment.
- - range select functionality like query (like concept-cpp)
  - math sequence generator
    - writing generated sequences to a database
    - being able to group all sequence which generate same sequence
@@ -79,7 +85,6 @@ Next Action Items (planned)
    - adding pow function (examples: 2^10 = 1024 or (-1)^x)
    - detection of two formula being opposites like (x+1) and (x-1)
      to avoid to have those as chain.
- - upload to python package index.
 
 Requirements
 ------------

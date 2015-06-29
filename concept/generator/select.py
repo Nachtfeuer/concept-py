@@ -1,9 +1,9 @@
 """
-   Select for entries in a container.
+   Generator for a defined ranged.
 
 .. module:: select
     :platform: Unix, Windows
-    :synopis: Select for entries in a container.
+    :synopis: Generator for a defined range.
 
 .. moduleauthor:: Thomas Lehmann <thomas.lehmann.private@googlemail.com>
 
@@ -36,9 +36,17 @@ class select(object):
 
     """ Container query functionality. """
 
-    def __init__(self, entries):
-        """ Initializing with entries. """
-        self.entries = entries
+    def __init__(self, from_value, to_value, step_value):
+        """
+        Initializing with range parameters.
+
+        :param from_value: start of range
+        :param to_value: end of range
+        :param step_value: step value
+        """
+        self.from_value = from_value
+        self.to_value = to_value
+        self.step_value = step_value
         self.filter_functions = []
         self.transform_functions = []
 
@@ -49,7 +57,7 @@ class select(object):
         :param filter_function: accepts one parameter and returns True to keep the entry.
         :returns: self to allow applying further filter and transformation.
 
-        >>> select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).where(lambda n: n % 2 == 0).build()
+        >>> select(1, 10, 1).where(lambda n: n % 2 == 0).build()
         [2, 4, 6, 8, 10]
         """
         assert callable(filter_function)
@@ -63,7 +71,7 @@ class select(object):
         :param filter_function: accepts one parameter and returns True to keep the entry.
         :returns: self to allow applying further filter and transformation.
 
-        >>> select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).transform(lambda n: n**2).build()
+        >>> select(1, 10, 1).transform(lambda n: n**2).build()
         [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
         """
         assert callable(transform_function)
@@ -71,18 +79,35 @@ class select(object):
         return self
 
     def build(self):
-        """ Provide final result(s) after applying filters and transformations. """
+        """
+        Provide final result(s) after applying filters and transformations.
+
+        >>> select(1, 10, 1).build()
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        >>> select(1, 10, 2).build()
+        [1, 3, 5, 7, 9]
+        """
+        condition = lambda a, b: a <= b
+        if self.step_value < 0:
+            condition = lambda a, b: a >= b
+
         results = []
-        for entry in self.entries:
+        current = self.from_value
+        while condition(current, self.to_value):
             ignore = False
             for filter_function in self.filter_functions:
-                if not filter_function(entry):
+                if not filter_function(current):
                     ignore = True
                     break
+
             if not ignore:
+                value = current
                 for transform_function in self.transform_functions:
-                    entry = transform_function(entry)
-                results.append(entry)
+                    value = transform_function(value)
+                results.append(value)
+
+            current += self.step_value
+
         return results
 
     def sum(self):
@@ -91,9 +116,9 @@ class select(object):
 
         :returns: sum of entries.
 
-        >>> select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).sum()
+        >>> select(1, 10, 1).sum()
         55
-        >>> select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).transform(lambda n: n**2).sum()
+        >>> select(1, 10, 1).transform(lambda n: n**2).sum()
         385
         """
         return sum(self.build())
@@ -104,9 +129,9 @@ class select(object):
 
         :returns: average of entries.
 
-        >>> select([1, 2, 3]).average()
+        >>> select(1, 3, 1).average()
         2.0
-        >>> select([1, 2]).average()
+        >>> select(1, 2, 1).average()
         1.5
         """
         results = self.build()
@@ -118,7 +143,7 @@ class select(object):
 
         :returns: minimum of entries.
 
-        >>> select([3, 2, 1]).min()
+        >>> select(3, 1, -1).min()
         1
         """
         return min(self.build())
@@ -129,7 +154,7 @@ class select(object):
 
         :returns: maximum of entries.
 
-        >>> select([1, 2, 3]).max()
+        >>> select(1, 3, 1).max()
         3
         """
         return max(self.build())
@@ -140,9 +165,9 @@ class select(object):
 
         :returns: median of entries.
 
-        >>> select([2, 3, 1]).median()
+        >>> select(1, 3, 1).median()
         2.0
-        >>> select([3, 2, 1, 0]).median()
+        >>> select(3, 0, -1).median()
         1.5
         """
         results = self.build()
