@@ -22,7 +22,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 import unittest
-from hamcrest import assert_that, equal_to
+from hamcrest import assert_that, equal_to, less_than_or_equal_to
 from concept.generator.select import select
 
 
@@ -99,3 +99,17 @@ class TestGeneratorSelect(unittest.TestCase):
         """ Testing median of elements. """
         assert_that(select(1, 3, 1).median(), equal_to(2.0))
         assert_that(select(3, 0, -1).median(), equal_to(1.5))
+
+    def test_shuffle(self):
+        """ Testing shuffle of elements. """
+
+        values = []
+        for n in range(100):
+            results = select(1, 10, 1).shuffled()
+            exact_positions = 0
+            for index, value in enumerate(results):
+                if index+1 == value:
+                    exact_positions += 1
+            values.append(exact_positions)
+        average = sum(values) / float(len(values))
+        assert_that(average, less_than_or_equal_to(2.0))

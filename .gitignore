@@ -13,3 +13,4 @@ pep8.log
 ccm.xml
 pep257.log
 pylint.log
+examples/learn.json

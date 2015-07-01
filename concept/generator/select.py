@@ -30,6 +30,7 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+import random
 
 
 class select(object):
@@ -178,3 +179,13 @@ class select(object):
             return (results[pos] + results[pos+1]) / 2.0
 
         return float(results[len(results) // 2])
+
+    def shuffled(self):
+        """
+        Shuffle values in the list.
+
+        :returns: shuffled values.
+        """
+        results = self.build()
+        random.shuffle(results)
+        return results

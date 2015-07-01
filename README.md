@@ -62,9 +62,12 @@ Current Content
    - 'sum' and 'average'
    - 'min' and 'max'
  - range select functionality like container query (like concept-cpp)
+   - 'shuffled'
  - example folder added (using this library)
    - prime tool
    - sequence generator tool
+   - learning tool
+     - find missing value in a shuffled sequence of values.
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher
@@ -85,6 +88,8 @@ Next Action Items (planned)
    - adding pow function (examples: 2^10 = 1024 or (-1)^x)
    - detection of two formula being opposites like (x+1) and (x-1)
      to avoid to have those as chain.
+ - learning tool
+   - export to R statistic tool for displaying "visual" results
 
 Requirements
 ------------
