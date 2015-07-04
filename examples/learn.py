@@ -30,6 +30,7 @@ import click
 import random
 import time
 import json
+from datetime import datetime
 from concept import version
 from concept.generator.select import select
 
@@ -41,12 +42,14 @@ def dump_last_result(statistic):
     :param statistic: results of last training.
     """
     print("\nResults of last test run:")
-    print("  %d correct answers" % statistic['correct answers'])
-    print("  %d wrong answers" % statistic['wrong answers'])
-    print("  %f seconds in total" % statistic['total time (s)'])
-    print("  %f seconds per answer (average)" %
+    print("  %5d answers were correct." % statistic['correct answers'])
+    print("  %5d answers were wrong." % statistic['wrong answers'])
+    print("  %5.2f seconds in total." % statistic['total time (s)'])
+    print("  %5.2f seconds per answer (average)." %
           (statistic['total time (s)'] / (statistic['correct answers']
                                           + statistic['wrong answers'])))
+    print("  %5.2f seconds was best time." % statistic['best time (s)'])
+    print("  %5.2f seconds was worst time." % statistic['worst time (s)'])
 
 
 def dump_total_results(statistic_entries):
@@ -62,12 +65,17 @@ def dump_total_results(statistic_entries):
     average_per_run = sum([entry['total time (s)'] for entry in statistic_entries]) \
         / float(len(statistic_entries))
 
+    best_time = min([entry['best time (s)'] for entry in statistic_entries])
+    worst_time = max([entry['worst time (s)'] for entry in statistic_entries])
+
     print("\nSummary for all done tests:")
-    print("  %d total test runs" % len(statistic_entries))
-    print("  %d individual tests" % individual_tests)
-    print("  %.1f individual tests per run" % (individual_tests/float(len(statistic_entries))))
-    print("  %f seconds per answer (average)" % average_per_test)
-    print("  %f seconds per run (average)" % average_per_run)
+    print("  %5d total test runs" % len(statistic_entries))
+    print("  %5d individual tests" % individual_tests)
+    print("  %5.1f individual tests per run" % (individual_tests/float(len(statistic_entries))))
+    print("  %5.2f seconds per answer (average)" % average_per_test)
+    print("  %5.2f seconds per run (average)" % average_per_run)
+    print("  %5.2f seconds was best time." % best_time)
+    print("  %5.2f seconds was worst time." % worst_time)
 
 
 def save(statistic_entries):
@@ -105,6 +113,7 @@ def main(max_entries, max_tests):
     print("\nAll possible entries: %s\n" % select(1, max_entries, 1).build())
 
     previous_results = load()
+    started = datetime.now()
     results = []
 
     test = 1
@@ -128,9 +137,14 @@ def main(max_entries, max_tests):
         test += 1
 
     total_time = sum([entry[1] for entry in results])
-    statistic = {'correct answers': sum([1 for entry in results if entry[0]]),
+    best_time = min([entry[1] for entry in results])
+    worst_time = max([entry[1] for entry in results])
+    statistic = {'started': started.strftime("%Y-%m-%d %H:%M:%S"),
+                 'correct answers': sum([1 for entry in results if entry[0]]),
                  'wrong answers': sum([1 for entry in results if not entry[0]]),
-                 'total time (s)': total_time}
+                 'total time (s)': total_time,
+                 'best time (s)': best_time,
+                 'worst time (s)': worst_time}
 
     previous_results.append(statistic)
     save(previous_results)

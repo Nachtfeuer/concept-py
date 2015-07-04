@@ -31,11 +31,11 @@
 """
 
 
-def sum_digits(n):
+def sum_digits(value):
     """
     Sum of digits of given number.
 
-    :param n: integer value (can also be negative)
+    :param value: integer value (can also be negative)
     :returns: sum of digits of given number
 
     >>> sum_digits(1024)
@@ -45,19 +45,19 @@ def sum_digits(n):
     >>> sum_digits(-1234567890)
     45
     """
-    n = abs(n)
+    value = abs(value)
     result = 0
-    while n > 0:
-        result += n % 10
-        n //= 10
+    while value > 0:
+        result += value % 10
+        value //= 10
     return result
 
 
-def count_digits(n):
+def count_digits(value):
     """
     Count of digits of given number.
 
-    :param n: integer value (can also be negative)
+    :param value: integer value (can also be negative)
     :returns: count of digits of given number
 
     >>> count_digits(0)
@@ -69,22 +69,22 @@ def count_digits(n):
     >>> count_digits(-1234567890)
     10
     """
-    if 0 == n:
+    if 0 == value:
         return 1
 
-    n = abs(n)
+    value = abs(value)
     result = 0
-    while n > 0:
+    while value > 0:
         result += 1
-        n //= 10
+        value //= 10
     return result
 
 
-def is_pandigital(n):
+def is_pandigital(value):
     """
     Check that each digit appears once only.
 
-    :param n: integer value (can also be negative)
+    :param value: integer value (can also be negative)
     :retuns: true when given number is pandigital
 
     see http://en.wikipedia.org/wiki/Pandigital_number
@@ -98,17 +98,17 @@ def is_pandigital(n):
     >>> is_pandigital(10240)
     False
     """
-    n = abs(n)
+    value = abs(value)
     digits = set()
-    dc = 0
-    while n > 0:
-        digits.add(n % 10)
-        dc += 1
-        n //= 10
-    return dc == len(digits)
+    counter = 0
+    while value > 0:
+        digits.add(value % 10)
+        counter += 1
+        value //= 10
+    return counter == len(digits)
 
 
-def is_palindrome(n):
+def is_palindrome(value):
     """
     Check that given number is a palindrom like: 161, 2332.
 
@@ -120,11 +120,11 @@ def is_palindrome(n):
     >>> is_palindrome(1231)
     False
     """
-    n = abs(n)
+    value = abs(value)
     digits = []
-    while n > 0:
-        digits.append(n % 10)
-        n //= 10
+    while value > 0:
+        digits.append(value % 10)
+        value //= 10
 
     left = 0
     right = len(digits)-1

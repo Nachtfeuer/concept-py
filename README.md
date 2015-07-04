@@ -68,10 +68,20 @@ Current Content
    - sequence generator tool
    - learning tool
      - find missing value in a shuffled sequence of values.
+     - date and time when a run was started
+     - best time and worst time in test run
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher
    - Vigenere cipher
+ - lightweight gnuplot support to generate some graphs
+   - plot class to wrap one plot function.
+   - script class that write the script and executes gnuplot.
+   - can generate png, svg, jpeg and gif.
+   - image width and height adjustable.
+   - xlabel and ylabel per plot
+   - color and styles adjustments per line style "index"
+     (rgb color, line width, ...)
 
 
 Next Action Items (planned)
@@ -79,6 +89,8 @@ Next Action Items (planned)
  - statistic mechanism for different algorithms enable using R.
  - writing a script that runs tests across multiple python versions
    using the virtual environment.
+ - let build fail when pep8, pep257 or flake warnings are NOT 0.
+ - let build fail when pylint rating is less or equal 9.
  - math sequence generator
    - writing generated sequences to a database
    - being able to group all sequence which generate same sequence
@@ -89,7 +101,16 @@ Next Action Items (planned)
    - detection of two formula being opposites like (x+1) and (x-1)
      to avoid to have those as chain.
  - learning tool
-   - export to R statistic tool for displaying "visual" results
+   - export displaying "visual" results (see gnuplot)
+    - graph for total times per number of entries for a test run
+    - graph for success/failure per number ...
+ - lightweight gnuplot support to generate some graphs
+   - adding multiplot class for multiple plot on one "page" (image).
+   - enable mode "filledcurves"
+   - font size for labels (and color).
+   - trend lines.
+   - dashed and dotted lines.
+
 
 Requirements
 ------------

@@ -6,13 +6,13 @@
 # |_|   \__,_|_| |_/_/   \_\_| |_|\__,_|_|\__, |___/\___(_)___/_| |_|
 #                                         |___/                      
 # creating console report
-radon cc -a concept
+radon cc -a concept tests example
 
 # creating XML report
-radon cc -a --xml concept examples > ccm.xml
+radon cc -a --xml concept tests examples > ccm.xml
 
 # creating pylint report
-pylint --rcfile=./.rclint.2.x concept examples > pylint.log
+pylint --rcfile=./.rclint.2.x concept tests examples > pylint.log
 grep "rated at" pylint.log
 
 # creating pep8 report
