@@ -15,3 +15,6 @@ pep257.log
 pylint.log
 examples/learn.json
 learn.json
+learn.gp
+learn.gp.png
+learn.gp.svg

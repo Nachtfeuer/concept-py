@@ -74,7 +74,8 @@ class script(object):
         :returns: script header.
         """
         header = "#!/usr/bin/gnuplot"
-        format_str = ["png enhanced", "svg", "jpeg enhanced", "gif enhanced"][self.output_format]
+        format_str = ["png enhanced truecolor", "svg",
+                      "jpeg enhanced", "gif enhanced"][self.output_format]
         extension = ["png", "svg", "jpeg", "gif"][self.output_format]
         header += "\nset terminal %s size %d, %d" % (format_str, self.width, self.height)
         header += "\nset output \"%s\"" % (self.path_and_filename + ".%s" % extension)

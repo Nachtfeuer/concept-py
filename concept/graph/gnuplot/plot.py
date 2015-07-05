@@ -35,6 +35,9 @@ class plot(object):
 
     """ Representing a gnuplot plot. """
 
+    LINES = 0
+    FILLEDCURVES = 1
+
     def __init__(self, title="", title_font=("", 0), use_grid=True):
         """ Init fields. """
         assert isinstance(title, str)
@@ -48,7 +51,8 @@ class plot(object):
         self.curves = []
         self.xlabel = ""
         self.ylabel = ""
-        self.styles = {}
+        self.line_styles = {}
+        self.fill_styles = {}
 
     def set_xlabel(self, label):
         """ Change x label. """
@@ -58,41 +62,58 @@ class plot(object):
         """ Change x label. """
         self.ylabel = label
 
-    def set_style(self, style_index, style_description):
+    def set_line_style(self, style_index, style_description):
         """
-        Register style for index.
+        Register line style for index.
 
-        It's expected that the style description for lines
-        is valid.
+        It's expected that the style description for lines is valid.
 
         :param style_index: that's the non zero based index of the curve.
-        :param style_description: gnuplot specific style description.
+        :param style_description: gnuplot specific line style description.
         """
-        self.styles[style_index] = style_description
+        self.line_styles[style_index] = style_description
 
-    def add_curve(self, title, values):
+    def set_fill_style(self, style_index, style_description):
+        """
+        Register fill style for index.
+
+        It's expected that the fill style description is valid.
+
+        :param style_index: that's the non zero based index of the curve.
+        :param style_description: gnuplot specific fill style description.
+        """
+        self.fill_styles[style_index] = style_description
+
+    def add_curve(self, title, values, mode=LINES):
         """
         Adding one plot curve.
 
         :param title: title of curve diplayed in legend.
         :param values: table of values (at least two rows expected)
+        :param mode: one of: plot.LINES, plot.FILLEDCURVES
         """
         assert isinstance(title, str) and len(title) > 0
         assert isinstance(values, list) and len(values) >= 2
-        self.curves.append((title, values))
+        assert mode in [self.LINES, self.FILLEDCURVES]
+        self.curves.append((title, values, mode))
+
+    def get_title_line(self):
+        """ Define the main title and its options. """
+        line = "\nset title \"%s\"" % self.title
+        if self.title_font[1] > 0:
+            line += " font "
+            if len(self.title_font) > 0:
+                line += "\"%s," % self.title_font[0]
+            else:
+                line += "\","
+
+            line += "%d\"" % self.title_font[1]
+        return line
 
     def __repr__(self):
         """ Generate gnuplot script part for a plot. """
         script = "\n# displaying a plot title"
-        script += "\nset title \"%s\"" % self.title
-        if self.title_font[1] > 0:
-            script += " font "
-            if len(self.title_font) > 0:
-                script += "\"%s," % self.title_font[0]
-            else:
-                script += "\","
-
-            script += "%d\"" % self.title_font[1]
+        script += self.get_title_line()
 
         if self.use_grid:
             script += "\n# enables displaying a grid"
@@ -104,21 +125,24 @@ class plot(object):
             script += "\nset ylabel \"%s\"" % self.ylabel
 
         if len(self.curves) > 0:
-            for ls in range(1, len(self.curves)+1):
-                if ls in self.styles:
-                    script += "\nset style line %d %s" % (ls, self.styles[ls])
+            for style in range(1, len(self.curves)+1):
+                if style in self.line_styles:
+                    script += "\nset style line %d %s" % (style, self.line_styles[style])
 
             script += "\n# plotting values"
             script += "\nplot\\"
-            ls = 1
-            max_ls = len(self.curves)
-            for title, table in self.curves:
-                script += "\n    \"-\" with lines ls %d title \"%s\"" % (ls, title)
-                if ls < max_ls:
+            style = 1
+            max_style = len(self.curves)
+            for title, table, mode in self.curves:
+                mode_str = ["lines", "filledcurves x1"][mode]
+                fill_style = " fs %s" % self.fill_styles[style] if style in self.fill_styles else ""
+                script += "\n    \"-\" with %s ls %d%s title \"%s\"" \
+                          % (mode_str, style, fill_style, title)
+                if style < max_style:
                     script += ",\\"
-                ls += 1
+                style += 1
 
-            for title, table in self.curves:
+            for title, table, mode in self.curves:
                 for row in table:
                     script += "\n" + " ".join([str(value) for value in row])
                 script += "\nEOF"

@@ -8,4 +8,4 @@ if [ -z "${PYTHON}" ]; then
 fi
 
 echo "python setup.py bdist_rpm"
-python setup.py bdist_rpm --python=${PYTHON}
+python setup.py bdist_rpm --python=${PYTHON} --requires="gnuplot"

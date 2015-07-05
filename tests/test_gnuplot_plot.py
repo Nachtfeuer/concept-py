@@ -36,7 +36,14 @@ class TestGnuplotPlot(unittest.TestCase):
         assert_that(obj.title, equal_to(""))
         assert_that(obj.use_grid, equal_to(True))
         assert_that(obj.curves, equal_to([]))
-        assert_that(obj.styles, equal_to({}))
+        assert_that(obj.line_styles, equal_to({}))
+        assert_that(obj.fill_styles, equal_to({}))
+
+    def test_get_title_line(self):
+        """ Testing plot.get_title_line method. """
+        obj = plot("test plot")
+        expected = "\nset title \"test plot\""
+        assert_that(obj.get_title_line(), equal_to(expected))
 
     def test_repr(self):
         """ Testing plot.__repr__ method. """
@@ -128,7 +135,7 @@ EOF
         """ Testing plot.__repr__ method. """
         obj = plot("test plot")
         obj.add_curve("some data", [[1, 1], [2, 0], [3, 1]])
-        obj.set_style(1, "lc rgb \"#00ff00\" lw 2")
+        obj.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
         expected_script = """
 # displaying a plot title
 set title "test plot"

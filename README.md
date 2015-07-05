@@ -81,7 +81,11 @@ Current Content
    - image width and height adjustable.
    - xlabel and ylabel per plot
    - color and styles adjustments per line style "index"
-     (rgb color, line width, ...)
+     (rgb color, line width, ...) 
+   - adjusting of fill style per curve (style index as before)
+   - enable mode "filledcurves"
+   - export displaying "visual" results (see gnuplot)
+     - total times for done test runs (independent of the entries per run)
 
 
 Next Action Items (planned)
@@ -106,7 +110,6 @@ Next Action Items (planned)
     - graph for success/failure per number ...
  - lightweight gnuplot support to generate some graphs
    - adding multiplot class for multiple plot on one "page" (image).
-   - enable mode "filledcurves"
    - font size for labels (and color).
    - trend lines.
    - dashed and dotted lines.

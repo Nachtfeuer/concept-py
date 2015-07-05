@@ -42,10 +42,15 @@ class TestGnuplotScript(unittest.TestCase):
         assert_that(instance.output_format, equal_to(script.PNG))
 
     def test_header(self):
-        """ Testing script header. """
+        """
+        Testing script header.
+
+        The output slightly differs depending on format. "truecolor" is not
+        available for all formats and required for png to enable transparent curves.
+        """
         plot_obj = plot("test")
         instance = script("/tmp/test.pg", plot_obj)
         expected_header = """#!/usr/bin/gnuplot
-set terminal png enhanced size 640, 480
+set terminal png enhanced truecolor size 640, 480
 set output \"/tmp/test.pg.png\""""
         assert_that(instance.get_script_header(), equal_to(expected_header))
