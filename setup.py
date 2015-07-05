@@ -54,7 +54,7 @@ setup(name='concept-py',
           "Programming Language :: Python :: Implementation :: PyPy",
           "Topic :: Software Development :: Libraries :: Python Modules",
           "Development Status :: 5 - Production/Stable",
-          "License :: MIT",
+          "License :: OSI Approved :: MIT License",
           "Operating System :: Microsoft :: Windows",
           "Operating System :: Unix"
       ])

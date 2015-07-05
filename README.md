@@ -2,7 +2,8 @@ README
 ======
 
 [![Build Status](https://travis-ci.org/Nachtfeuer/concept-py.svg?branch=master)](https://travis-ci.org/Nachtfeuer/concept-py)
-[![Coverage Status](https://coveralls.io/repos/Nachtfeuer/concept-py/badge.svg?branch=master)](https://coveralls.io/r/Nachtfeuer/concept-py?branch=master)
+[![Coverage Status](https://coveralls.io/repos/Nachtfeuer/concept-py/badge.svg?branch=master)](https://coveralls.io/r/Nachtfeuer/concept-py?branch=master)A
+[![PyPI version](https://badge.fury.io/py/concept-py.png)](http://badge.fury.io/py/concept-py)
 
 ### Table Of Contents
 [**Welcome**](#welcome)  
@@ -13,6 +14,7 @@ README
 [**Examples**](#examples)  
 [**Level Of Done**](#level-of-done)  
 [**Version Policy**](#version-policy)  
+[**Interesting Links**](#interesting-links)  
 
 Welcome
 -------
@@ -202,3 +204,11 @@ Version Policy
    - each commit message (since policy has been introduced) should refer
      to a version by mentioning it in form: "a.b.c: title" in first line and
      as many details you like in following lines.
+
+Interesting links
+-----------------
+ - https://travis-ci.org (CI build)
+ - https://coveralls.io (coverage report)
+ - https://badge.fury.io (badges like version of package in Python package index)
+ - https://pypi.python.org/pypi?%3Aaction=pkg_edit&name=concept-py
+
