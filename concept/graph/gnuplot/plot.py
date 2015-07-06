@@ -50,7 +50,9 @@ class plot(object):
         self.use_grid = use_grid
         self.curves = []
         self.xlabel = ""
+        self.xtics = ""
         self.ylabel = ""
+        self.ytics = ""
         self.line_styles = {}
         self.fill_styles = {}
 
@@ -61,6 +63,16 @@ class plot(object):
     def set_ylabel(self, label):
         """ Change x label. """
         self.ylabel = label
+
+    def set_xtics(self, xtics):
+        """ Change x tics. """
+        assert isinstance(xtics, str)
+        self.xtics = xtics
+
+    def set_ytics(self, ytics):
+        """ Change y tics. """
+        assert isinstance(ytics, str)
+        self.ytics = ytics
 
     def set_line_style(self, style_index, style_description):
         """
@@ -93,7 +105,7 @@ class plot(object):
         :param mode: one of: plot.LINES, plot.FILLEDCURVES
         """
         assert isinstance(title, str) and len(title) > 0
-        assert isinstance(values, list) and len(values) >= 2
+        assert isinstance(values, list) and len(values) >= 1
         assert mode in [self.LINES, self.FILLEDCURVES]
         self.curves.append((title, values, mode))
 
@@ -123,6 +135,11 @@ class plot(object):
             script += "\nset xlabel \"%s\"" % self.xlabel
         if self.ylabel and len(self.ylabel) > 0:
             script += "\nset ylabel \"%s\"" % self.ylabel
+
+        if self.xtics and len(self.xtics) > 0:
+            script += "\nset xtics \"%s\"" % self.xtics
+        if self.ytics and len(self.ytics) > 0:
+            script += "\nset ytics \"%s\"" % self.ytics
 
         if len(self.curves) > 0:
             for style in range(1, len(self.curves)+1):

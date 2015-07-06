@@ -2,7 +2,7 @@ README
 ======
 
 [![Build Status](https://travis-ci.org/Nachtfeuer/concept-py.svg?branch=master)](https://travis-ci.org/Nachtfeuer/concept-py)
-[![Coverage Status](https://coveralls.io/repos/Nachtfeuer/concept-py/badge.svg?branch=master)](https://coveralls.io/r/Nachtfeuer/concept-py?branch=master)A
+[![Coverage Status](https://coveralls.io/repos/Nachtfeuer/concept-py/badge.svg?branch=master)](https://coveralls.io/r/Nachtfeuer/concept-py?branch=master)
 [![PyPI version](https://badge.fury.io/py/concept-py.png)](http://badge.fury.io/py/concept-py)
 
 ### Table Of Contents
@@ -72,6 +72,8 @@ Current Content
      - find missing value in a shuffled sequence of values.
      - date and time when a run was started
      - best time and worst time in test run
+     - export of gnuplot (multiplot) script and generated png image
+       with average time per max seen entries in a test run.
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher
@@ -86,8 +88,6 @@ Current Content
      (rgb color, line width, ...) 
    - adjusting of fill style per curve (style index as before)
    - enable mode "filledcurves"
-   - export displaying "visual" results (see gnuplot)
-     - total times for done test runs (independent of the entries per run)
 
 
 Next Action Items (planned)
@@ -108,7 +108,6 @@ Next Action Items (planned)
      to avoid to have those as chain.
  - learning tool
    - export displaying "visual" results (see gnuplot)
-    - graph for total times per number of entries for a test run
     - graph for success/failure per number ...
  - lightweight gnuplot support to generate some graphs
    - adding multiplot class for multiple plot on one "page" (image).

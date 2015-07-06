@@ -33,8 +33,7 @@ import json
 from datetime import datetime
 from concept import version
 from concept.generator.select import select
-from concept.graph.gnuplot.plot import plot
-from concept.graph.gnuplot.script import script
+from concept.graph.gnuplot import plot, multiplot, script
 
 
 def dump_last_result(statistic):
@@ -82,14 +81,36 @@ def dump_total_results(statistic_entries):
 
 def create_gnuplot_statistic(statistic_entries):
     """ Creating a gnuplot script and generates the image for it. """
-    total_time_plot = plot("lern.py statistics", title_font=("", 20))
-    total_time_plot.set_ylabel("total time per test run (seconds)")
-    total_time_plot.set_xlabel("n'th test run")
-    total_time_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
-    total_time_plot.set_fill_style(1, "transparent solid 0.4 border")
-    values = list(enumerate([entry['total time (s)'] for entry in statistic_entries]))
-    total_time_plot.add_curve("total times", values, mode=plot.FILLEDCURVES)
-    script("learn.gp", total_time_plot).execute()
+    grouped_by_number_of_entries = {}
+    for statistic in statistic_entries:
+        key = statistic['max entries']
+        if key not in grouped_by_number_of_entries:
+            grouped_by_number_of_entries[key] = [statistic]
+        else:
+            grouped_by_number_of_entries[key].append(statistic)
+
+    all_plots = multiplot("lern.py statistics", title_font=("", 20), plots_per_row=1)
+
+    pos = 0
+    max_pos = len(grouped_by_number_of_entries) - 1
+    for key, statistic in grouped_by_number_of_entries.items():
+        total_time_plot = plot()
+        total_time_plot.set_ylabel("seconds")
+        if pos == max_pos:
+            total_time_plot.set_xlabel("n'th test run")
+        total_time_plot.set_xtics("1")
+        total_time_plot.set_ytics("1")
+        total_time_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
+        total_time_plot.set_fill_style(1, "transparent solid 0.4 border")
+        values = list(enumerate([entry['total time (s)']/float(key) for entry in statistic]))
+        total_time_plot.add_curve("average times (max entries=%d)" % key,
+                                  values=values, mode=plot.FILLEDCURVES)
+
+        all_plots.add_plot(total_time_plot)
+        pos += 1
+
+    calculated_height = len(grouped_by_number_of_entries) * 250
+    script("learn.gp", all_plots, width=800, height=calculated_height).execute()
 
 
 def save(statistic_entries):
@@ -154,6 +175,7 @@ def main(max_entries, max_tests):
     best_time = min([entry[1] for entry in results])
     worst_time = max([entry[1] for entry in results])
     statistic = {'started': started.strftime("%Y-%m-%d %H:%M:%S"),
+                 'max entries': max_entries,
                  'correct answers': sum([1 for entry in results if entry[0]]),
                  'wrong answers': sum([1 for entry in results if not entry[0]]),
                  'total time (s)': total_time,
