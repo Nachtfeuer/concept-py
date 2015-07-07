@@ -114,7 +114,7 @@ class plot(object):
         line = "\nset title \"%s\"" % self.title
         if self.title_font[1] > 0:
             line += " font "
-            if len(self.title_font) > 0:
+            if len(self.title_font[0]) > 0:
                 line += "\"%s," % self.title_font[0]
             else:
                 line += "\","
