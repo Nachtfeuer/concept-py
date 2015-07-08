@@ -47,6 +47,9 @@ class data:
     the content of a file. If the filename ends with .json then it is
     loaded as json file.
 
+    With parameter single you can run test decorated method as many entries
+    are contained in the list.
+
     >>> @data(values=[1, 2, 3, 4])
     ... def test1(values): print(values)
     >>> test1()
@@ -55,6 +58,11 @@ class data:
     ... def test2(some_data): print(some_data)
     >>> test2()
     [4, 3, 2, 1]
+    >>> @data(key='some_data', values=[2, 1], single=True)
+    ... def test3(some_data): print(some_data)
+    >>> test3()
+    [2]
+    [1]
     """
 
     def __init__(self, **kwargs):
@@ -66,12 +74,13 @@ class data:
         - A file will be simple read as it is or as JSON if the name ends with '.json'
         """
         for key in kwargs:
-            assert key in ['key', 'file', 'values']
+            assert key in ['key', 'file', 'values', 'single']
 
-        self.key = kwargs['key'] if 'key' in kwargs else "values"
+        self.key = str(kwargs['key']) if 'key' in kwargs else "values"
         assert isinstance(self.key, str)
         self.values = kwargs['values'] if 'values' in kwargs else []
         assert isinstance(self.values, list)
+        self.single = bool(kwargs['single']) if 'single' in kwargs else False
 
         if 'file' in kwargs:
             assert len(self.values) == 0
@@ -90,8 +99,15 @@ class data:
         :returns: decorator.
         """
         def decorator(*args):
-            arguments = {self.key: self.values}
-            return function(*args, **arguments)
+            """ decorator function. """
+            if self.single:
+                for value in self.values:
+                    arguments = {self.key: [value]}
+                    function(*args, **arguments)
+            else:
+                arguments = {self.key: self.values}
+                return function(*args, **arguments)
 
         decorator.__name__ = function.__name__
+        decorator.__doc__ = function.__doc__
         return decorator

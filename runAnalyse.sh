@@ -6,7 +6,7 @@
 # |_|   \__,_|_| |_/_/   \_\_| |_|\__,_|_|\__, |___/\___(_)___/_| |_|
 #                                         |___/                      
 # creating console report
-radon cc -a concept tests example
+radon cc -a concept tests examples
 
 # creating XML report
 radon cc -a --xml concept tests examples > ccm.xml

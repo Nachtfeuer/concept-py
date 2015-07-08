@@ -49,7 +49,7 @@ Development on this project:
 
 Current Content
 ---------------
- - enabled Travis CI build (tested with Python 2.7.x, 3.2.x, 3.3.x, 3.4.x and PyPy).
+ - enabled Travis CI build (tested with Python 2.7.x, 3.2.x, 3.3.x, 3.4.x, PyPy and PyPy3).
  - enabled for virtual environment
  - math classes
    - prime function/classes
@@ -74,6 +74,7 @@ Current Content
      - best time and worst time in test run
      - export of gnuplot (multiplot) script and generated png image
        with average time per max seen entries in a test run.
+     - graph for number of tests per test run
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher
@@ -88,6 +89,8 @@ Current Content
      (rgb color, line width, ...) 
    - adjusting of fill style per curve (style index as before)
    - enable mode "filledcurves"
+ - data decorator for tests
+   - execution function/method for each value of the list (single=True parameter)
 
 
 Next Action Items (planned)
@@ -114,6 +117,12 @@ Next Action Items (planned)
    - font size for labels (and color).
    - trend lines.
    - dashed and dotted lines.
+ - data decorator for tests
+   - values = dict(...) => values = [(k1, v1), (k1, v2), ...]
+   - values = func()
+ - Travis CI
+   - freenode notification? (creation nick name first then the channel)
+   - jython support? (https://www.topbug.net/old/use-travis-ci-with-jython/)
 
 
 Requirements

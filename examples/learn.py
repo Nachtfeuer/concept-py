@@ -89,24 +89,39 @@ def create_gnuplot_statistic(statistic_entries):
         else:
             grouped_by_number_of_entries[key].append(statistic)
 
-    all_plots = multiplot("lern.py statistics", title_font=("", 20), plots_per_row=1)
+    all_plots = multiplot("lern.py statistics", title_font=("", 20), plots_per_row=2)
 
     pos = 0
     max_pos = len(grouped_by_number_of_entries) - 1
     for key, statistic in grouped_by_number_of_entries.items():
-        total_time_plot = plot()
-        total_time_plot.set_ylabel("seconds")
+        average_time_plot = plot()
+        average_time_plot.set_ylabel("seconds")
         if pos == max_pos:
-            total_time_plot.set_xlabel("n'th test run")
-        total_time_plot.set_xtics("1")
-        total_time_plot.set_ytics("1")
-        total_time_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
-        total_time_plot.set_fill_style(1, "transparent solid 0.4 border")
+            average_time_plot.set_xlabel("n'th test run")
+        average_time_plot.set_xtics("1")
+        average_time_plot.set_ytics("1")
+        average_time_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
+        average_time_plot.set_fill_style(1, "transparent solid 0.4 border")
         values = list(enumerate([entry['total time (s)']/float(key) for entry in statistic]))
-        total_time_plot.add_curve("average times (max entries=%d)" % key,
-                                  values=values, mode=plot.FILLEDCURVES)
+        average_time_plot.add_curve("average times (max entries=%d)" % key,
+                                    values=values, mode=plot.FILLEDCURVES)
 
-        all_plots.add_plot(total_time_plot)
+        all_plots.add_plot(average_time_plot)
+
+        number_of_tests_plot = plot()
+        number_of_tests_plot.set_ylabel("# tests")
+        if pos == max_pos:
+            number_of_tests_plot.set_xlabel("n'th test run")
+        number_of_tests_plot.set_xtics("1")
+        number_of_tests_plot.set_ytics("1")
+        number_of_tests_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
+        number_of_tests_plot.set_fill_style(1, "transparent solid 0.4 border")
+        values = list(enumerate([entry['correct answers']+entry['wrong answers']
+                                 for entry in statistic]))
+        number_of_tests_plot.add_curve("# of tests (max entries=%d)" % key,
+                                       values=values, mode=plot.FILLEDCURVES)
+
+        all_plots.add_plot(number_of_tests_plot)
         pos += 1
 
     calculated_height = len(grouped_by_number_of_entries) * 250

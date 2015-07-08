@@ -55,6 +55,20 @@ class TestDecoratorData(unittest.TestCase):
 
         assert_that(test3(), equal_to("hello world!"))
 
-    @data(values=[1, 2, 3, 4, 5])
-    def test_test(self, values):
-        assert_that(values, equal_to([1, 2, 3, 4, 5]))
+    def test_multicall(self):
+        """ Testing call of function for each element in list. """
+        class Multicall(object):
+            def __init__(self):
+                self.counter = 0
+                self.result = 0
+
+            @data(values=[2, 4, 6, 8, 10], single=True)
+            def test4(self, values):
+                self.counter += 1
+                self.result += values[0]
+
+        instance = Multicall()
+        instance.test4()
+
+        assert_that(instance.counter, equal_to(5))
+        assert_that(instance.result, equal_to(30))
