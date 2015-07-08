@@ -76,9 +76,9 @@ class data:
         if 'file' in kwargs:
             assert len(self.values) == 0
             if kwargs['file'].endswith(".json"):
-                self.values.append(json.loads(open(kwargs['file'], 'rb').read()))
+                self.values.append(json.loads(open(kwargs['file'], 'r').read()))
             else:
-                self.values.append(open(kwargs['file'], 'rb').read())
+                self.values.append(open(kwargs['file'], 'r').read())
 
     def __call__(self, function):
         """

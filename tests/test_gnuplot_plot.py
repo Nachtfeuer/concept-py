@@ -63,7 +63,8 @@ class TestGnuplotPlot(unittest.TestCase):
         obj = plot("test plot", title_font=("Helvetica", 20), use_grid=False)
         assert_that(str(obj), equal_to(content[0]))
 
-    @data(key="content", file=os.path.join(os.path.dirname(__file__), "data/title_and_font_size_only.gp"))
+    @data(key="content",
+          file=os.path.join(os.path.dirname(__file__), "data/title_and_font_size_only.gp"))
     def test_title_and_font_size_only(self, content):
         """ Testing plot.__init__ method with font size only. """
         obj = plot("test plot", title_font=("", 20), use_grid=False)
@@ -112,7 +113,8 @@ class TestGnuplotPlot(unittest.TestCase):
         obj.add_curve("some other data", [[1, 0], [2, 1], [3, 0]])
         assert_that(str(obj), equal_to(content[0]))
 
-    @data(key="content", file=os.path.join(os.path.dirname(__file__), "data/one_curve_with_line_style.gp"))
+    @data(key="content",
+          file=os.path.join(os.path.dirname(__file__), "data/one_curve_with_line_style.gp"))
     def test_repr_with_line_styles(self, content):
         """ Testing plot.__repr__ method. """
         obj = plot("test plot")
@@ -120,7 +122,8 @@ class TestGnuplotPlot(unittest.TestCase):
         obj.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
         assert_that(str(obj), equal_to(content[0]))
 
-    @data(key="content", file=os.path.join(os.path.dirname(__file__), "data/one_curve_with_fill_style.gp"))
+    @data(key="content",
+          file=os.path.join(os.path.dirname(__file__), "data/one_curve_with_fill_style.gp"))
     def test_repr_with_fill_style(self, content):
         """ Testing plot.set_fill_style method one time. """
         obj = plot("test plot")
