@@ -89,6 +89,7 @@ Current Content
      (rgb color, line width, ...) 
    - adjusting of fill style per curve (style index as before)
    - enable mode "filledcurves"
+   - adding multiplot class for multiple plot on one "page" (image).
  - data decorator for tests
    - execution function/method for each value of the list (single=True parameter)
 
@@ -113,7 +114,6 @@ Next Action Items (planned)
    - export displaying "visual" results (see gnuplot)
     - graph for success/failure per number ...
  - lightweight gnuplot support to generate some graphs
-   - adding multiplot class for multiple plot on one "page" (image).
    - font size for labels (and color).
    - trend lines.
    - dashed and dotted lines.

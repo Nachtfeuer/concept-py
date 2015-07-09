@@ -36,6 +36,11 @@ from concept.generator.select import select
 from concept.graph.gnuplot import plot, multiplot, script
 
 
+def average(entry):
+    """ providing average time for an individidual test. """
+    return entry['total time (s)']/float(entry['correct answers'] + entry['wrong answers'])
+
+
 def dump_last_result(statistic):
     """
     Print result of last training to stdout.
@@ -46,9 +51,7 @@ def dump_last_result(statistic):
     print("  %5d answers were correct." % statistic['correct answers'])
     print("  %5d answers were wrong." % statistic['wrong answers'])
     print("  %5.2f seconds in total." % statistic['total time (s)'])
-    print("  %5.2f seconds per answer (average)." %
-          (statistic['total time (s)'] / (statistic['correct answers']
-                                          + statistic['wrong answers'])))
+    print("  %5.2f seconds per answer (average)." % average(statistic))
     print("  %5.2f seconds was best time." % statistic['best time (s)'])
     print("  %5.2f seconds was worst time." % statistic['worst time (s)'])
 
@@ -89,7 +92,7 @@ def create_gnuplot_statistic(statistic_entries):
         else:
             grouped_by_number_of_entries[key].append(statistic)
 
-    all_plots = multiplot("lern.py statistics", title_font=("", 20), plots_per_row=2)
+    all_plots = multiplot("learn.py statistics", title_font=("", 18), plots_per_row=2)
 
     pos = 0
     max_pos = len(grouped_by_number_of_entries) - 1
@@ -99,10 +102,10 @@ def create_gnuplot_statistic(statistic_entries):
         if pos == max_pos:
             average_time_plot.set_xlabel("n'th test run")
         average_time_plot.set_xtics("1")
-        average_time_plot.set_ytics("1")
+        average_time_plot.set_ytics("0.5")
         average_time_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
         average_time_plot.set_fill_style(1, "transparent solid 0.4 border")
-        values = list(enumerate([entry['total time (s)']/float(key) for entry in statistic]))
+        values = list(enumerate([average(entry) for entry in statistic], 1))
         average_time_plot.add_curve("average times (max entries=%d)" % key,
                                     values=values, mode=plot.FILLEDCURVES)
 
@@ -117,7 +120,7 @@ def create_gnuplot_statistic(statistic_entries):
         number_of_tests_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
         number_of_tests_plot.set_fill_style(1, "transparent solid 0.4 border")
         values = list(enumerate([entry['correct answers']+entry['wrong answers']
-                                 for entry in statistic]))
+                                 for entry in statistic], 1))
         number_of_tests_plot.add_curve("# of tests (max entries=%d)" % key,
                                        values=values, mode=plot.FILLEDCURVES)
 
