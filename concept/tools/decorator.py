@@ -160,6 +160,9 @@ class validate_test_responsibility_for(object):
         for concrete_class in reversed(inspect.getmro(the_class)):
             classes[concrete_class] = {}
             for name, definition in dict(inspect.getmembers(concrete_class, mode)).items():
+                if name.find("subclass") >= 0:
+                    continue
+
                 object_name = name
                 is_base_method_only = False
 
