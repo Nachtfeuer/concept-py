@@ -21,6 +21,7 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+# pylint: disable=R0201
 import unittest
 from hamcrest import assert_that, equal_to, less_than_or_equal_to
 from concept.generator.select import select
@@ -104,7 +105,7 @@ class TestGeneratorSelect(unittest.TestCase):
         """ Testing shuffle of elements. """
 
         values = []
-        for n in range(100):
+        for pos in range(100):
             results = select(1, 10, 1).shuffled()
             exact_positions = 0
             for index, value in enumerate(results):

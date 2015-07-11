@@ -21,6 +21,7 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+# pylint: disable=R0201
 import os
 import unittest
 from hamcrest import assert_that, equal_to

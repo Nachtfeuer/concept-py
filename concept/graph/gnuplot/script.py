@@ -90,8 +90,8 @@ class script(object):
         """
         content = self.get_script_header() + str(self.plot_obj)
 
-        with open(self.path_and_filename, "w") as file:
-            file.write(content)
+        with open(self.path_and_filename, "w") as handle:
+            handle.write(content)
 
         for line in os.popen("gnuplot %s" % self.path_and_filename):
-            print(line)
+            print("%s" % line)

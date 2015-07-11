@@ -1,4 +1,13 @@
 """
+   Conversion functions.
+
+.. module:: convert
+    :platform: Unix, Windows
+    :synopis: conversion functions.
+
+.. moduleauthor:: Thomas Lehmann <thomas.lehmann.private@googlemail.com>
+
+
    =======
    License
    =======
@@ -21,17 +30,29 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
-# pylint: disable=R0201
-import unittest
-from hamcrest import assert_that, equal_to
-from concept.primes.is_prime import is_prime
 
 
-class TestIsPrime(unittest.TestCase):
+def dict2list(obj):
+    """
+    Converting a dictionary into a list of pairs.
 
-    """ Testing of is_prime function. """
+    >>> dict2list({"first-name": "Agatha", "surname": "Christie"})
+    [('first-name', 'Agatha'), ('surname', 'Christie')]
+    """
+    assert isinstance(obj, dict)
+    return [(key, value) for key, value in sorted(obj.items())]
 
-    def test_is_prime(self):
-        """ Testing prime generation. """
-        primes = [n for n in range(20) if is_prime(n)]
-        assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(primes))
+
+def list2dict(obj):
+    """
+    Converting a list of pairs into a dictionary.
+
+    >>> data = list2dict([("first-name", "Agatha"), ("surname", "Christie")])
+    >>> data['first-name']
+    'Agatha'
+    >>> data['surname']
+    'Christie'
+    """
+    assert isinstance(obj, list) and all([(isinstance(entry, tuple) or isinstance(entry, list))
+                                          and len(entry) == 2 for entry in obj])
+    return dict(obj)

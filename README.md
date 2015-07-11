@@ -59,6 +59,7 @@ Current Content
    - factorization: probe.
    - number functions: is_square, triangle, is_triangle, pentagonal, is_pentagonal,
      hexagonal, is_hexagonal.
+   - matrix class.
  - container query with
    - 'where' and 'transform'
    - 'sum' and 'average'
@@ -96,7 +97,6 @@ Current Content
 
 Next Action Items (planned)
 ---------------------------
- - statistic mechanism for different algorithms enable using R.
  - writing a script that runs tests across multiple python versions
    using the virtual environment.
  - let build fail when pep8, pep257 or flake warnings are NOT 0.
@@ -115,7 +115,7 @@ Next Action Items (planned)
     - graph for success/failure per number ...
  - lightweight gnuplot support to generate some graphs
    - font size for labels (and color).
-   - trend lines.
+   - trend lines (unfortunately printing values double).
    - dashed and dotted lines.
  - data decorator for tests
    - values = dict(...) => values = [(k1, v1), (k1, v2), ...]

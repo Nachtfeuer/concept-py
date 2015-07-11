@@ -31,9 +31,10 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 import json
+import inspect
 
 
-class data:
+class data(object):
 
     """
     decorator to provide data to a functor or method.
@@ -111,3 +112,114 @@ class data:
         decorator.__name__ = function.__name__
         decorator.__doc__ = function.__doc__
         return decorator
+
+
+class validate_test_responsibility_for(object):
+
+    """
+    Decorator to ensure to test all methods for a given class.
+
+    a class decorator that throws an exception when the test class does not
+    implement all tests for all methods of the testable class (unit).
+    The next code gives you an example on how it is used and what does happen:
+
+    >>> class Value:
+    ...     def __init__(self, value):
+    ...         self.value = value
+    ...
+    >>> try:
+    ...     import unittest
+    ...     @validate_test_responsibility_for(Value)
+    ...     class TestValue(unittest.TestCase):
+    ...         pass
+    ... except Exception as e:
+    ...     print("|%s|" % str(e).strip())
+    |...failed to provide test method 'TestValue.test_init' for method 'Value.__init__'|
+    """
+
+    def __init__(self, testable_class, include_class_name=False):
+        """ store the class for test and checks all methods of that class. """
+        if hasattr(testable_class, "decorated_object"):
+            testable_class = testable_class.decorated_object
+
+        self.testable_class = testable_class
+        self.include_class_name = include_class_name
+        self.methods_in_testable_class\
+            = self.get_entries(self.testable_class, inspect.isfunction)\
+            + self.get_entries(self.testable_class, inspect.ismethod)
+
+    @staticmethod
+    def get_entries(the_class, mode):
+        """
+        Query functions and method of a given class.
+
+        get all entries by given mode (function or method) but the
+        members of the concrete class only; not from its base
+        """
+        classes = {}
+        for concrete_class in reversed(inspect.getmro(the_class)):
+            classes[concrete_class] = {}
+            for name, definition in dict(inspect.getmembers(concrete_class, mode)).items():
+                object_name = name
+                is_base_method_only = False
+
+                for known_class in classes:
+                    if object_name not in classes[known_class]:
+                        continue
+
+                    if classes[known_class][object_name] == definition:
+                        is_base_method_only = True
+                        break
+
+                if not is_base_method_only:
+                    classes[concrete_class][object_name] = definition
+
+        return list(classes[the_class].keys())
+
+    def __call__(self, test_class):
+        """ called when instantiated; then we have to verify for the required test methods. """
+        self.verify(test_class)
+        return test_class
+
+    @staticmethod
+    def get_test_method(name, prefix=""):
+        """ adjusting final test method name. """
+        # no underscores wanted (change "__init__" => "init")
+        final_name = name.strip("_").lower()
+
+        # ensure more readable name (like "equal" instead of "eq")
+        if name == "__eq__":
+            final_name = "equal"
+        elif name == "__lt__":
+            final_name = "less"
+        elif name == "__gt__":
+            final_name = "greater"
+
+        return "test_" + prefix.lower() + final_name
+
+    def verify(self, test_class):
+        """ verification that for each testable method a test method does exist. """
+        methods_in_test_class\
+            = self.get_entries(test_class, inspect.isfunction)\
+            + self.get_entries(test_class, inspect.ismethod)
+
+        missing = []
+        for testable_method in self.methods_in_testable_class:
+            prefix = ""
+            if self.include_class_name:
+                prefix = self.testable_class.__name__ + "_"
+
+            test_method = self.get_test_method(testable_method, prefix)
+            if test_method in methods_in_test_class:
+                continue
+
+            missing.append((test_class.__name__ + "." + test_method,
+                            self.testable_class.__name__ + "." + testable_method))
+
+        if len(missing) > 0:
+            # creates message with all missing methods throwing an exception for it
+            message = ""
+            for test_method, testable_method in missing:
+                message += "\n...failed to provide test method '%s' for method '%s'" \
+                           % (test_method, testable_method)
+            raise Exception(message)

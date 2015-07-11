@@ -21,6 +21,7 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+# pylint: disable=R0201
 import os
 import unittest
 from hamcrest import assert_that, equal_to
@@ -35,6 +36,7 @@ class TestDecoratorData(unittest.TestCase):
         """ Providing simple list as data call test once. """
         @data(values=[1, 2, 3, 4, 5])
         def test1(values):
+            """ returns what was provided. """
             return values
 
         assert_that(test1(), equal_to([1, 2, 3, 4, 5]))
@@ -43,6 +45,7 @@ class TestDecoratorData(unittest.TestCase):
         """ Reading content of a file; still calling test once. """
         @data(file=__file__)
         def test2(values):
+            """ returns third line of file. """
             return values[0].split("\n")[2].strip()
 
         assert_that(test2(), equal_to("License"))
@@ -51,6 +54,7 @@ class TestDecoratorData(unittest.TestCase):
         """ Reading content of a JSON file; still calling test once. """
         @data(file=os.path.join(os.path.dirname(__file__), "data/simple.json"))
         def test3(values):
+            """ returns value of key 'message' in JSON. """
             return values[0]["message"]
 
         assert_that(test3(), equal_to("hello world!"))

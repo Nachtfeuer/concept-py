@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# pylint: disable=C0325
 """
 Learning tool.
 
