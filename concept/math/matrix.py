@@ -311,7 +311,7 @@ class Matrix(object):
         for column in range(1, self.width):
             yield self.Diagonal(column, self.height-1, 1, -1, self)
 
-    def mainDiagonals(self):
+    def main_diagonals(self):
         """ :return: using yield you can iterator over all main diagonal. """
         yield self.Diagonal(0, 0, 1, 1, self)
         yield self.Diagonal(0, self.height-1, 1, -1, self)

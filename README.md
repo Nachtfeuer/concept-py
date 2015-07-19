@@ -76,6 +76,7 @@ Current Content
      - export of gnuplot (multiplot) script and generated png image
        with average time per max seen entries in a test run.
      - graph for number of tests per test run
+     - export displaying "visual" results (see gnuplot)
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher
@@ -93,6 +94,7 @@ Current Content
    - adding multiplot class for multiple plot on one "page" (image).
  - data decorator for tests
    - execution function/method for each value of the list (single=True parameter)
+ - common validator class
 
 
 Next Action Items (planned)
@@ -111,11 +113,11 @@ Next Action Items (planned)
    - detection of two formula being opposites like (x+1) and (x-1)
      to avoid to have those as chain.
  - learning tool
-   - export displaying "visual" results (see gnuplot)
-    - graph for success/failure per number ...
+   - graph for success/failure per number ...
+   - adding trend line for average
  - lightweight gnuplot support to generate some graphs
    - font size for labels (and color).
-   - trend lines (unfortunately printing values double).
+   - trend lines (note: unfortunately have to print values double).
    - dashed and dotted lines.
  - data decorator for tests
    - values = dict(...) => values = [(k1, v1), (k1, v2), ...]

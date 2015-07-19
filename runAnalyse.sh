@@ -9,7 +9,7 @@
 radon cc -a concept tests examples
 
 # creating XML report
-radon cc -a --xml concept tests examples 2>&1 ccm.xml
+radon cc -a --xml concept tests examples > ccm.xml 2>&1
 
 # creating pylint report
 pylint --rcfile=./.rclint.2.x concept tests examples > pylint.log 2>&1

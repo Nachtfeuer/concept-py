@@ -128,11 +128,11 @@ class TestMatrix(unittest.TestCase):
                                    [diagonal.get() for diagonal in matrix.diagonals()]):
             self.assertEqual(expected, given)
 
-    def test_maindiagonals(self):
-        """ Testing of Matrix.mainDiagonals method """
+    def test_main_diagonals(self):
+        """ Testing of Matrix.main_diagonals method """
         matrix = create_matrix(2, 2)
         for expected, given in zip([[1, 4], [3, 2]],
-                                   [diagonal.get() for diagonal in matrix.mainDiagonals()]):
+                                   [diagonal.get() for diagonal in matrix.main_diagonals()]):
             self.assertEqual(expected, given)
 
     def test_cells(self):
@@ -267,13 +267,13 @@ class TestMatrix(unittest.TestCase):
         """ Testing of Matrix.Row.swap method """
         matrix = create_matrix(2, 2)
         # first row:
-        rowA = list(matrix.rows())[0]
-        rowB = list(matrix.rows())[-1]
-        rowA.swap(rowB)
-        self.assertEqual([3, 4], rowA.get())
-        self.assertEqual([1, 2], rowB.get())
+        row_a = list(matrix.rows())[0]
+        row_b = list(matrix.rows())[-1]
+        row_a.swap(row_b)
+        self.assertEqual([3, 4], row_a.get())
+        self.assertEqual([1, 2], row_b.get())
         # wrong type to swap with
-        self.assertRaises(TypeError, rowA.swap, 1234)
+        self.assertRaises(TypeError, row_a.swap, 1234)
 
     def test_row_cells(self):
         """ Testing of Matrix.Row.cells method """
@@ -346,8 +346,8 @@ class TestMatrix(unittest.TestCase):
     def test_diagonal_cells(self):
         """ Testing of Matrix.Diagonal.cells method. """
         matrix = create_matrix(2, 2)
-        givenValues = [cell.get() for diagonal in matrix.diagonals() for cell in diagonal.cells()]
-        self.assertEqual([1, 3, 2, 4], givenValues)
+        given_values = [cell.get() for diagonal in matrix.diagonals() for cell in diagonal.cells()]
+        self.assertEqual([1, 3, 2, 4], given_values)
 
     def test_diagonal_set(self):
         """ Testing of Matrix.Diagonal.set method. """
@@ -380,8 +380,8 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(matrix_a.height, matrix_c.height)
         self.assertEqual(matrix_b.width, matrix_c.width)
 
-        expectedRows = [[22, 28], [49, 64], [76, 100], [103, 136]]
-        for expected, given in zip(expectedRows, [row.get() for row in matrix_c.rows()]):
+        expected_rows = [[22, 28], [49, 64], [76, 100], [103, 136]]
+        for expected, given in zip(expected_rows, [row.get() for row in matrix_c.rows()]):
             self.assertEqual(expected, given)
 
     def sub_test_mul_bad(self):
