@@ -32,7 +32,7 @@ import random
 import time
 import json
 from datetime import datetime
-from concept import version
+from concept import VERSION
 from concept.generator.select import select
 from concept.graph.gnuplot import plot, multiplot, script
 
@@ -160,7 +160,7 @@ def load():
 @click.option("--max-tests", default=10, help="number of tests")
 def main(max_entries, max_tests):
     """ Learning tool. """
-    print("learning tool (version %s)" % version)
+    print("learning tool (version %s)" % VERSION)
     print(" ... Python %s" % sys.version.replace("\n", ""))
     print(" ... Platform %s" % platform.platform())
 

@@ -156,10 +156,10 @@ inlinevar-rgx=[A-Za-z_][A-Za-z0-9_]*$
 inlinevar-name-hint=[A-Za-z_][A-Za-z0-9_]*$
 
 # Regular expression matching correct class names
-class-rgx=[A-Za-z_][a-zA-Z0-9]+$
+class-rgx=[A-Za-z_][a-zA-Z0-9_]+$
 
 # Naming hint for class names
-class-name-hint=[a-zA-Z_][a-zA-Z0-9]+$
+class-name-hint=[a-zA-Z_][a-zA-Z0-9_]+$
 
 # Regular expression matching correct module names
 module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
@@ -168,10 +168,10 @@ module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
 module-name-hint=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
 
 # Regular expression matching correct method names
-method-rgx=[a-z_][a-z0-9_]{2,30}$
+method-rgx=[a-z_][a-z0-9_]{2,35}$
 
 # Naming hint for method names
-method-name-hint=[a-z_][a-z0-9_]{2,30}$
+method-name-hint=[a-z_][a-z0-9_]{2,35}$
 
 # Regular expression which should only match function or class names that do
 # not require a docstring.

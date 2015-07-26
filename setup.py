@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 """
 import os
 from distutils.core import setup
-import concept
+from concept import VERSION
 
 
 def read(fname):
@@ -33,7 +33,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(name='concept-py',
-      version=concept.version,
+      version=VERSION,
       description='concepts and ideas in Python',
       long_description=read('README.md'),
       author='Thomas Lehmann',

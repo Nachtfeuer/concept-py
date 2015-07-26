@@ -95,6 +95,7 @@ Current Content
  - data decorator for tests
    - execution function/method for each value of the list (single=True parameter)
  - common validator class
+ - schema class for defining validation of data
 
 
 Next Action Items (planned)

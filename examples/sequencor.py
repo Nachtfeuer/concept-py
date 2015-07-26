@@ -29,7 +29,7 @@ import platform
 import itertools
 import click
 from concept.math.functions import square, increment, decrement, multiply
-from concept import version
+from concept import VERSION
 
 
 @click.command()
@@ -40,7 +40,7 @@ def main(max_number):
 
     :param max_number: creating a sieve up to this number
     """
-    print("sequence generator tool (version %s)" % version)
+    print("sequence generator tool (version %s)" % VERSION)
     print(" ... Python %s" % sys.version.replace("\n", ""))
     print(" ... Platform %s" % platform.platform())
 

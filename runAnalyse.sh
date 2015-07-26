@@ -24,5 +24,5 @@ pep257 concept tests examples > pep257.log 2>&1
 echo "`cat pep257.log | wc -l` pep257 warnings/errors (see pep257.log)"
 
 # creating flake8 report
-flake8 --max-line-length=120 --exclude=virt_env * | grep "\.py" > flake8.log 2>&1
+flake8 --max-line-length=120 --exclude=virt_env,docs * | grep "\.py" > flake8.log 2>&1
 echo "`cat flake8.log |  wc -l` flake8 warnings/errors (see flake8.log)"
