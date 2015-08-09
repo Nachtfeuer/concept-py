@@ -77,7 +77,7 @@ class TestDecoratorSingleton(unittest.TestCase):
         instance_a = one_value_singelton(value=12345)
         instance_b = one_value_singelton(value=12345)
         instance_c = one_value_singelton(value=54321)
-        instance_d = one_value_singelton(54321)
+        instance_d = one_value_singelton(12345)
         assert_that(instance_a, equal_to(instance_b))
         assert_that(instance_a.value, equal_to(instance_b.value))
         assert_that(instance_a, is_not(equal_to(instance_c)))
