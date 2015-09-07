@@ -1,0 +1,25 @@
+communication:
+    server: your_smtp_server
+    port: your_smtp_port
+    tls: no
+    ssl: yes
+    sender: your_sender_address
+    password: your_password
+
+styles:
+    title: "font-weight:bold;border-bottom: 2px solid green;color:green;"
+    description: "font-style: italic"
+    body: "border: 1px dashed #f0f0f0; margin: 5px;"
+
+recipients:
+    - at_least_one_recipient_address
+
+subject: Test mail as HTML and with styles.
+
+description:
+    it's a <b>simple</b> mail tool using a template.
+
+     <ul><li> generating HTML content.
+         <li> using markdown syntax
+         <li> stylesheets for title, description and body can be defined in yml.
+     </ul>

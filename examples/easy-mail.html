@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>{{configuration['subject']}}</title>
+    </head>
+
+    <body style="{{configuration['styles']['body']}}">
+        <div style="{{configuration['styles']['title']}}">{{configuration['subject']}}</div>
+
+        <p style="{{configuration['styles']['description']}}">
+        {{configuration['description']|safe}}
+        </p>
+    </body>
+</html>

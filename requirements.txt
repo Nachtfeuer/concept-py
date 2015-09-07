@@ -7,3 +7,6 @@ pep8 == 1.5.7
 pep257 == 0.3.2
 flake8 == 2.4.1
 click == 3.3
+PyYAML == 3.11
+Jinja2 == 2.8
+markdown == 2.6.2
