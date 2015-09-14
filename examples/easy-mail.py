@@ -35,6 +35,7 @@ from concept import VERSION
 from shutil import copyfile
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
 from jinja2 import Environment, FileSystemLoader
 
 DEFAULT_TEMPLATE_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -54,26 +55,48 @@ def get_configuration_file():
 def send_mail(configuration, content):
     """ sending a HTML mail. """
     server = configuration['communication']['server']
-    port = configuration['communication']['port']
+    port = int(configuration['communication']['port'])
     sender = configuration['communication']['sender']
     password = str(configuration['communication']['password'])
-    tls = configuration['communication']['tls'] == 'yes'
-    ssl = configuration['communication']['ssl'] == 'yes'
+    # "yes" will be mapped to a boolean value
+    tls = configuration['communication']['tls']
+    ssl = configuration['communication']['ssl']
 
     message = MIMEMultipart()
     message['Subject'] = configuration['subject']
     message['From'] = sender
     message['To'] = ",".join(configuration['recipients'])
 
+    for entry in configuration['attachment']:
+        if os.path.isfile(entry):
+            print(" ... attaching file %s" % entry)
+            attachment = MIMEApplication(
+                open(entry, "rb").read(),
+                Content_Disposition="attachment; filename=%s" % os.path.basename(entry),
+                Name=os.path.basename(entry))
+            message.attach(attachment)
+        else:
+            print(" ... file not found: %s" % entry)
+            print(" ... do not send mail")
+            return
+
     body = MIMEText(content, 'html')
     message.attach(body)
 
-    session = smtplib.SMTP(server, port) if ssl else smtplib.SMTP_SSL(server, port)
+    if ssl:
+        print(" ... creating SSL session")
+        session = smtplib.SMTP_SSL(server, port)
+    else:
+        print(" ... creating none SSL session")
+        session = smtplib.SMTP(server, port)
 
     if tls:
+        print(" ... starting tls session")
         session.starttls()
-    if len(password) > 0:
+    if len(password) > 0 and not password.lower() == "none":
+        print(" ... login")
         session.login(sender, password)
+    print(" ... send message")
     session.sendmail(sender, configuration['recipients'], message.as_string())
     session.quit()
 
@@ -93,7 +116,7 @@ def main(configuration, template_path, template, check):
     print(" ... Python %s" % sys.version.replace("\n", ""))
     print(" ... Platform %s" % platform.platform())
     print(" ... Used configuration %s" % configuration)
-    print(" ... Used template %s" % template)
+    print(" ... Used template %s" % (os.path.join(template_path, template)))
 
     # reading yaml file into a dictionary
     configuration_content = yaml.load(open(configuration).read())
