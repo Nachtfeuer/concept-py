@@ -36,6 +36,7 @@ from shutil import copyfile
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+from email.mime.image import MIMEImage
 from jinja2 import Environment, FileSystemLoader
 
 DEFAULT_TEMPLATE_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -77,6 +78,19 @@ def send_mail(configuration, content):
             message.attach(attachment)
         else:
             print(" ... file not found: %s" % entry)
+            print(" ... do not send mail")
+            return
+
+    image_number = 1
+    for entry in configuration['images']:
+        if os.path.isfile(entry):
+            print(" ... embedding image %s" % entry)
+            image = MIMEImage(open(entry, "rb").read())
+            image.add_header('Content-ID', "<image%d>" % image_number)
+            image_number += 1
+            message.attach(image)
+        else:
+            print(" ... image not found: %s" % entry)
             print(" ... do not send mail")
             return
 

@@ -77,6 +77,10 @@ Current Content
        with average time per max seen entries in a test run.
      - graph for number of tests per test run
      - export displaying "visual" results (see gnuplot)
+   - easy mail tool
+     - supporting HTML and styles
+     - supporting attachment
+     - supporting embedded images (example provided; thanks to cooltext.com)
  - crypt/decrypt functions/classes
    - rail fence cipher
    - Caesar cipher

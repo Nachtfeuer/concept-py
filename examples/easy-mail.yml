@@ -23,3 +23,8 @@ description:
          <li> using markdown syntax
          <li> stylesheets for title, description and body can be defined in yml.
      </ul>
+
+attachments:
+
+images:
+    - easy-mail.png
