@@ -13,3 +13,4 @@ rm -rf coverage
 rm -f tests.xml
 rm -f `find . -name "*.pyc"`
 rm -f ccm.xml
+rm -rf virt_env
