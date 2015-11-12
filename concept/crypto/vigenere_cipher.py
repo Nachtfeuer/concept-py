@@ -3,7 +3,7 @@
 
 .. module:: vigenere_cipher
     :platform: Unix, Windows
-    :synopis: vigenerecaesar cipher (encryption and decryption)
+    :synopis: vigenere cipher (encryption and decryption)
 
 .. moduleauthor:: Thomas Lehmann <thomas.lehmann.private@googlemail.com>
 

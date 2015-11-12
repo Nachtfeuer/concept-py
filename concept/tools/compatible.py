@@ -1,11 +1,12 @@
 """
-   Factorization functions.
+   Python 2/3 compatibility module.
 
-.. module:: functions
+.. module:: convert
     :platform: Unix, Windows
-    :synopis: math factorization functions.
+    :synopis: Python 2/3 compatibility module.
 
 .. moduleauthor:: Thomas Lehmann <thomas.lehmann.private@googlemail.com>
+
 
    =======
    License
@@ -29,32 +30,14 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+import sys
 
+if sys.version_info.major == 3:
+    def compare(a, b):
+        if a == None or b == None:
+            return compare(str(a), str(b))
 
-def probe(value):
-    """
-    Factorization of n by probing.
-
-    :param n: value to factorize.
-    :returns: all proper divisors of n.
-
-    >>> probe(10)
-    [1, 2, 5, 10]
-    >>> probe(12)
-    [1, 2, 3, 4, 6, 12]
-    """
-    value = abs(value)
-    limit = value // 2
-    divisors = [1]
-    divisor = 2
-
-    while divisor <= limit:
-        if value % divisor == 0:
-            divisors.append(divisor)
-
-        divisor += 1
-
-    if not 1 == value:
-        divisors.append(value)
-
-    return divisors
+        return (a > b) - (a < b)
+else:
+    def compare(a, b):
+        return cmp(a, b)

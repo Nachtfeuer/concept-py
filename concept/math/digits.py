@@ -127,7 +127,7 @@ def is_palindrome(value):
         value //= 10
 
     left = 0
-    right = len(digits)-1
+    right = len(digits) - 1
     while left < right:
         if not digits[left] == digits[right]:
             return False

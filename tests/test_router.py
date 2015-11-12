@@ -25,22 +25,22 @@
 import unittest
 from hamcrest import assert_that, equal_to, calling, raises
 from concept.tools.decorator import validate_test_responsibility_for
-from concept.tools.router import router
+from concept.tools.router import Router
 
 
-@validate_test_responsibility_for(router)
+@validate_test_responsibility_for(Router)
 class TestRouter(unittest.TestCase):
 
     """ Testing of router. """
 
     def test_init(self):
         """ Testing default state. """
-        rinst = router()
+        rinst = Router()
         assert_that(rinst.rules, equal_to({}))
 
     def test_add(self):
         """ Testing adding of a rule. """
-        rinst = router()
+        rinst = Router()
         rinst.add("/test/<name>")
 
         expected = {2: {'/test/(?P<name>[^/]+)': None}}
@@ -51,7 +51,7 @@ class TestRouter(unittest.TestCase):
         """ Testing adding of a rule and a function. """
         get_name = lambda name: name
 
-        rinst = router()
+        rinst = Router()
         rinst.add("/test/<name>", get_name)
 
         expected = {2: {'/test/(?P<name>[^/]+)': get_name}}
@@ -59,7 +59,7 @@ class TestRouter(unittest.TestCase):
 
     def test_match(self):
         """ Testing matching of a URL against a rule. """
-        rinst = router()
+        rinst = Router()
         rinst.add("/test/<name>")
 
         match, function = rinst.match("/test/Agatha")
@@ -74,7 +74,7 @@ class TestRouter(unittest.TestCase):
         """ Testing matching of a URL against a rule. """
         get_name = lambda name: name
 
-        rinst = router()
+        rinst = Router()
         rinst.add("/test/<name>", get_name)
 
         match, function = rinst.match("/test/Agatha")
@@ -83,13 +83,13 @@ class TestRouter(unittest.TestCase):
 
     def test_route(self):
         """ Testing routing which does apply matched data against registered function. """
-        rinst = router()
+        rinst = Router()
         rinst.add("/test/<name>", lambda name: name)
         assert_that(rinst.route("/test/Agatha"), equal_to("Agatha"))
 
     def test_route_advanced(self):
         """ tesing routining with multiple rules. """
-        rinst = router()
+        rinst = Router()
         rinst.add("/test/<name>", lambda name: name)
         rinst.add("/test/<name>/<value>", lambda name, value: (name, value))
 

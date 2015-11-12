@@ -33,7 +33,7 @@
 import re
 
 
-class router(object):
+class Router(object):
 
     """
     The router allows executing a function by a concrete URL.
@@ -41,7 +41,7 @@ class router(object):
     Therefor you can define a rule which can be a URL with
     variables (see example) and the router tries to find best match.
 
-    >>> r = router()
+    >>> r = Router()
     >>> r.add("/test/<name>")
     >>> r.match("/test/1"), r.match("/test/abc")
     (({'name': '1'}, None), ({'name': 'abc'}, None))
