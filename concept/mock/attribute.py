@@ -67,7 +67,7 @@ class Attribute(object):
         return text % self.__dict__
 
     def __eq__(self, other):
-        """ Comparing two aatributes two be equal. """
+        """ Comparing two attributes two be equal. """
         if not isinstance(other, Attribute):
             return False
         if not self.name == other.name:
