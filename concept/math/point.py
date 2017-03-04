@@ -49,6 +49,8 @@ class Point2d(object):
         """:returns Vector2d representing direction and distance betwee two points."""
         if isinstance(other, Point2d):
             return Vector2d(self.x - other.x, self.y - other.y)
+        if isinstance(other, Vector2d):
+            return Point2d(self.x - other.x, self.y - other.y)
         raise UnsupportedOperation("operation pointa-pointb allowed only")
 
     def __add__(self, other):
