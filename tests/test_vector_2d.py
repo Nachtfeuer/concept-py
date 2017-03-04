@@ -108,3 +108,8 @@ class TestVector2d(unittest.TestCase):
     def test_cross_product(self):
         """Testing of method Vector2d.cross_product."""
         assert_that(Vector2d(2.0, 5.0).cross_product(Vector2d(3.0, 4.0)), equal_to(-7.0))
+
+    def test_eq(self):
+        """Testing of method Vector2d.__eq__."""
+        assert_that(Vector2d(1.2, 3.4), equal_to(Vector2d(1.2, 3.4)))
+        assert_that(Vector2d(1.2, 3.4).__eq__(1234), equal_to(False))
