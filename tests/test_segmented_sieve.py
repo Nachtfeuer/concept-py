@@ -29,16 +29,16 @@ from concept.primes.is_prime import is_prime
 
 
 class TestSegmentedSieve(unittest.TestCase):
-
-    """ Testing segmented prime sieve. """
+    """Testing segmented prime sieve."""
 
     def test_sieve(self):
-        """ Testing prime generation. """
+        """Testing prime generation."""
         sieve = segmented_sieve(20)
         sieve.calculate()
         assert_that([2, 3, 5, 7, 11, 13, 17, 19], equal_to(sieve.get_primes()))
 
     def test_sieve_with_is_prime(self):
+        """Testing sieve comparing results with using is_prime function."""
         sieve = segmented_sieve(10000)
         sieve.calculate()
         primes = [n for n in range(10000+1) if is_prime(n)]

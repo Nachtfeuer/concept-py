@@ -1,1 +1,1 @@
-""" Package: generator. """
+"""Package: generator."""

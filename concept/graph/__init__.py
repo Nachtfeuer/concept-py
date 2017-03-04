@@ -1,1 +1,1 @@
-""" Package: graph. """
+"""Package: graph."""

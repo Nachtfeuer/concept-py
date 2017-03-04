@@ -34,7 +34,6 @@ from concept.mock.attribute import Attribute
 
 
 class Mock(object):
-
     """
     The mock class is for tracking of actions.
 
@@ -42,7 +41,7 @@ class Mock(object):
     """
 
     def __init__(self, *args, **kwargs):
-        """ initializing mock dataa and adding c'tor call to history. """
+        """initializing mock data and adding c'tor call to history."""
         self.__data = {'name': '__init__', 'attributes': {}, 'key/value': {},
                        'history': [], 'reference': None}
         self.mock_add_call('__init__', *args, **kwargs)

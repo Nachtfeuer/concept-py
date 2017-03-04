@@ -33,8 +33,7 @@ from concept.tools.compatible import compare
 
 
 class Call(object):
-
-    """ Represents a method call (history data). """
+    """Represents a method call (history data)."""
 
     def __init__(self, name, *args, **kwargs):
         """ Store a call. """
@@ -43,7 +42,7 @@ class Call(object):
         self.kwargs = kwargs
 
     def __repr__(self):
-        """ String representation of this class. """
+        """String representation of this class."""
         call = "Call(" + self.name
 
         if len(self.args) > 0 or len(self.kwargs) > 0:

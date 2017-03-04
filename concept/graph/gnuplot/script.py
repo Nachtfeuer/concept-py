@@ -33,7 +33,6 @@ import os
 
 
 class script(object):
-
     """
     The scripts represents a whole gnuplot script.
 

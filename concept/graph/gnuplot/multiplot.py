@@ -33,7 +33,6 @@ from concept.graph.gnuplot.plot import plot
 
 
 class multiplot(object):
-
     """
     Wrapper for gnuplot multiplot environment.
 

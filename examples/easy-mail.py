@@ -47,14 +47,14 @@ TMP_FILE = "/tmp/easy-html-content.html"
 
 
 def get_configuration_file():
-    """ ensure yml file exist at $HOME and providing file path and name. """
+    """ensure yml file exist at $HOME and providing file path and name."""
     if not os.path.isfile(HOME_CONFIGURATION):
         copyfile(DEFAULT_CONFIGURATION, HOME_CONFIGURATION)
     return HOME_CONFIGURATION
 
 
 def send_mail(configuration, content):
-    """ sending a HTML mail. """
+    """sending a HTML mail."""
     server = configuration['communication']['server']
     port = int(configuration['communication']['port'])
     sender = configuration['communication']['sender']
@@ -125,7 +125,7 @@ def send_mail(configuration, content):
 @click.option("--check", default=False,
               help="view HTML in browser to check content")
 def main(configuration, template_path, template, check):
-    """ Easy way of sending a HTML mail. """
+    """Easy way of sending a HTML mail."""
     print("easy-mail tool (version %s)" % VERSION)
     print(" ... Python %s" % sys.version.replace("\n", ""))
     print(" ... Platform %s" % platform.platform())
@@ -146,6 +146,7 @@ def main(configuration, template_path, template, check):
         webbrowser.open_new_tab("file://%s" % TMP_FILE)
     else:
         send_mail(configuration_content, final_content)
+
 
 if __name__ == "__main__":
     main()

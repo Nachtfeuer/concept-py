@@ -33,8 +33,7 @@ from concept.tools.compatible import compare
 
 
 class Attribute(object):
-
-    """ Represents mock attribute state for create, read and write and the relating values. """
+    """Represents mock attribute state for create, read and write and the relating values."""
 
     CREATED = "created"
     CHANGED = "changed"

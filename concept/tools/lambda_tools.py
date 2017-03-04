@@ -34,7 +34,7 @@
 
 def is_lambda(function):
     """
-    Checking function to be a lambda functiion.
+    Checking function to be a lambda function.
 
     :param function: function to be checked.
     :returns: True when given function is a lambda function.

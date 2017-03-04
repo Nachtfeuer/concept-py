@@ -28,18 +28,17 @@ from concept.crypto.vigenere_cipher import encrypt, decrypt
 
 
 class TestVigenereCipher(unittest.TestCase):
-
-    """ Testing vigenere cipher. """
+    """Testing vigenere cipher."""
 
     def test_encrypt(self):
-        """ Testing encryption. """
+        """Testing encryption."""
         plaintext = "ATTACKATDAWN"
         cipher = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         key = "LEMON"
         assert_that("LXFOPVEFRNHR", equal_to(encrypt(plaintext, key, cipher)))
 
     def test_decrypt(self):
-        """ Testing decryption. """
+        """Testing decryption."""
         ciphertext = "LXFOPVEFRNHR"
         cipher = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         key = "LEMON"

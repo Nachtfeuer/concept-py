@@ -32,6 +32,7 @@ def read(fname):
     """ reading a file from current path of this file. """
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+
 setup(name='concept-py',
       version=VERSION,
       description='concepts and ideas in Python',

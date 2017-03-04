@@ -35,7 +35,6 @@ import inspect
 
 
 class data(object):
-
     """
     decorator to provide data to a functor or method.
 

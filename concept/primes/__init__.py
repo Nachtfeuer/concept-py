@@ -1,1 +1,1 @@
-""" Package: prime. """
+"""Package: prime."""

@@ -1,1 +1,1 @@
-""" Package: query. """
+"""Package: query."""

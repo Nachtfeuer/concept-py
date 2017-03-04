@@ -35,11 +35,12 @@ class TestValidator(unittest.TestCase):
     """ Testing schema class. """
 
     def test_init(self):
-        """ Testing schema.__init__. """
+        """Testing schema.__init__."""
         scma = schema()
         assert_that(scma.description, equal_to({}))
 
     def test_add(self):
+        """Testing schema add method."""
         scma = schema().add("first-name")
         assert_that(len(scma.description), equal_to(1))
         assert_that('first-name' in scma.description, equal_to(True))
@@ -58,12 +59,12 @@ class TestValidator(unittest.TestCase):
         assert_that(scma, equal_to(None))
 
     def test_build(self):
-        """ For now more or less just provided for readability. """
+        """For now more or less just provided for readability."""
         scma = schema().build()
         assert_that(scma.description, equal_to({}))
 
     def test_is_valid(self):
-        """ Testing schema.is_valid (simple examples). """
+        """Testing schema.is_valid (simple examples)."""
         scma = schema().add("name").build()
         assert_that(scma.is_valid(1234), equal_to(False))
         assert_that(scma.is_valid({'name': 'Barney'}), equal_to(True))

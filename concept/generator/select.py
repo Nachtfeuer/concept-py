@@ -34,8 +34,7 @@ import random
 
 
 class select(object):
-
-    """ Container query functionality. """
+    """Container query functionality."""
 
     def __init__(self, from_value, to_value, step_value):
         """

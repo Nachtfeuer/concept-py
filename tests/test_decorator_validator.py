@@ -28,24 +28,21 @@ from concept.tools.decorator import validate_test_responsibility_for
 
 
 class TestDecoratorValidator(unittest.TestCase):
-
-    """ Testing validator decorator. """
+    """Testing validator decorator."""
 
     def test_simple_fail(self):
-        """ simple example were a missing test does raise an exception. """
+        """simple example were a missing test does raise an exception."""
         class Foo(object):
-
-            """ just a test class. """
+            """just a test class."""
 
             def bar():
-                """ just a test function. """
+                """just a test function."""
                 pass
 
         try:
             @validate_test_responsibility_for(Foo)
             class TestFoo(object):
-
-                """ Test class for class Foo. """
+                """Test class for class Foo."""
 
                 pass
             # we should not get here:
@@ -55,82 +52,75 @@ class TestDecoratorValidator(unittest.TestCase):
             assert_that(str(exception), equal_to(expected))
 
     def test_simple_succeed(self):
-        """ simple example were a missing test does not raise an exception. """
+        """simple example were a missing test does not raise an exception."""
         class Foo2(object):
-
-            """ just a test class. """
+            """just a test class."""
 
             def bar():
-                """ just a test function. """
+                """just a test function."""
                 pass
 
         # should not raise an exception
         @validate_test_responsibility_for(Foo2)
         class TestFoo2(object):
-
-            """ Test class for class Foo2. """
+            """Test class for class Foo2."""
 
             def test_bar(self):
-                """ test function for method 'bar'. """
+                """test function for method 'bar'."""
                 pass
 
     def test_simple_equal(self):
-        """ simple example for special handling of __eq__. """
+        """simple example for special handling of __eq__."""
         class Foo3(object):
-
-            """ just a test class. """
+            """just a test class."""
 
             def __eq__(self, other):
-                """ just a test function. """
+                """just a test function."""
                 return False
 
         # should not raise an exception
         @validate_test_responsibility_for(Foo3)
         class TestFoo3(object):
-
-            """ Test class for class Foo3. """
+            """Test class for class Foo3."""
 
             def test_equal(self):
-                """ test function for method '__eq__'. """
+                """test function for method '__eq__'."""
                 pass
 
     def test_simple_less(self):
-        """ simple example for special handling of __lt__. """
+        """simple example for special handling of __lt__."""
         class Foo4(object):
-
-            """ just a test class. """
+            """just a test class."""
 
             def __lt__(self, other):
-                """ just a test function. """
+                """just a test function."""
                 return False
 
         # should not raise an exception
         @validate_test_responsibility_for(Foo4)
         class TestFoo4(object):
-
-            """ Test class for class Foo4. """
+            """Test class for class Foo4."""
 
             def test_less(self):
-                """ test function for method '__lt__'. """
+                """test function for method '__lt__'."""
                 pass
 
     def test_simple_greater(self):
-        """ simple example for special handling of __gt__. """
+        """simple example for special handling of __gt__."""
         class Foo5(object):
-
-            """ just a test class. """
+            """just a test class."""
 
             def __gt__(self, other):
-                """ just a test function. """
+                """just a test function."""
                 return False
 
         # should not raise an exception
         @validate_test_responsibility_for(Foo5)
         class TestFoo5(object):
-
-            """ Test class for class Foo5. """
+            """Test class for class Foo5."""
 
             def test_greater(self):
-                """ test function for method '__gt__'. """
+                """test function for method '__gt__'."""
                 pass
-                """ just a test function. """
+                """just a test function."""
+

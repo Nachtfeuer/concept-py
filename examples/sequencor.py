@@ -60,5 +60,6 @@ def main(max_number):
         print("%s" % formula)
         print(" ... %s" % " ".join([str(formula(n)) for n in range(max_number+1)]))
 
+
 if __name__ == "__main__":
     main()

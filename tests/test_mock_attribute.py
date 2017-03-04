@@ -28,11 +28,10 @@ from concept.mock import Attribute
 
 
 class TestMockAttribute(unittest.TestCase):
-
-    """ Testing of mock attribute class. """
+    """Testing of mock attribute class."""
 
     def test_create_operation(self):
-        """ Testing values how it is used to represent a create operation. """
+        """Testing values how it is used to represent a create operation."""
         attribute = Attribute(Attribute.CREATED, "foo", 99)
         assert_that(attribute.operation, equal_to(Attribute.CREATED))
         assert_that(attribute.name, equal_to("foo"))
@@ -42,7 +41,7 @@ class TestMockAttribute(unittest.TestCase):
                     equal_to("Attribute(operation=created, name=foo, value=99)"))
 
     def test_change_operation(self):
-        """ Testing values how it is used to represent a change operation. """
+        """Testing values how it is used to represent a change operation."""
         attribute = Attribute(Attribute.CHANGED, "foo", given_value=99, new_value=100)
         assert_that(attribute.operation, equal_to(Attribute.CHANGED))
         assert_that(attribute.name, equal_to("foo"))
@@ -52,7 +51,7 @@ class TestMockAttribute(unittest.TestCase):
                     equal_to("Attribute(operation=changed, name=foo, value=99 -> 100)"))
 
     def test_read_operation(self):
-        """ Testing values how it is used to represent a read operation. """
+        """Testing values how it is used to represent a read operation."""
         attribute = Attribute(Attribute.READ, "foo", 99)
         assert_that(attribute.operation, equal_to(Attribute.READ))
         assert_that(attribute.name, equal_to("foo"))
@@ -62,7 +61,7 @@ class TestMockAttribute(unittest.TestCase):
                     equal_to("Attribute(operation=read, name=foo, value=99)"))
 
     def test_attribute_in_list(self):
-        """ Testing to find an attribute in a list. """
+        """Testing to find an attribute in a list."""
         some_attributes = [Attribute(Attribute.READ, "foo", 10),
                            Attribute(Attribute.READ, "foo", 11),
                            Attribute(Attribute.READ, "bar", 11),
@@ -85,5 +84,6 @@ class TestMockAttribute(unittest.TestCase):
         assert_that(pos >= 0 and str(some_attributes[pos]), equal_to(str(some_attributes[1])))
 
     def test_cmp(self):
+        """Testing compare."""
         assert_that(Attribute(Attribute.READ, "foo")
             .__cmp__(Attribute(Attribute.READ, "foo")), equal_to(0))

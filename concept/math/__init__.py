@@ -1,1 +1,1 @@
-""" Package: math. """
+"""Package: math."""

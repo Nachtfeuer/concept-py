@@ -23,7 +23,7 @@
 """
 import unittest
 from hamcrest import assert_that, equal_to
-from concept.query.matcher import  Matcher
+from concept.query.matcher import Matcher
 
 
 class TestMatcher(unittest.TestCase):

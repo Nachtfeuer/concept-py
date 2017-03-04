@@ -69,7 +69,7 @@ def count_digits(value):
     >>> count_digits(-1234567890)
     10
     """
-    if 0 == value:
+    if value == 0:
         return 1
 
     value = abs(value)

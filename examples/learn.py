@@ -38,7 +38,7 @@ from concept.graph.gnuplot import plot, multiplot, script
 
 
 def average(entry):
-    """ providing average time for an individidual test. """
+    """providing average time for an individidual test."""
     return entry['total time (s)']/float(entry['correct answers'] + entry['wrong answers'])
 
 
@@ -84,7 +84,7 @@ def dump_total_results(statistic_entries):
 
 
 def create_gnuplot_statistic(statistic_entries):
-    """ Creating a gnuplot script and generates the image for it. """
+    """Creating a gnuplot script and generates the image for it."""
     grouped_by_number_of_entries = {}
     for statistic in statistic_entries:
         key = statistic['max entries']
@@ -159,7 +159,7 @@ def load():
 @click.option("--max-entries", default=5, help="number of entries to display")
 @click.option("--max-tests", default=10, help="number of tests")
 def main(max_entries, max_tests):
-    """ Learning tool. """
+    """Learning tool."""
     print("learning tool (version %s)" % VERSION)
     print(" ... Python %s" % sys.version.replace("\n", ""))
     print(" ... Platform %s" % platform.platform())

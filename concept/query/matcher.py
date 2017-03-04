@@ -34,12 +34,11 @@ import re
 
 
 class Matcher(object):
-
-    """ Basic functionality for matching some text. """
+    """Basic functionality for matching some text."""
 
     def __init__(self, text):
         """ Initialize with text. """
-        self.originalText = text
+        self.original_text = text
         self.text = text
 
     def left_of(self, regex_expression):

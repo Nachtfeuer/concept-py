@@ -1,1 +1,1 @@
-""" Package: crypto. """
+"""Package: crypto."""

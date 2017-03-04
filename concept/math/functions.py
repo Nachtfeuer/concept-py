@@ -32,20 +32,18 @@
 
 
 class function(object):
-
-    """ Base class for concrete functions like 'square'. """
+    """Base class for concrete functions like 'square'."""
 
     def __init__(self, other_function=None):
-        """ initializing function to be decorated in c'tor. """
+        """initializing function to be decorated in c'tor."""
         self.other_function = other_function
 
     def decorate(self, other_function):
-        """ initializing function to be decorated after instantiation. """
+        """initializing function to be decorated after instantiation."""
         self.other_function = other_function
 
 
 class square(function):
-
     """
     Providing square of either the return value of a function or a float value itself.
 
@@ -75,14 +73,13 @@ class square(function):
         return value**2
 
     def __repr__(self):
-        """ string representation of current function. """
+        """string representation of current function."""
         if self.other_function:
             return "%s^2" % str(self.other_function)
         return "x^2"
 
 
 class increment(function):
-
     """
     So basically we have a y=f(x)=x+b function with b=1 as default.
 
@@ -114,14 +111,13 @@ class increment(function):
         return value + self.offset
 
     def __repr__(self):
-        """ string representation of current function. """
+        """string representation of current function."""
         if self.other_function:
             return "(%s + %d)" % (str(self.other_function), self.offset)
         return "(x + %d)" % self.offset
 
 
 class decrement(function):
-
     """
     So basically we have a y=f(x)=x-b function with b=1 as default.
 
@@ -153,14 +149,13 @@ class decrement(function):
         return value - self.offset
 
     def __repr__(self):
-        """ string representation of current function. """
+        """string representation of current function."""
         if self.other_function:
             return "(%s - %d)" % (str(self.other_function), self.offset)
         return "(x - %d)" % self.offset
 
 
 class multiply(function):
-
     """
     So basically we have a y=f(x)=x*f function with f=2 as default.
 
@@ -192,7 +187,7 @@ class multiply(function):
         return value * self.factor
 
     def __repr__(self):
-        """ string representation of current function. """
+        """string representation of current function."""
         if self.other_function:
             return "(%s * %d)" % (str(self.other_function), self.factor)
         return "(x * %d)" % self.factor

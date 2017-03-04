@@ -33,18 +33,17 @@ import math
 
 
 class sieve_of_eratosthenes(object):
-
-    """ Prime sieve. """
+    """Prime sieve."""
 
     def __init__(self, max_n):
-        """ Initialize sieve. """
+        """Initialize sieve."""
         self.max_n = max_n
         self.sieve = [True] * (self.max_n+1)
         self.sieve[0] = False
         self.sieve[1] = False
 
     def calculate(self):
-        """ Strike out all multiples of a prime as none prime. """
+        """Strike out all multiples of a prime as none prime."""
         limit = int(math.sqrt(self.max_n))
 
         value_i = 2

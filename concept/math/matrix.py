@@ -32,29 +32,27 @@ Representation of a  mathematical matrix.
 
 
 class Matrix(object):
-
-    """ Matrix of dimensions w x h. """
+    """Matrix of dimensions w x h."""
 
     class Cell(object):
-
-        """ represent one cell of the matrix. """
+        """represent one cell of the matrix."""
 
         def __init__(self, column, row, matrix):
-            """ initializing cell location. """
+            """initializing cell location."""
             self.column = column
             self.row = row
             self.matrix = matrix
 
         def __repr__(self):
-            """ string representation if cell instance. """
+            """string representation if cell instance."""
             return "cell(%d, %d, %s)" % (self.column, self.row, self.get())
 
         def get(self):
-            """ retrieving value of the cell. """
+            """retrieving value of the cell."""
             return self.matrix[self.column, self.row]
 
         def set(self, value):
-            """ changing value of the cell. """
+            """changing value of the cell."""
             self.matrix[self.column, self.row] = value
 
         def swap(self, other):
@@ -71,20 +69,19 @@ class Matrix(object):
             self.set(value)
 
     class Row(object):
-
-        """ represent one row of the matrix. """
+        """represent one row of the matrix."""
 
         def __init__(self, row, matrix):
-            """ initializing row location. """
+            """initializing row location."""
             self.row = row
             self.matrix = matrix
 
         def get(self):
-            """ :return: copy of the values of the row. """
+            """:return: copy of the values of the row."""
             return self.matrix.data[self.row][0:]
 
         def set(self, values):
-            """ changing values of the row. """
+            """changing values of the row."""
             for column in range(self.matrix.width):
                 self.matrix.data[self.row][column] = values[column]
 
@@ -111,20 +108,19 @@ class Matrix(object):
                 yield self.matrix.Cell(column, self.row, self.matrix)
 
     class Column(object):
-
-        """ represent one column of the matrix. """
+        """represent one column of the matrix."""
 
         def __init__(self, column, matrix):
-            """ initializing row location. """
+            """initializing row location."""
             self.column = column
             self.matrix = matrix
 
         def get(self):
-            """ :return: copy of the values of the column. """
+            """:return: copy of the values of the column."""
             return [row[self.column] for row in self.matrix.data]
 
         def set(self, values):
-            """ changing values of the column. """
+            """hanging values of the column."""
             for row in range(self.matrix.height):
                 self.matrix.data[row][self.column] = values[row]
 
@@ -151,11 +147,10 @@ class Matrix(object):
                 yield self.matrix.Cell(self.column, row, self.matrix)
 
     class Diagonal(object):
-
-        """ represent one diagonal of the matrix. """
+        """represent one diagonal of the matrix."""
 
         def __init__(self, column, row, step_column, step_row, matrix):
-            """ initializing row location. """
+            """initializing row location."""
             self.row = row
             self.column = column
             self.step_column = step_column
@@ -163,7 +158,7 @@ class Matrix(object):
             self.matrix = matrix
 
         def get(self):
-            """ :return: copy of the values of the diagonal. """
+            """:return: copy of the values of the diagonal."""
             data = []
             row = self.row
             column = self.column
@@ -175,7 +170,7 @@ class Matrix(object):
             return data
 
         def set(self, values):
-            """ changing values of the diagonal. """
+            """changing values of the diagonal."""
             index = 0
             row = self.row
             column = self.column
@@ -226,7 +221,7 @@ class Matrix(object):
         return data
 
     def __len__(self):
-        """ :return: same as height method. """
+        """:return: same as height method."""
         return len(self.data)
 
     def __setitem__(self, key, value):
@@ -280,7 +275,7 @@ class Matrix(object):
         return True
 
     def __repr__(self):
-        """ :return: string representation of this class. """
+        """:return: string representation of this class."""
         return "Matrix(%dx%d:" % (self.width, self.height) \
                + ",".join("%s" % cell.get() for cell in self.cells()) + ")"
 
@@ -295,29 +290,29 @@ class Matrix(object):
                 yield self.Cell(column, row, self)
 
     def rows(self):
-        """ :return: using yield you can iterator over all rows. """
+        """:return: using yield you can iterator over all rows."""
         for row in range(self.height):
             yield self.Row(row, self)
 
     def columns(self):
-        """ :return: using yield you can iterator over all columns. """
+        """:return: using yield you can iterator over all columns."""
         for column in range(self.width):
             yield self.Column(column, self)
 
     def diagonals(self):
-        """ :return: using yield you can iterator over all diagonal. """
+        """:return: using yield you can iterator over all diagonal."""
         for row in range(self.height):
             yield self.Diagonal(0, row, 1, -1, self)
         for column in range(1, self.width):
             yield self.Diagonal(column, self.height-1, 1, -1, self)
 
     def main_diagonals(self):
-        """ :return: using yield you can iterator over all main diagonal. """
+        """:return: using yield you can iterator over all main diagonal."""
         yield self.Diagonal(0, 0, 1, 1, self)
         yield self.Diagonal(0, self.height-1, 1, -1, self)
 
     def clone(self):
-        """ :return: copy of this instance. """
+        """:return: copy of this instance."""
         matrix = Matrix(self.width, self.height)
         for column in range(self.width):
             for row in range(self.height):

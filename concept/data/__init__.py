@@ -1,1 +1,1 @@
-""" Package: data. """
+"""Package: data."""

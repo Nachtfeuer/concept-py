@@ -53,6 +53,6 @@ def list2dict(obj):
     >>> data['surname']
     'Christie'
     """
-    assert isinstance(obj, list) and all([(isinstance(entry, tuple) or isinstance(entry, list))
-                                          and len(entry) == 2 for entry in obj])
+    assert isinstance(obj, list) and all([(isinstance(entry, tuple) or isinstance(entry, list)) and
+                                          len(entry) == 2 for entry in obj])
     return dict(obj)

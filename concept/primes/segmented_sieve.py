@@ -29,23 +29,22 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
-from concept.primes.sieve_of_eratosthenes import sieve_of_eratosthenes
 import math
+from concept.primes.sieve_of_eratosthenes import sieve_of_eratosthenes
 
 
 class segmented_sieve(object):
-
-    """ Segmented prime sieve. """
+    """Segmented prime sieve."""
 
     def __init__(self, max_n):
-        """ initializing sieve for given maximum value. """
+        """initializing sieve for given maximum value."""
         self.max_n = max_n
         self.initial_limit = int(math.sqrt(max_n))
         self.sieve = sieve_of_eratosthenes(self.initial_limit)
         self.primes = []
 
     def calculate(self):
-        """ calculating all primes. """
+        """calculating all primes."""
         # calculating primes up to to square root of maximum number
         self.sieve.calculate()
         self.primes = [2] + [n for n in range(3, self.initial_limit+1, 2) if self.sieve.is_prime(n)]

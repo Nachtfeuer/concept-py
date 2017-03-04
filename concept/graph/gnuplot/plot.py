@@ -32,8 +32,7 @@
 
 
 class plot(object):
-
-    """ Representing a gnuplot plot. """
+    """Representing a gnuplot plot."""
 
     LINES = 0
     FILLEDCURVES = 1

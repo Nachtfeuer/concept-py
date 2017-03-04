@@ -33,7 +33,6 @@ from concept.tools.validator import validator
 
 
 class schema(object):
-
     """
     Schema is something like a description of a data class with validation. with validation.
 
@@ -61,7 +60,7 @@ class schema(object):
     """
 
     def __init__(self):
-        """ initialzing fields only. """
+        """initialzing fields only."""
         self.description = {}
 
     def add(self, field_name, field_type=str, field_validator=None):

@@ -1,1 +1,1 @@
-""" Package: performance. """
+"""Package: performance."""

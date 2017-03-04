@@ -54,7 +54,7 @@ def probe(value):
 
         divisor += 1
 
-    if not 1 == value:
+    if not value == 1:
         divisors.append(value)
 
     return divisors

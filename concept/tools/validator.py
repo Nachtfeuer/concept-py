@@ -33,7 +33,6 @@
 
 
 class validator(object):
-
     """
     Common validator functionality.
 

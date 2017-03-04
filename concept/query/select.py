@@ -33,11 +33,10 @@
 
 
 class select(object):
-
-    """ Container query functionality. """
+    """Container query functionality."""
 
     def __init__(self, entries):
-        """ Initializing with entries. """
+        """Initializing with entries."""
         self.entries = entries
         self.filter_functions = []
         self.transform_functions = []

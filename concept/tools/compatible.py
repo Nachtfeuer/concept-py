@@ -34,7 +34,7 @@ import sys
 
 if sys.version_info.major == 3:
     def compare(a, b):
-        if a == None or b == None:
+        if a is None or b is None:
             return compare(str(a), str(b))
 
         return (a > b) - (a < b)

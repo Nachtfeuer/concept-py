@@ -34,7 +34,6 @@ import re
 
 
 class Router(object):
-
     """
     The router allows executing a function by a concrete URL.
 
