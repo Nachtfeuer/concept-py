@@ -31,7 +31,6 @@ if __name__ == "__main__":
     from concept.math.vector import Vector2d
     from concept.math.hfractal import hfractal
 
-
     class Application(tk.Frame):
         """Simple tk application displaying a H fractal."""
 
@@ -60,8 +59,8 @@ if __name__ == "__main__":
 
         def set_title(self, count):
             """Change the title."""
-            self.master.title("H Fractal (%d H's, angle=%.2f Degree, scale=%.2f)" \
-                            % (count, self.angle * 180.0/math.pi, self.scale))
+            self.master.title("H Fractal (%d H's, angle=%.2f Degree, scale=%.2f)"
+                              % (count, self.angle * 180.0/math.pi, self.scale))
 
         def on_key_left(self, event):
             """Rotate hfractal to the left."""
@@ -86,7 +85,7 @@ if __name__ == "__main__":
 
         def on_key_plus(self, event):
             """Increase hfractal depth."""
-            if self.depth < 6:
+            if self.depth < 7:
                 self.depth += 1
                 self.repaint(self.canvas.winfo_width(), self.canvas.winfo_height())
 

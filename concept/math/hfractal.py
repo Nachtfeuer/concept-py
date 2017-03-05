@@ -56,20 +56,21 @@ class HDefinition(object):
         :param shrink_factor: each child is usually smaller. The factory define the final size.
         :returns list with four children.
         """
+        factor = 1.0/shrink_factor
         opvec = self.direction.scaled(0.5)
         children = []
         children.append(HDefinition(
             self.center_position + opvec + opvec.turned_left(),
-            self.direction.scaled(1/shrink_factor)))
+            self.direction.scaled(factor)))
         children.append(HDefinition(
             self.center_position + opvec + opvec.turned_right(),
-            self.direction.scaled(1/shrink_factor)))
+            self.direction.scaled(factor)))
         children.append(HDefinition(
             self.center_position - opvec + opvec.turned_left(),
-            self.direction.scaled(1/shrink_factor)))
+            self.direction.scaled(factor)))
         children.append(HDefinition(
             self.center_position - opvec + opvec.turned_right(),
-            self.direction.scaled(1/shrink_factor)))
+            self.direction.scaled(factor)))
         return children
 
 

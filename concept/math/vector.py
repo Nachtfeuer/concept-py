@@ -78,7 +78,7 @@ class Vector2d(object):
         """
         Subtraction of two 2d vectors.
 
-        $\vec{a} - \vec{b} = \begin{pmatrix}a_x - b_x\\a_y - b_y\end{pmatrix}$
+        :math: `\vec{a} - \vec{b} = \begin{pmatrix}a_x - b_x\\a_y - b_y\end{pmatrix}`
         :returns: new 2d vector instance.
         """
         return Vector2d(self.x - other.x, self.y - other.y)
@@ -87,6 +87,7 @@ class Vector2d(object):
         """
         Scalar (dot) product of two 2d vectors.
 
+        :math: `\vec{a} \cdot \vec{b} = a_x \cdot b_x + a_y \cdot b_y`
         :param other: another 2d vector instance
         :returns: scalar product of two 2d vectors.
         """
@@ -174,3 +175,7 @@ class Vector2d(object):
         if isinstance(other, Vector2d):
             return abs(self.x - other.x) < 1e-10 and abs(self.y - other.y) < 1e-10
         return False
+
+    def inversed(self):
+        """:returns: inversed vector (rotated by 180 degrees)."""
+        return Vector2d(-self.x, -self.y)

@@ -22,7 +22,6 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 # pylint: disable=R0201
-import math
 import unittest
 from hamcrest import assert_that, equal_to, calling, raises
 from concept.math.vector import Vector2d

@@ -3,7 +3,8 @@ coverage.xml
 tests.xml
 dist/
 build/
-docs/
+docs/api/
+docs/html/
 virt_env/
 MANIFEST
 *.pyc
