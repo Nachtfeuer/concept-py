@@ -37,3 +37,19 @@ class UnsupportedOperation(RuntimeError):
     def __init__(self, message):
         """Initialize exception with a message."""
         super(RuntimeError, self).__init__(message)
+
+
+class NoLineIntersection(RuntimeError):
+    """Indicates intersection between two lines cannot be calculated."""
+
+    def __init__(self, message=""):
+        """Initialize exception with a message."""
+        super(RuntimeError, self).__init__(message)
+
+
+class PointIsNotOnTheGivenLine(RuntimeError):
+    """Indicates that the point is not on a given line."""
+
+    def __init__(self, message=""):
+        """Initialize exception with a message."""
+        super(RuntimeError, self).__init__(message)

@@ -31,7 +31,7 @@
 """
 from concept.math.point import Point2d
 from concept.math.vector import Vector2d
-from concept.errors.exceptions import UnsupportedOperation
+from concept.errors.exceptions import UnsupportedOperation, NoLineIntersection, PointIsNotOnTheGivenLine
 
 
 class Line2d(object):
@@ -80,13 +80,6 @@ class Line2d(object):
         return Line2d(Point2d(self.position.x, self.position.y),
                       self.direction.turned_right())
 
-    def intersection(self, other):
-        """
-        Provide intersection 2d point when given.
-        :returns: 2d point or raise an exception when lines are parallel.
-        """
-        raise NotImplementedError("not yet implemented")
-
     def is_parallel(self, other):
         """
         Check two lines to be parallel.
@@ -112,3 +105,47 @@ class Line2d(object):
         :returns: 2d point
         """
         return self.position + self.direction.scaled(factor)
+
+    def factor(self, point):
+        """
+        Provide factor for given point.
+
+        :param point: math 2d point.
+        :returns: factor which also can be < 0.0 or > 1.0.
+        """
+        # px = lpx + k * ldx
+        # py = lpy + k * ldy
+        if abs(self.direction.x) > 1e-10:
+            k = (point.x - self.position.x) / self.direction.x
+            if abs(point.y - (self.position.y + k * self.direction.y)) < 1e-10:
+                return k
+
+        elif abs(self.direction.y) > 1e-10:
+            k = (point.y - self.position.y) / self.direction.y
+            if abs(point.x - (self.position.x + k * self.direction.x)) < 1e-10:
+                return k
+
+        raise PointIsNotOnTheGivenLine()
+
+    def intersection(self, other):
+        """
+        Provide intersection 2d point when given.
+
+        :returns: 2d point or raise an exception when lines are parallel
+                  or factors are not in range between 0.0 and 1.0
+        """
+        fac_a = - self.direction.y * other.direction.x + \
+            self.direction.x * other.direction.y
+        if abs(fac_a) < 1e-10:
+            raise NoLineIntersection("2d line intersection cannot be calculated")
+
+        fac_b = self.direction.y * (other.position.x - self.position.x) - \
+            self.direction.x * (other.position.y - self.position.y)
+
+        fac_c = fac_b / fac_a
+
+        if 0.0 <= abs(fac_c) <= 1.0:
+            point = other.position + other.direction.scaled(fac_c)
+            if 0.0 <= self.factor(point) <= 1.0:
+                return point
+        raise NoLineIntersection("both factor have to be in range 0.0 .. 1.0")

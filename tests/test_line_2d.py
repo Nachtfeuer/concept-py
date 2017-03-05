@@ -24,10 +24,11 @@
 # pylint: disable=R0201
 import math
 import unittest
-from hamcrest import assert_that, equal_to
+from hamcrest import assert_that, equal_to, calling, raises
 from concept.math.vector import Vector2d
 from concept.math.point import Point2d
 from concept.math.line import Line2d
+from concept.errors.exceptions import PointIsNotOnTheGivenLine
 
 
 class TestLine2d(unittest.TestCase):
@@ -85,3 +86,23 @@ class TestLine2d(unittest.TestCase):
         # should be -90 degree
         angle = line_a.angle(line_b) * 180.0 / math.pi
         assert_that(abs(angle+90.0) < 1e-10, equal_to(True))
+
+    def test_factor(self):
+        """Testing of method Line2d.factor."""
+        line = Line2d(Point2d(1.0, 1.0), Vector2d(1.0, 1.0))
+        assert_that(line.factor(Point2d(1.0, 1.0)), equal_to(0.0))
+        assert_that(line.factor(Point2d(1.5, 1.5)), equal_to(0.5))
+        assert_that(line.factor(Point2d(2.0, 2.0)), equal_to(1.0))
+        assert_that(line.factor(Point2d(0.0, 0.0)), equal_to(-1.0))
+        assert_that(line.factor(Point2d(3.0, 3.0)), equal_to(+2.0))
+        assert_that(calling(line.factor).with_args(Point2d(0.0, 1.0)),
+                    raises(PointIsNotOnTheGivenLine))
+
+        line = Line2d(Point2d(1.0, 1.0), Vector2d(0.0, 1.0))
+        assert_that(line.factor(Point2d(1.0, 1.5)), equal_to(0.5))
+
+    def test_valid_intersection(self):
+        """Testing of method Line2d.intersection."""
+        line_a = Line2d(Point2d(0.0, 2.0), Vector2d(4.0, 0.0))
+        line_b = Line2d(Point2d(3.0, 0.0), Vector2d(0.0, 4.0))
+        assert_that(line_a.intersection(line_b), equal_to(Point2d(3.0, 2.0)))
