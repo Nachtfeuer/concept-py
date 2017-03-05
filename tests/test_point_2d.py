@@ -48,10 +48,26 @@ class TestPoint2d(unittest.TestCase):
         assert_that(calling(Point2d().__add__).with_args(1234),
                     raises(UnsupportedOperation))
 
+    def test_iadd(self):
+        """Testing of method Point2d.__iadd__."""
+        point = Point2d(1.0, 2.0)
+        point += Vector2d(3.0, 4.0)
+        assert_that(point, equal_to(Point2d(4.0, 6.0)))
+        assert_that(calling(Point2d().__iadd__).with_args(1234),
+                    raises(UnsupportedOperation))
+
     def test_sub(self):
         """Testing of method Point2d.__sub__."""
         assert_that(Point2d(1.0, 5.0) - Point2d(3.0, 4.0), equal_to(Vector2d(-2.0, 1.0)))
         assert_that(calling(Point2d().__sub__).with_args(1234),
+                    raises(UnsupportedOperation))
+
+    def test_isub(self):
+        """Testing of method Point2d.__isub__."""
+        point = Point2d(1.0, 2.0)
+        point -= Vector2d(3.0, 4.0)
+        assert_that(point, equal_to(Point2d(-2.0, -2.0)))
+        assert_that(calling(Point2d().__isub__).with_args(1234),
                     raises(UnsupportedOperation))
 
     def test_eq(self):

@@ -53,11 +53,27 @@ class Point2d(object):
             return Point2d(self.x - other.x, self.y - other.y)
         raise UnsupportedOperation("operation pointa-pointb allowed only")
 
+    def __isub__(self, other):
+        """Subtract a 2d vector to translate current point."""
+        if isinstance(other, Vector2d):
+            self.x -= other.x
+            self.y -= other.y
+            return self
+        raise UnsupportedOperation("operation point-=vector allowed only")
+
     def __add__(self, other):
         """Add a 2d vector to get another point."""
         if isinstance(other, Vector2d):
             return Point2d(self.x + other.x, self.y + other.y)
         raise UnsupportedOperation("operation point+vector allowed only")
+
+    def __iadd__(self, other):
+        """Add a 2d vector to translate current point."""
+        if isinstance(other, Vector2d):
+            self.x += other.x
+            self.y += other.y
+            return self
+        raise UnsupportedOperation("operation point+=vector allowed only")
 
     def __eq__(self, other):
         """Comparing two points to be equal."""

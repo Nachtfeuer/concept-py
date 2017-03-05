@@ -53,6 +53,12 @@ class Line2d(object):
         """:returns: String representation of the given line 2d instance."""
         return "Line2d(position=%(position)s, direction=%(direction)s)" % self.__dict__
 
+    def __eq__(self, other):
+        """:returns: True when both line data are identical."""
+        if not isinstance(other, Line2d):
+            return False
+        return self.position == other.position and self.direction == other.direction
+
     def length(self):
         """:returns: length of line."""
         return self.direction.length()
