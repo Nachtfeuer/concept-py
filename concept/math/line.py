@@ -155,3 +155,20 @@ class Line2d(object):
             if 0.0 <= self.factor(point) <= 1.0:
                 return point
         raise NoLineIntersection("both factor have to be in range 0.0 .. 1.0")
+
+    def side(self, point):
+        """
+        Tell the side of given point.
+
+        :param point: point to check
+        :returns: -1 = left of this line, +1 = right of this line, 0 = on this Line
+        """
+        if isinstance(point, Point2d):
+            vector = point - self.position
+            side_value = vector.scalar_product(self.direction.turned_left())
+            if side_value > 0:
+                return -1
+            elif side_value < 0:
+                return +1
+            return 0
+        raise UnsupportedOperation("parallel check for two lines only")

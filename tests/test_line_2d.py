@@ -118,7 +118,7 @@ class TestLine2d(unittest.TestCase):
         # raised because lines are parallel
         assert_that(calling(line_a.intersection).with_args(line_b),
                     raises(NoLineIntersection))
-        # factor of line_c is not betwee 0 and 1
+        # factor of line_c is not between 0 and 1
         assert_that(calling(line_a.intersection).with_args(line_c),
                     raises(NoLineIntersection))
 
@@ -130,3 +130,17 @@ class TestLine2d(unittest.TestCase):
         assert_that(line_a, equal_to(line_b))
         assert_that(line_a, is_not(equal_to(line_c)))
         assert_that(line_a.__eq__(1234), equal_to(False))
+
+    def test_side(self):
+        """Testing of method Line2d.side."""
+        line = Line2d(Point2d(1.0, 1.0), Vector2d(0.0, 2.0))
+        # point should be left of line
+        assert_that(line.side(Point2d(0.0, 2.0)), equal_to(-1))
+        # point should be right of line
+        assert_that(line.side(Point2d(2.0, 2.0)), equal_to(+1))
+        # point on the line
+        assert_that(line.side(Point2d(1.0, 1.0)), equal_to(0))
+        assert_that(line.side(Point2d(1.0, 2.0)), equal_to(0))
+
+        assert_that(calling(line.side).with_args("hello world"),
+                    raises(UnsupportedOperation))
