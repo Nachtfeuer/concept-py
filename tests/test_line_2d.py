@@ -24,11 +24,12 @@
 # pylint: disable=R0201
 import math
 import unittest
-from hamcrest import assert_that, equal_to, calling, raises
+from hamcrest import assert_that, equal_to, is_not, calling, raises
 from concept.math.vector import Vector2d
 from concept.math.point import Point2d
 from concept.math.line import Line2d
-from concept.errors.exceptions import PointIsNotOnTheGivenLine
+from concept.errors.exceptions import PointIsNotOnTheGivenLine, UnsupportedOperation,\
+                                      NoLineIntersection
 
 
 class TestLine2d(unittest.TestCase):
@@ -78,6 +79,8 @@ class TestLine2d(unittest.TestCase):
         assert_that(line_a.is_parallel(line_a), equal_to(True))
         assert_that(line_a.is_parallel(line_b), equal_to(True))
         assert_that(line_a.is_parallel(line_c), equal_to(False))
+        assert_that(calling(line_a.is_parallel).with_args(1234),
+                    raises(UnsupportedOperation))
 
     def test_angle(self):
         """Testing of method Line2d.angle."""
@@ -106,3 +109,24 @@ class TestLine2d(unittest.TestCase):
         line_a = Line2d(Point2d(0.0, 2.0), Vector2d(4.0, 0.0))
         line_b = Line2d(Point2d(3.0, 0.0), Vector2d(0.0, 4.0))
         assert_that(line_a.intersection(line_b), equal_to(Point2d(3.0, 2.0)))
+
+    def test_no_intersection(self):
+        """Testing of method Line2d.intersection."""
+        line_a = Line2d(Point2d(0.0, 2.0), Vector2d(4.0, 0.0))
+        line_b = Line2d(Point2d(0.0, 1.0), Vector2d(4.0, 0.0))
+        line_c = Line2d(Point2d(2.0, 0.0), Vector2d(0.0, 1.0))
+        # raised because lines are parallel
+        assert_that(calling(line_a.intersection).with_args(line_b),
+                    raises(NoLineIntersection))
+        # factor of line_c is not betwee 0 and 1
+        assert_that(calling(line_a.intersection).with_args(line_c),
+                    raises(NoLineIntersection))
+
+    def test_equal(self):
+        """Testing of method Line2d.__eq__."""
+        line_a = Line2d(Point2d(0.0, 2.0), Vector2d(4.0, 0.0))
+        line_b = Line2d(Point2d(0.0, 2.0), Vector2d(4.0, 0.0))
+        line_c = Line2d(Point2d(3.0, 0.0), Vector2d(0.0, 4.0))
+        assert_that(line_a, equal_to(line_b))
+        assert_that(line_a, is_not(equal_to(line_c)))
+        assert_that(line_a.__eq__(1234), equal_to(False))
