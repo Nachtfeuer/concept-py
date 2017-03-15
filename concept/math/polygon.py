@@ -109,6 +109,14 @@ class Polygon2d(object):
 
     def area(self):
         """:returns: area of polygon."""
+        return abs(self.__area())
+
+    def is_clockwise(self):
+        """:returns: True when area of polygon is negative."""
+        return self.__area() < 0
+
+    def __area(self):
+        """:returns: area of polygon."""
         max_index = len(self.points)-1
         total = 0.0
         for pix in range(max_index):
@@ -116,7 +124,7 @@ class Polygon2d(object):
                      self.points[pix].y * self.points[pix+1].x
         total += self.points[max_index].x * self.points[0].y - \
                  self.points[max_index].y * self.points[0].x
-        return abs(total / 2.0)
+        return total / 2.0
 
     def contains(self, point):
         """

@@ -122,3 +122,17 @@ class TestPolygon2d(unittest.TestCase):
         """Testing Polygon2d.is_complex."""
         polygon = Polygon2d([(0, 0), (0, 1), (1, 1), (1, 0)])
         assert_that(calling(polygon.is_complex), raises(NotImplementedError))
+
+    def test_convex_is_clockwise(self):
+        """Testing Polygon2d.is_clockwise."""
+        polygon = Polygon2d([(0, 0), (0, 1), (1, 1), (1, 0)])
+        assert_that(polygon.is_clockwise(), equal_to(True))
+        polygon = Polygon2d([(0, 0), (1, 0), (1, 1), (0, 1)])
+        assert_that(polygon.is_clockwise(), equal_to(False))
+
+    def test_concav_is_clockwise(self):
+        """Testing Polygon2d.is_clockwise."""
+        polygon = Polygon2d([(0.75, 0.75), (0, 1), (1, 1), (1, 0)])
+        assert_that(polygon.is_clockwise(), equal_to(True))
+        polygon = Polygon2d([(0.75, 0.75), (1, 0), (1, 1), (0, 1)])
+        assert_that(polygon.is_clockwise(), equal_to(False))
