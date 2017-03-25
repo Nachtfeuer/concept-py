@@ -43,6 +43,17 @@ class Raster(object):
                 row.append(default_cell_value)
             self.rows.append(row)
 
+    @staticmethod
+    def create_from(data):
+        """Creating a raster from a list of lists."""
+        if isinstance(data, list) and len(set(len(entry) for entry in data)) == 1:
+            raster = Raster(len(data[0]), len(data))
+            for row, values in enumerate(data):
+                for column, value in enumerate(values):
+                    raster.set(column, row, value)
+            return raster
+        return None
+
     def set(self, column, row, obj):
         """Change cell content for a given column and row."""
         if 0 <= column < self.width and 0 <= row <= self.height:

@@ -35,7 +35,7 @@ class TestRaster(unittest.TestCase):
         raster = Raster(3, 2)
         assert_that(len(raster.rows), equal_to(2))
         assert_that(all(len(row) == 3 for row in raster.rows), equal_to(True))
-        assert_that(all(raster.rows[row][column] == None
+        assert_that(all(raster.rows[row][column] is None
                         for row in range(2) for column in range(3)), equal_to(True))
 
     def test_set_top_left(self):
@@ -43,7 +43,7 @@ class TestRaster(unittest.TestCase):
         raster = Raster(3, 2)
         raster.set(0, 0, "hello")
         assert_that(raster.rows[0][0], equal_to("hello"))
-        assert_that(all(raster.rows[row][column] == None
+        assert_that(all(raster.rows[row][column] is None
                         for row in range(2) for column in range(3)
                         if not row == 0 and not column == 0), equal_to(True))
 
@@ -52,7 +52,7 @@ class TestRaster(unittest.TestCase):
         raster = Raster(3, 2)
         raster.set(2, 0, "hello")
         assert_that(raster.rows[0][2], equal_to("hello"))
-        assert_that(all(raster.rows[row][column] == None
+        assert_that(all(raster.rows[row][column] is None
                         for row in range(2) for column in range(3)
                         if not row == 0 and not column == 2), equal_to(True))
 
@@ -61,7 +61,7 @@ class TestRaster(unittest.TestCase):
         raster = Raster(3, 2)
         raster.set(2, 1, "hello")
         assert_that(raster.rows[1][2], equal_to("hello"))
-        assert_that(all(raster.rows[row][column] == None
+        assert_that(all(raster.rows[row][column] is None
                         for row in range(2) for column in range(3)
                         if not row == 1 and not column == 2), equal_to(True))
 
@@ -101,3 +101,19 @@ class TestRaster(unittest.TestCase):
         assert_that(turned_raster.get(1, 0), equal_to(1))
         assert_that(turned_raster.get(1, 2), equal_to(2))
         assert_that(turned_raster.get(0, 2), equal_to(3))
+
+    def test_create_from(self):
+        """Testing Raster.create_from function."""
+        raster = Raster.create_from([[1, 2, 3], [4, 5, 6]])
+        assert_that(raster.width, equal_to(3))
+        assert_that(raster.height, equal_to(2))
+        assert_that(raster.get(0, 0), equal_to(1))
+        assert_that(raster.get(1, 0), equal_to(2))
+        assert_that(raster.get(2, 0), equal_to(3))
+        assert_that(raster.get(0, 1), equal_to(4))
+        assert_that(raster.get(1, 1), equal_to(5))
+        assert_that(raster.get(2, 1), equal_to(6))
+        # negative test
+        assert_that(Raster.create_from(1234), equal_to(None))
+        assert_that(Raster.create_from([]), equal_to(None))
+        assert_that(Raster.create_from([[1, 2],[3, 4, 5]]), equal_to(None))
