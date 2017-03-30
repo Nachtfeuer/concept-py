@@ -116,4 +116,18 @@ class TestRaster(unittest.TestCase):
         # negative test
         assert_that(Raster.create_from(1234), equal_to(None))
         assert_that(Raster.create_from([]), equal_to(None))
-        assert_that(Raster.create_from([[1, 2],[3, 4, 5]]), equal_to(None))
+        assert_that(Raster.create_from([[1, 2], [3, 4, 5]]), equal_to(None))
+
+    def test_occupied_cells(self):
+        """Testing Raster.occupied_cells."""
+        raster = Raster(3, 2)
+        raster.set(0, 0, 1)
+        raster.set(2, 0, 2)
+        raster.set(2, 1, 3)
+        raster.set(0, 1, 4)
+
+        occupied_cells = list(raster.occupied_cells())
+        assert_that(occupied_cells[0], equal_to((0, 0, 1)))
+        assert_that(occupied_cells[1], equal_to((2, 0, 2)))
+        assert_that(occupied_cells[2], equal_to((0, 1, 4)))
+        assert_that(occupied_cells[3], equal_to((2, 1, 3)))

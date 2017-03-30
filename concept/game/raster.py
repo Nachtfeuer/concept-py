@@ -36,7 +36,9 @@ class Raster(object):
         """Init raster for a given width and height."""
         self.width = width
         self.height = height
+        self.default_cell_value = default_cell_value
         self.rows = []
+
         for _ in range(self.height):
             row = []
             for _ in range(self.width):
@@ -82,3 +84,14 @@ class Raster(object):
                 new_raster.set(new_raster.width-row-1, column, self.get(column, row))
 
         return new_raster
+
+    def occupied_cells(self):
+        """
+        Provided row, column and value for cells not having default value.
+
+        :returns: tuple: column, row, cell value
+        """
+        for row in range(self.height):
+            for column in range(self.width):
+                if not self.rows[row][column] == self.default_cell_value:
+                    yield column, row, self.rows[row][column]
