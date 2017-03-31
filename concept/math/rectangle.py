@@ -59,17 +59,17 @@ class Rectangle2d(object):
     def bottom_right(self):
         """: returns bottom right position."""
         return self.position + \
-               (self.direction.scaled(self.width) +
-                self.direction.turned_right().scaled(self.height))
+            (self.direction.scaled(self.width) +
+             self.direction.turned_right().scaled(self.height))
 
     def __eq__(self, other):
         """:returns: True when both rectangle data are identical."""
         if not isinstance(other, Rectangle2d):
             return False
         return self.position == other.position and \
-               self.width == other.width and \
-               self.height == other.height and \
-               self.direction == other.direction
+            self.width == other.width and \
+            self.height == other.height and \
+            self.direction == other.direction
 
     def rotate(self, angle):
         """Rotate rectangle by given angle."""

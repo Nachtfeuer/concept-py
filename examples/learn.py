@@ -39,7 +39,7 @@ from concept.graph.gnuplot import plot, multiplot, script
 
 def average(entry):
     """providing average time for an individidual test."""
-    return entry['total time (s)']/float(entry['correct answers'] + entry['wrong answers'])
+    return entry['total time (s)'] / float(entry['correct answers'] + entry['wrong answers'])
 
 
 def dump_last_result(statistic):
@@ -64,7 +64,7 @@ def dump_total_results(statistic_entries):
     :param statistic_entries: a list of dictionaries with test results.
     """
     individual_tests = sum([entry['correct answers'] + entry['wrong answers']
-                           for entry in statistic_entries])
+                            for entry in statistic_entries])
     average_per_test = sum([entry['total time (s)'] for entry in statistic_entries]) \
         / float(individual_tests)
     average_per_run = sum([entry['total time (s)'] for entry in statistic_entries]) \
@@ -76,7 +76,7 @@ def dump_total_results(statistic_entries):
     print("\nSummary for all done tests:")
     print("  %5d total test runs" % len(statistic_entries))
     print("  %5d individual tests" % individual_tests)
-    print("  %5.1f individual tests per run" % (individual_tests/float(len(statistic_entries))))
+    print("  %5.1f individual tests per run" % (individual_tests / float(len(statistic_entries))))
     print("  %5.2f seconds per answer (average)" % average_per_test)
     print("  %5.2f seconds per run (average)" % average_per_run)
     print("  %5.2f seconds was best time." % best_time)
@@ -120,7 +120,7 @@ def create_gnuplot_statistic(statistic_entries):
         number_of_tests_plot.set_ytics("1")
         number_of_tests_plot.set_line_style(1, "lc rgb \"#00ff00\" lw 2")
         number_of_tests_plot.set_fill_style(1, "transparent solid 0.4 border")
-        values = list(enumerate([entry['correct answers']+entry['wrong answers']
+        values = list(enumerate([entry['correct answers'] + entry['wrong answers']
                                  for entry in statistic], 1))
         number_of_tests_plot.add_curve("# of tests (max entries=%d)" % key,
                                        values=values, mode=plot.FILLEDCURVES)
@@ -173,7 +173,7 @@ def main(max_entries, max_tests):
     test = 1
     while test <= max_tests:
         entries = select(1, max_entries, 1).shuffled()
-        pos = random.randint(0, max_entries-1)
+        pos = random.randint(0, max_entries - 1)
         missing_entry = entries[pos]
         del entries[pos]
 

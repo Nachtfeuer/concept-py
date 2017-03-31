@@ -74,7 +74,7 @@ class TestValidator(unittest.TestCase):
         assert_that(scma.is_valid({'age': 45}), equal_to(True))
         assert_that(scma.is_valid({'age': "45"}), equal_to(False))
 
-        vidator = validator().allow_values(range(1, 100+1)).build()
+        vidator = validator().allow_values(range(1, 100 + 1)).build()
         scma = schema().add("age", int, vidator).build()
         assert_that(scma.is_valid({'age': 45}), equal_to(True))
         assert_that(scma.is_valid({'age': 0}), equal_to(False))

@@ -16,7 +16,7 @@ pylint --rcfile=./.rclint.2.x concept tests examples > pylint.log 2>&1
 grep "rated at" pylint.log
 
 # creating pep8 report
-pep8 --max-line-length=110 concept tests examples >  pep8.log 2>&1
+pep8 --max-line-length=110 --ignore=E731 concept tests examples >  pep8.log 2>&1
 echo "`cat pep8.log | wc -l` pep8 warnings/errors (see pep8.log)"
 
 # creating pep257 report

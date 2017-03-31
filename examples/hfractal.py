@@ -60,7 +60,7 @@ if __name__ == "__main__":
         def set_title(self, count):
             """Change the title."""
             self.master.title("H Fractal (%d H's, angle=%.2f Degree, scale=%.2f)"
-                              % (count, self.angle * 180.0/math.pi, self.scale))
+                              % (count, self.angle * 180.0 / math.pi, self.scale))
 
         def on_key_left(self, event):
             """Rotate hfractal to the left."""
@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
         def on_key_down(self, event):
             """Scale hfractal (decrease)."""
-            if self.scale >= (0.05+0.05):
+            if self.scale >= (0.05 + 0.05):
                 self.scale -= 0.05
                 self.repaint(self.canvas.winfo_width(), self.canvas.winfo_height())
 
@@ -103,8 +103,8 @@ if __name__ == "__main__":
             """Repaint hfractal."""
             # delete all previous lines
             self.canvas.delete(tk.ALL)
-            center = Point2d(width/2, height/2)
-            direction = Vector2d(0.0, height/2.0).scaled(self.scale).rotated(self.angle)
+            center = Point2d(width / 2.0, height / 2.0)
+            direction = Vector2d(0.0, height / 2.0).scaled(self.scale).rotated(self.angle)
             hdefs = hfractal(center, direction, 2.0, self.depth)
             self.set_title(len(hdefs))
             for hdef in hdefs:

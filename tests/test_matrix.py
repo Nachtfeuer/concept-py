@@ -212,7 +212,7 @@ class TestMatrix(unittest.TestCase):
         matrix = create_matrix(2, 2)
         cells = [cell for cell in matrix.cells() if cell.row == 0]
         for cell in cells:
-            cell.set(cell.get()*10)
+            cell.set(cell.get() * 10)
 
         values = [cell.get() for cell in matrix.cells()]
         self.assertEqual([10, 3, 20, 4], values)

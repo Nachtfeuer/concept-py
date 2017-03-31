@@ -64,10 +64,10 @@ class TestGeneratorSelect(unittest.TestCase):
     def test_select_with_multiple_transform(self):
         """ Testing select with multiple 'transform' calls. """
         entries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        expected = [n**2+1 for n in entries]
+        expected = [n**2 + 1 for n in entries]
         given = select(1, 10, 1) \
             .transform(lambda n: n**2) \
-            .transform(lambda n: n+1) \
+            .transform(lambda n: n + 1) \
             .build()
         assert_that(given, equal_to(expected))
 
@@ -109,7 +109,7 @@ class TestGeneratorSelect(unittest.TestCase):
             results = select(1, 10, 1).shuffled()
             exact_positions = 0
             for index, value in enumerate(results):
-                if index+1 == value:
+                if index + 1 == value:
                     exact_positions += 1
             values.append(exact_positions)
         average = sum(values) / float(len(values))

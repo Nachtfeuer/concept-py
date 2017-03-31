@@ -175,7 +175,7 @@ class select(object):
 
         if len(results) % 2 == 0:
             pos = len(results) // 2 - 1
-            return (results[pos] + results[pos+1]) / 2.0
+            return (results[pos] + results[pos + 1]) / 2.0
 
         return float(results[len(results) // 2])
 

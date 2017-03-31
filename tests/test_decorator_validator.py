@@ -123,4 +123,3 @@ class TestDecoratorValidator(unittest.TestCase):
                 """test function for method '__gt__'."""
                 pass
                 """just a test function."""
-

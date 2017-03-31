@@ -23,7 +23,7 @@
 """
 # pylint: disable=R0201
 import unittest
-from hamcrest import assert_that, equal_to
+from hamcrest import assert_that, equal_to, is_not
 from concept.game.raster import Raster
 
 
@@ -131,3 +131,11 @@ class TestRaster(unittest.TestCase):
         assert_that(occupied_cells[1], equal_to((2, 0, 2)))
         assert_that(occupied_cells[2], equal_to((0, 1, 4)))
         assert_that(occupied_cells[3], equal_to((2, 1, 3)))
+
+    def test_equal(self):
+        raster_a = Raster.create_from(["123", "456"])
+        raster_b = Raster.create_from(["123", "456"])
+        raster_c = Raster.create_from(["124", "457"])
+        assert_that(raster_a, equal_to(raster_b))
+        assert_that(raster_a, is_not(equal_to(raster_c)))
+        assert_that(raster_a.__eq__(1234), equal_to(False))

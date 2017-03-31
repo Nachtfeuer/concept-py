@@ -55,7 +55,7 @@ def encrypt(plaintext, cipher, shift):
     shifted_cipher = cipher
     if shift > 0:
         while shift > 0:
-            shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher)-1]
+            shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher) - 1]
             shift -= 1
     else:
         while shift < 0:
@@ -86,7 +86,7 @@ def decrypt(ciphertext, cipher, shift):
     shifted_cipher = cipher
     if shift > 0:
         while shift > 0:
-            shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher)-1]
+            shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher) - 1]
             shift -= 1
     else:
         while shift < 0:

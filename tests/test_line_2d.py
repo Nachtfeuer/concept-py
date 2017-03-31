@@ -29,7 +29,7 @@ from concept.math.vector import Vector2d
 from concept.math.point import Point2d
 from concept.math.line import Line2d
 from concept.errors.exceptions import PointIsNotOnTheGivenLine, UnsupportedOperation,\
-                                      NoLineIntersection
+    NoLineIntersection
 
 
 class TestLine2d(unittest.TestCase):
@@ -79,8 +79,9 @@ class TestLine2d(unittest.TestCase):
         assert_that(line_a.is_parallel(line_a), equal_to(True))
         assert_that(line_a.is_parallel(line_b), equal_to(True))
         assert_that(line_a.is_parallel(line_c), equal_to(False))
-        assert_that(calling(line_a.is_parallel).with_args(1234),
-                    raises(UnsupportedOperation))
+        assert_that(
+            calling(line_a.is_parallel).with_args(1234),
+            raises(UnsupportedOperation))
 
     def test_angle(self):
         """Testing of method Line2d.angle."""
@@ -88,7 +89,7 @@ class TestLine2d(unittest.TestCase):
         line_b = Line2d(Point2d(3.0, 4.0), Vector2d(0.0, 1.0))
         # should be -90 degree
         angle = line_a.angle(line_b) * 180.0 / math.pi
-        assert_that(abs(angle+90.0) < 1e-10, equal_to(True))
+        assert_that(abs(angle + 90.0) < 1e-10, equal_to(True))
 
     def test_factor(self):
         """Testing of method Line2d.factor."""
@@ -98,8 +99,9 @@ class TestLine2d(unittest.TestCase):
         assert_that(line.factor(Point2d(2.0, 2.0)), equal_to(1.0))
         assert_that(line.factor(Point2d(0.0, 0.0)), equal_to(-1.0))
         assert_that(line.factor(Point2d(3.0, 3.0)), equal_to(+2.0))
-        assert_that(calling(line.factor).with_args(Point2d(0.0, 1.0)),
-                    raises(PointIsNotOnTheGivenLine))
+        assert_that(
+            calling(line.factor).with_args(Point2d(0.0, 1.0)),
+            raises(PointIsNotOnTheGivenLine))
 
         line = Line2d(Point2d(1.0, 1.0), Vector2d(0.0, 1.0))
         assert_that(line.factor(Point2d(1.0, 1.5)), equal_to(0.5))
@@ -116,11 +118,13 @@ class TestLine2d(unittest.TestCase):
         line_b = Line2d(Point2d(0.0, 1.0), Vector2d(4.0, 0.0))
         line_c = Line2d(Point2d(2.0, 0.0), Vector2d(0.0, 1.0))
         # raised because lines are parallel
-        assert_that(calling(line_a.intersection).with_args(line_b),
-                    raises(NoLineIntersection))
+        assert_that(
+            calling(line_a.intersection).with_args(line_b),
+            raises(NoLineIntersection))
         # factor of line_c is not between 0 and 1
-        assert_that(calling(line_a.intersection).with_args(line_c),
-                    raises(NoLineIntersection))
+        assert_that(
+            calling(line_a.intersection).with_args(line_c),
+            raises(NoLineIntersection))
 
     def test_equal(self):
         """Testing of method Line2d.__eq__."""
@@ -142,5 +146,6 @@ class TestLine2d(unittest.TestCase):
         assert_that(line.side(Point2d(1.0, 1.0)), equal_to(0))
         assert_that(line.side(Point2d(1.0, 2.0)), equal_to(0))
 
-        assert_that(calling(line.side).with_args("hello world"),
-                    raises(UnsupportedOperation))
+        assert_that(
+            calling(line.side).with_args("hello world"),
+            raises(UnsupportedOperation))

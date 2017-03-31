@@ -53,7 +53,7 @@ def encrypt(plaintext, key, cipher):
     counter = len(cipher)
     shifted_cipher = cipher
     while counter > 0:
-        shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher)-1]
+        shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher) - 1]
         mapping[shifted_cipher[0]] = shifted_cipher
         counter -= 1
 
@@ -94,7 +94,7 @@ def decrypt(ciphertext, key, cipher):
     counter = len(cipher)
     shifted_cipher = cipher
     while counter > 0:
-        shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher)-1]
+        shifted_cipher = shifted_cipher[-1] + shifted_cipher[0:len(shifted_cipher) - 1]
         mapping[shifted_cipher[0]] = shifted_cipher
         counter -= 1
 

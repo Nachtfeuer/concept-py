@@ -29,6 +29,8 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+
+
 class Raster(object):
     """Game raster."""
 
@@ -48,7 +50,8 @@ class Raster(object):
     @staticmethod
     def create_from(data):
         """Creating a raster from a list of lists."""
-        if isinstance(data, list) and len(set(len(entry) for entry in data)) == 1:
+        if isinstance(data,
+                      list) and len(set(len(entry) for entry in data)) == 1:
             raster = Raster(len(data[0]), len(data))
             for row, values in enumerate(data):
                 for column, value in enumerate(values):
@@ -72,7 +75,8 @@ class Raster(object):
         new_raster = Raster(self.height, self.width)
         for row in range(self.height):
             for column in range(self.width):
-                new_raster.set(row, column, self.get(self.width-column-1, row))
+                new_raster.set(row, column,
+                               self.get(self.width - column - 1, row))
 
         return new_raster
 
@@ -81,7 +85,8 @@ class Raster(object):
         new_raster = Raster(self.height, self.width)
         for row in range(self.height):
             for column in range(self.width):
-                new_raster.set(new_raster.width-row-1, column, self.get(column, row))
+                new_raster.set(new_raster.width - row - 1, column,
+                               self.get(column, row))
 
         return new_raster
 
@@ -95,3 +100,13 @@ class Raster(object):
             for column in range(self.width):
                 if not self.rows[row][column] == self.default_cell_value:
                     yield column, row, self.rows[row][column]
+
+    def __eq__(self, other):
+        """
+        Comparing with another object to be same type with same data.
+
+        :returns: True when same type with same data.
+        """
+        if isinstance(other, Raster):
+            return self.rows == other.rows
+        return False

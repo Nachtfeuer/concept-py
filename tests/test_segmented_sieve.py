@@ -41,5 +41,5 @@ class TestSegmentedSieve(unittest.TestCase):
         """Testing sieve comparing results with using is_prime function."""
         sieve = segmented_sieve(10000)
         sieve.calculate()
-        primes = [n for n in range(10000+1) if is_prime(n)]
+        primes = [n for n in range(10000 + 1) if is_prime(n)]
         assert_that(primes, equal_to(sieve.get_primes()))

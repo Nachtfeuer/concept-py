@@ -86,4 +86,4 @@ class TestMockAttribute(unittest.TestCase):
     def test_cmp(self):
         """Testing compare."""
         assert_that(Attribute(Attribute.READ, "foo")
-            .__cmp__(Attribute(Attribute.READ, "foo")), equal_to(0))
+                    .__cmp__(Attribute(Attribute.READ, "foo")), equal_to(0))

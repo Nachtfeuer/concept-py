@@ -41,7 +41,7 @@ def print_primes(primes, columns):
     :param primes: list of primes
     :param columns: number of prime columns (-1: auto)
     """
-    width = len("%d" % primes[-1])+1
+    width = len("%d" % primes[-1]) + 1
     if columns == -1:
         columns = 80 // width
 

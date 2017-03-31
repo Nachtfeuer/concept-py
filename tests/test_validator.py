@@ -69,7 +69,7 @@ class TestValidator(unittest.TestCase):
 
     def test_using_range(self):
         """ Testing validator.allow_values using a range. """
-        vidator = validator().allow_values(range(1, 10+1)).build()
+        vidator = validator().allow_values(range(1, 10 + 1)).build()
         assert_that(vidator.is_valid(0), equal_to(False))
         assert_that(vidator.is_valid(1), equal_to(True))
         assert_that(vidator.is_valid(10), equal_to(True))
@@ -77,7 +77,7 @@ class TestValidator(unittest.TestCase):
 
     def test_using_list(self):
         """ Testing validator.allow_values using a list. """
-        vidator = validator().allow_values(list(range(1, 10+1))).build()
+        vidator = validator().allow_values(list(range(1, 10 + 1))).build()
         assert_that(vidator.is_valid(0), equal_to(False))
         assert_that(vidator.is_valid(1), equal_to(True))
         assert_that(vidator.is_valid(10), equal_to(True))
@@ -86,5 +86,5 @@ class TestValidator(unittest.TestCase):
     def test_verify_by(self):
         """ Testing validator.verify_by. """
         vidator = validator().verify_by(lambda n: n % 2 == 0).build()
-        for value in range(100+1):
+        for value in range(100 + 1):
             assert_that(vidator.is_valid(value), equal_to(value % 2 == 0))

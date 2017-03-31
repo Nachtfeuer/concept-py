@@ -38,7 +38,7 @@ class sieve_of_eratosthenes(object):
     def __init__(self, max_n):
         """Initialize sieve."""
         self.max_n = max_n
-        self.sieve = [True] * (self.max_n+1)
+        self.sieve = [True] * (self.max_n + 1)
         self.sieve[0] = False
         self.sieve[1] = False
 
@@ -62,7 +62,7 @@ class sieve_of_eratosthenes(object):
 
         :returns: list of primes
         """
-        return [2]+[n for n in range(3, self.max_n+1, 2) if self.sieve[n]]
+        return [2] + [n for n in range(3, self.max_n + 1, 2) if self.sieve[n]]
 
     def is_prime(self, value):
         """

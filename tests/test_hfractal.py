@@ -87,4 +87,4 @@ class TestHFractal(unittest.TestCase):
     def test_hfractal_depth2(self):
         """Test hfractal function for max_depth=2."""
         hdefs = hfractal(Point2d(), Vector2d(0.0, 1.0), 2.0, 2)
-        assert_that(len(hdefs), equal_to(1+4+16))
+        assert_that(len(hdefs), equal_to(1 + 4 + 16))

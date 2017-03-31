@@ -22,3 +22,5 @@ learn.gp.png
 learn.gp.svg
 tags
 notebooks/.ipynb_checkpoints/
+.noseids
+.vscode/

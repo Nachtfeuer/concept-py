@@ -304,12 +304,12 @@ class Matrix(object):
         for row in range(self.height):
             yield self.Diagonal(0, row, 1, -1, self)
         for column in range(1, self.width):
-            yield self.Diagonal(column, self.height-1, 1, -1, self)
+            yield self.Diagonal(column, self.height - 1, 1, -1, self)
 
     def main_diagonals(self):
         """:return: using yield you can iterator over all main diagonal."""
         yield self.Diagonal(0, 0, 1, 1, self)
-        yield self.Diagonal(0, self.height-1, 1, -1, self)
+        yield self.Diagonal(0, self.height - 1, 1, -1, self)
 
     def clone(self):
         """:return: copy of this instance."""
@@ -345,10 +345,10 @@ class Matrix(object):
         """
         if vertical:
             for row in range(self.height // 2):
-                self.Row(row, self).swap(self.Row(self.height-row-1, self))
+                self.Row(row, self).swap(self.Row(self.height - row - 1, self))
         if horizontal:
             for column in range(self.width // 2):
-                self.Column(column, self).swap(self.Column(self.width-column-1, self))
+                self.Column(column, self).swap(self.Column(self.width - column - 1, self))
         return self
 
     def __mul__(self, other):
@@ -371,8 +371,8 @@ class Matrix(object):
             for row in self.rows():
                 for column in other.columns():
                     matrix[column.column, row.row] = \
-                        sum([a*b for a, b in zip([cell.get() for cell in row.cells()],
-                                                 [cell.get() for cell in column.cells()])])
+                        sum([a * b for a, b in zip([cell.get() for cell in row.cells()],
+                                                   [cell.get() for cell in column.cells()])])
             return matrix
 
         return None

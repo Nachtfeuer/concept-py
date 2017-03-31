@@ -58,7 +58,8 @@ def main(max_number):
             current = function
 
         print("%s" % formula)
-        print(" ... %s" % " ".join([str(formula(n)) for n in range(max_number+1)]))
+        print(" ... %s" % " ".join([str(formula(n))
+                                    for n in range(max_number + 1)]))
 
 
 if __name__ == "__main__":

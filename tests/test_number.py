@@ -36,13 +36,13 @@ class TestNumber(unittest.TestCase):
 
     def test_is_square(self):
         """ Testing is_square function. """
-        given = [n for n in range(1, 100+1) if is_square(n)]
+        given = [n for n in range(1, 100 + 1) if is_square(n)]
         expected = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
         assert_that(expected, equal_to(given))
 
     def test_triangle(self):
         """ Testing triangle function. """
-        given = [triangle(n) for n in range(1, 10+1)]
+        given = [triangle(n) for n in range(1, 10 + 1)]
         expected = [1, 3, 6, 10, 15, 21, 28, 36, 45, 55]
         assert_that(given, equal_to(expected))
 
@@ -53,7 +53,7 @@ class TestNumber(unittest.TestCase):
 
     def test_penatgonal(self):
         """ Testing pentagonal function. """
-        given = [pentagonal(n) for n in range(1, 10+1)]
+        given = [pentagonal(n) for n in range(1, 10 + 1)]
         expected = [1, 5, 12, 22, 35, 51, 70, 92, 117, 145]
         assert_that(given, equal_to(expected))
 
@@ -65,7 +65,7 @@ class TestNumber(unittest.TestCase):
 
     def test_hexagonal(self):
         """ Testing hexagonal function. """
-        given = [hexagonal(n) for n in range(1, 10+1)]
+        given = [hexagonal(n) for n in range(1, 10 + 1)]
         expected = [1, 6, 15, 28, 45, 66, 91, 120, 153, 190]
         assert_that(given, equal_to(expected))
 

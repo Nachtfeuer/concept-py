@@ -141,7 +141,7 @@ class plot(object):
             script += "\nset ytics \"%s\"" % self.ytics
 
         if len(self.curves) > 0:
-            for style in range(1, len(self.curves)+1):
+            for style in range(1, len(self.curves) + 1):
                 if style in self.line_styles:
                     script += "\nset style line %d %s" % (style, self.line_styles[style])
 

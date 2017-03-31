@@ -87,11 +87,11 @@ class Polygon2d(object):
     def lines(self):
         """:returns: lines of the polygon."""
         data = []
-        max_index = len(self.points)-1
+        max_index = len(self.points) - 1
         for pix in range(max_index):
             data.append(
                 Line2d(self.points[pix],
-                       self.points[pix+1] - self.points[pix]))
+                       self.points[pix + 1] - self.points[pix]))
 
         data.append(Line2d(self.points[max_index],
                            self.points[0] - self.points[max_index]))
@@ -100,9 +100,9 @@ class Polygon2d(object):
     def vectors(self):
         """:returns: list of vectors representing this polygon."""
         data = []
-        max_index = len(self.points)-1
+        max_index = len(self.points) - 1
         for pix in range(max_index):
-            data.append(self.points[pix+1] - self.points[pix])
+            data.append(self.points[pix + 1] - self.points[pix])
 
         data.append(self.points[0] - self.points[max_index])
         return data
@@ -117,13 +117,13 @@ class Polygon2d(object):
 
     def __area(self):
         """:returns: area of polygon."""
-        max_index = len(self.points)-1
+        max_index = len(self.points) - 1
         total = 0.0
         for pix in range(max_index):
-            total += self.points[pix].x * self.points[pix+1].y - \
-                     self.points[pix].y * self.points[pix+1].x
+            total += self.points[pix].x * self.points[pix + 1].y - \
+                self.points[pix].y * self.points[pix + 1].x
         total += self.points[max_index].x * self.points[0].y - \
-                 self.points[max_index].y * self.points[0].x
+            self.points[max_index].y * self.points[0].x
         return total / 2.0
 
     def contains(self, point):
@@ -141,17 +141,17 @@ class Polygon2d(object):
 
         :returns: True when polyon is convex.
         """
-        max_index = len(self.points)-1
-        for pix in range(max_index+1):
+        max_index = len(self.points) - 1
+        for pix in range(max_index + 1):
             if pix == 0:
                 pixmin = max_index
-                pixmax = pix+1
+                pixmax = pix + 1
             elif pix == max_index:
-                pixmin = pix-1
+                pixmin = pix - 1
                 pixmax = 0
             else:
-                pixmin = pix-1
-                pixmax = pix+1
+                pixmin = pix - 1
+                pixmax = pix + 1
 
             vec_a = self.points[pixmax] - self.points[pix]
             vec_b = self.points[pixmin] - self.points[pix]

@@ -43,6 +43,6 @@ class TestSieveOfEratosthenesOptimized(unittest.TestCase):
         sieve = sieve_of_eratosthenes_optimized(101)
         sieve.calculate()
 
-        expected = [n for n in range(1, 100+1) if is_prime(n)]
-        given = [2] + [n for n in range(3, 100+1, 2) if sieve.is_prime(n)]
+        expected = [n for n in range(1, 100 + 1) if is_prime(n)]
+        given = [2] + [n for n in range(3, 100 + 1, 2) if sieve.is_prime(n)]
         assert_that(given, equal_to(expected))

@@ -47,7 +47,7 @@ class segmented_sieve(object):
         """calculating all primes."""
         # calculating primes up to to square root of maximum number
         self.sieve.calculate()
-        self.primes = [2] + [n for n in range(3, self.initial_limit+1, 2) if self.sieve.is_prime(n)]
+        self.primes = [2] + [n for n in range(3, self.initial_limit + 1, 2) if self.sieve.is_prime(n)]
 
         segment_size = max(10, (self.max_n - self.initial_limit) // 10)
         other_primes = []
@@ -59,7 +59,7 @@ class segmented_sieve(object):
         while low < high:
             # TODO: the creation of the segment ... can this be done before loop?
             # (compare creation vs. initialization performance!!!)
-            segment = [True] * (high-low+1)
+            segment = [True] * (high - low + 1)
             for prime in self.primes:
                 current = low
                 remainder = current % prime
@@ -67,11 +67,11 @@ class segmented_sieve(object):
                     current = low - remainder + prime
                 while current <= high:
                     # TODO: -low .... can be improved by doing it before loop?
-                    segment[current-low] = False
+                    segment[current - low] = False
                     current += prime
 
             # TODO: question: is a loop better than using range? (check performance!!!)
-            other_primes += [n for n in range(low, high+1) if segment[n-low]]
+            other_primes += [n for n in range(low, high + 1) if segment[n - low]]
 
             low = high + 1
             high = min(low + segment_size, self.max_n)

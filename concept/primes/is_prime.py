@@ -45,8 +45,8 @@ def is_prime(value):
     if value % 2 == 0:
         return value == 2
 
-    limit = int(math.sqrt(value))+1
-    for divisor in range(3, limit+1, 2):
+    limit = int(math.sqrt(value)) + 1
+    for divisor in range(3, limit + 1, 2):
         if value % divisor == 0:
             return False
 
