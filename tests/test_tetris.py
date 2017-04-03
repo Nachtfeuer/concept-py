@@ -97,3 +97,22 @@ class TestTetris(unittest.TestCase):
             tetris.turn_right()
             expected = Raster.create_from(["****", "   *", "   *", "   *"])
             assert_that(tetris.shape, equal_to(expected))
+
+    def test_run_simple_turned_left(self):
+        """
+        Running a simple game until game over.
+
+        Here the first shape is turned to the left.
+        """
+        with mock.patch.object(Tetris, "get_next_shape") as mocked_method:
+            shape = Raster.create_from(Tetris.SHAPES[0])
+            mocked_method.return_value = shape
+
+            counter = 0
+            tetris = Tetris(6, 10)
+            tetris.turn_left()
+            expected = 7 + 6 + 5 + 4 + 3 + 2
+            while tetris.step():
+                counter += 1
+
+            assert_that(counter, equal_to(expected))
