@@ -24,8 +24,7 @@
 # pylint: disable=R0201
 import unittest
 import mock
-import math
-from hamcrest import assert_that, equal_to
+from hamcrest import assert_that, equal_to, greater_than_or_equal_to, less_than_or_equal_to
 from concept.game.tetris import Tetris
 from concept.game.raster import Raster
 
@@ -116,3 +115,32 @@ class TestTetris(unittest.TestCase):
                 counter += 1
 
             assert_that(counter, equal_to(expected))
+
+    def test_move_left_simple(self):
+        """Testing Tetris.move_left method."""
+        with mock.patch.object(Tetris, "get_next_shape") as mocked_method:
+            shape = Raster.create_from(Tetris.SHAPES[0])
+            mocked_method.return_value = shape
+            tetris = Tetris(6, 10)
+            margin = (tetris.raster.width - shape.width) // 2
+            assert_that(tetris.current_column, equal_to(margin))
+            tetris.move_left()
+            assert_that(tetris.current_column, equal_to(margin-1))
+            for _ in range(10):
+                tetris.move_left()
+                assert_that(tetris.current_column, greater_than_or_equal_to(0))
+
+    def test_move_right_simple(self):
+        """Testing Tetris.move_left method."""
+        with mock.patch.object(Tetris, "get_next_shape") as mocked_method:
+            shape = Raster.create_from(Tetris.SHAPES[0])
+            mocked_method.return_value = shape
+            tetris = Tetris(6, 10)
+            margin = (tetris.raster.width - shape.width) // 2
+            assert_that(tetris.current_column, equal_to(margin))
+            tetris.move_right()
+            assert_that(tetris.current_column, equal_to(margin+1))
+            expected = tetris.raster.width - tetris.shape.width
+            for _ in range(10):
+                tetris.move_right()
+                assert_that(tetris.current_column,less_than_or_equal_to(expected))

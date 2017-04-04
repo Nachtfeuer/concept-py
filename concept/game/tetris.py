@@ -28,6 +28,16 @@ class Tetris(object):
         """Rotate shape 90 degrees to the right."""
         self.shape = self.shape.turned_right()
 
+    def move_left(self):
+        """Move current shape one column to the left (when possible)"""
+        if self.current_column > 0:
+            self.current_column -= 1
+
+    def move_right(self):
+        """Move current shape one column to the right (when possible)"""
+        if self.current_column + self.shape.width < self.raster.width:
+            self.current_column += 1
+
     def step(self):
         """One game step."""
         if self.can_step():
