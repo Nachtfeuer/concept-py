@@ -83,6 +83,10 @@ class Vector2d(object):
         """
         return Vector2d(self.x - other.x, self.y - other.y)
 
+    def __neg__(self):
+        """:return: current vector multiplictated with -1."""
+        return Vector2d(-self.x, -self.y)
+
     def scalar_product(self, other):
         """
         Scalar (dot) product of two 2d vectors.
@@ -179,3 +183,15 @@ class Vector2d(object):
     def inversed(self):
         """:returns: inversed vector (rotated by 180 degrees)."""
         return Vector2d(-self.x, -self.y)
+
+    def is_perpendicular(self, other):
+        """
+        Does check whether two vectors are perpendicular to each other
+        which is the case when the scalar product is 0.
+
+        :param: other is expected to be another vector
+        :rtype: true when the one vector is perpendicular to the other, otherwise false.
+        """
+        if isinstance(other, Vector2d):
+            return self.scalar_product(other) == 0
+        return False

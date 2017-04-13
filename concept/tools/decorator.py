@@ -30,8 +30,14 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+import sys
 import json
 import inspect
+
+if sys.version.startswith("2."):
+    from types import NoneType
+else:
+    NoneType = type(None)
 
 
 class data(object):
@@ -225,6 +231,72 @@ class validate_test_responsibility_for(object):
                 message += "\n...failed to provide test method '%s' for method '%s'" \
                            % (test_method, testable_method)
             raise Exception(message)
+
+
+class validate_types(object):
+    """
+    A function or method decorator that validates types of parameters.
+
+    >>> try:
+    ...     @validate_types(ptypes=[int, int], r=int)
+    ...     def sum_of_two_integers(a, b):
+    ...         return a + b
+    ...     sum_of_two_integers(1, "world")
+    ... except TypeError as e:
+    ...     print("|%s|" % str(e))
+    |1. parameter - expected type is <class 'int'>, given type is <class 'str'>|
+    """
+
+    def __init__(self, ptypes=[], r=NoneType, offset=0):
+        """
+        :param: ptypes: list of parameter types like "int", "float" or "str"
+        :param: e: return type
+        :param: offset: number of parameters to ignore (from the beginning
+        """
+        self.parameter_types = ptypes
+        self.return_type = r
+        self.offset = offset
+
+    def __call__(self, function):
+        """
+        :param: function: that's the real function which should be decorated
+        :rtype: decorator function (wrapper)
+        """
+        def wrapper(*args, **kwargs):
+            """
+            The wrapper checks the types of the parameter of the real function
+            and raises an exception if the type doesn't fit. If fine the
+            real function is executed and the return value is given back (as usual).
+
+            :param: args: any argument
+            :param: kwargs: any keyword argument
+            :rtype: the result of the wrapped function
+            """
+            self.check_parameter_types(*args)
+            result = function(*args, **kwargs)
+            self.check_return_type(result)
+            return result
+        return wrapper
+
+    def check_parameter_types(self, *args):
+        """
+        :param: args: any parameter (basically of the wrapped function)
+        """
+        parameter = self.offset
+        for given_type, expected_type in \
+                zip([type(entry) for entry in args[self.offset:]], self.parameter_types):
+            if not given_type == expected_type:
+                raise TypeError("%d. parameter - expected type is %s, given type is %s"
+                                % (parameter, expected_type, given_type))
+            parameter += 1
+
+    def check_return_type(self, value):
+        """
+        :param: value: return value of wrapped function
+        """
+        if not type(value) == self.return_type:
+            raise TypeError("expected return type is %s, given return type is %s"
+                            % (self.return_type, type(value)))
 
 
 def singleton(the_class):

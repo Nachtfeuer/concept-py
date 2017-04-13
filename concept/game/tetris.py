@@ -1,3 +1,4 @@
+""""Module tetris."""
 from random import randint
 from concept.game.raster import Raster
 

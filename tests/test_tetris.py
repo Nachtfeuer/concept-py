@@ -125,7 +125,7 @@ class TestTetris(unittest.TestCase):
             margin = (tetris.raster.width - shape.width) // 2
             assert_that(tetris.current_column, equal_to(margin))
             tetris.move_left()
-            assert_that(tetris.current_column, equal_to(margin-1))
+            assert_that(tetris.current_column, equal_to(margin - 1))
             for _ in range(10):
                 tetris.move_left()
                 assert_that(tetris.current_column, greater_than_or_equal_to(0))
@@ -139,8 +139,8 @@ class TestTetris(unittest.TestCase):
             margin = (tetris.raster.width - shape.width) // 2
             assert_that(tetris.current_column, equal_to(margin))
             tetris.move_right()
-            assert_that(tetris.current_column, equal_to(margin+1))
+            assert_that(tetris.current_column, equal_to(margin + 1))
             expected = tetris.raster.width - tetris.shape.width
             for _ in range(10):
                 tetris.move_right()
-                assert_that(tetris.current_column,less_than_or_equal_to(expected))
+                assert_that(tetris.current_column, less_than_or_equal_to(expected))
