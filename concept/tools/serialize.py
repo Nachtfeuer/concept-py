@@ -65,7 +65,7 @@ class Serializable(object):
         :rtype: intention is to have a list of valid fields names
                 for which the data will be serialized
         """
-        fields = sorted(u"%s" % field for field in self.__dict__.keys()
+        fields = sorted("%s" % field for field in self.__dict__.keys()
                         if field not in self.__not_serializable__)
         if len(fields) == 0:
             raise AttributeError("missing attributes for serialization")
@@ -110,40 +110,40 @@ class Serializable(object):
         if self.is_enabled_for_attributes():
             for field in fields:
                 if field in self.__dict__ and not isinstance(self.__dict__[field], list):
-                    attributes += u" %s=\"%s\"" % (field, escape("%s" % self.__dict__[field]))
+                    attributes += " %s=\"%s\"" % (field, escape("%s" % self.__dict__[field]))
 
-        xml = u"<%s%s" % (self.get_serializable_name(), attributes)
+        xml = "<%s%s" % (self.get_serializable_name(), attributes)
         for field in fields:
             if field not in self.__dict__:
                 raise NameError("field %s has not been found" % field)
 
             if isinstance(self.__dict__[field], list):
                 if counter == 0:
-                    xml += u">"
+                    xml += ">"
 
-                xml += u"<%s>" % field
+                xml += "<%s>" % field
                 for entry in self.__dict__[field]:
                     if self.is_derived(entry, Serializable):
                         xml += entry.to_xml()
                     else:
-                        xml += u"<value>%s</value>" % escape("%s" % entry)
+                        xml += "<value>%s</value>" % escape("%s" % entry)
                 counter += 1
-                xml += u"</%s>" % field
+                xml += "</%s>" % field
             else:
                 if not self.is_enabled_for_attributes():
                     if counter == 0:
-                        xml += u">"
+                        xml += ">"
 
                     if self.is_derived(self.__dict__[field], Serializable):
-                        xml += u"%s" % self.__dict__[field].to_xml()
+                        xml += "%s" % self.__dict__[field].to_xml()
                     else:
-                        xml += u"<%s>%s</%s>" % (field, escape(u"%s" % self.__dict__[field]), field)
+                        xml += "<%s>%s</%s>" % (field, escape("%s" % self.__dict__[field]), field)
                     counter += 1
 
         if counter > 0:
-            xml += u"</%s>" % self.get_serializable_name()
+            xml += "</%s>" % self.get_serializable_name()
         else:
-            xml += u"/>"
+            xml += "/>"
         return xml
 
     @staticmethod

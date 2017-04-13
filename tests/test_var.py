@@ -62,7 +62,7 @@ class TestVar(unittest.TestCase):
     def test_repr(self):
         """ testing of Var.__repr__ """
         var = Var(1234)
-        self.assertEqual(u"Var(1234)", str(var))
+        self.assertEqual("Var(1234)", str(var))
 
     def test_is_enabled_for_attributes(self):
         """testing of Var.is_enabled_for_attributes method."""
@@ -72,16 +72,16 @@ class TestVar(unittest.TestCase):
     def test_get_serializable_name(self):
         """testing of Var.get_serializable_name method."""
         var = Var()
-        self.assertEqual(u"var", var.get_serializable_name())
+        self.assertEqual("var", var.get_serializable_name())
 
     def test_get_serializable_field(self):
         """testing of Var.get_serializable_name method."""
         var = Var()
-        fields = [u"value"]
+        fields = ["value"]
         self.assertEqual(fields, var.get_serializable_fields())
 
     def test_to_xml(self):
         """ testing of Var.to_xml method (base class) """
         var = Var(1234)
-        expected = u"""<var value="1234"/>"""
+        expected = """<var value="1234"/>"""
         self.assertEqual(expected, var.to_xml())

@@ -44,7 +44,7 @@ class Function(Var):
 
     def __repr__(self):
         """ string representation of this or derived class """
-        return u"%s(%s)" % (self.__class__.__name__, self.value)
+        return "%s(%s)" % (self.__class__.__name__, self.value)
 
 
 class Square(Function):
