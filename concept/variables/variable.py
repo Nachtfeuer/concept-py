@@ -62,7 +62,7 @@ class Var(Serializable):
 
     def __repr__(self):
         """ string representation of this class """
-        return u"Var(%s)" % self.value
+        return "Var(%s)" % self.value
 
     def is_enabled_for_attributes(self):
         """
