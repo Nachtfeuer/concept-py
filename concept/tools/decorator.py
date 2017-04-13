@@ -243,7 +243,7 @@ class validate_types(object):
     ...         return a + b
     ...     sum_of_two_integers(1, "world")
     ... except TypeError as e:
-    ...     print("|%s|" % str(e))
+    ...     print("|%s|" % str(e).replace('<class', '<type'))
     |1. parameter - expected type is <class 'int'>, given type is <class 'str'>|
     """
 
