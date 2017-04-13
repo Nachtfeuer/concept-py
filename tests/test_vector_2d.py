@@ -113,3 +113,13 @@ class TestVector2d(unittest.TestCase):
         """Testing of method Vector2d.__eq__."""
         assert_that(Vector2d(1.2, 3.4), equal_to(Vector2d(1.2, 3.4)))
         assert_that(Vector2d(1.2, 3.4).__eq__(1234), equal_to(False))
+
+    def test_neg(self):
+        """Testing negating a vector."""
+        assert_that(-Vector2d(1.0, 2.0), equal_to(Vector2d(-1.0, -2.0)))
+
+    def test_is_perpendicular(self):
+        """Testing method Vector2d.is_perpendicular."""
+        assert_that(Vector2d(0.0, 1.0).is_perpendicular(Vector2d(1.0, 0.0)), equal_to(True))
+        assert_that(Vector2d(1.0, 1.0).is_perpendicular(Vector2d(1.0, 0.0)), equal_to(False))
+
