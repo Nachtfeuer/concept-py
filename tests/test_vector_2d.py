@@ -122,4 +122,4 @@ class TestVector2d(unittest.TestCase):
         """Testing method Vector2d.is_perpendicular."""
         assert_that(Vector2d(0.0, 1.0).is_perpendicular(Vector2d(1.0, 0.0)), equal_to(True))
         assert_that(Vector2d(1.0, 1.0).is_perpendicular(Vector2d(1.0, 0.0)), equal_to(False))
-
+        assert_that(Vector2d(1.0, 1.0).is_perpendicular("hello world"), equal_to(False))

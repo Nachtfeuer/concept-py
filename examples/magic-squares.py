@@ -52,6 +52,7 @@ def findall_3x3():
         if is_magic_square:
             yield matrix
 
+
 if __name__ == "__main__":
     print(sys.version.replace("\n", ""))
     for matrix in findall_3x3():
