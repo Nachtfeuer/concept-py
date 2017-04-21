@@ -36,7 +36,7 @@ class Actor(Serializable):
     """ represents one actor of a movie """
 
     @validate_types([TextType, TextType], offset=1)
-    def __init__(self, name=u"", role=u""):
+    def __init__(self, name=TextType(""), role=TextType("")):
         """ Initializing from parameters """
         super(Actor, self).__init__()
 

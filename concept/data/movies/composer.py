@@ -36,7 +36,7 @@ class Composer(Serializable):
     """ represents one composer of a movie """
 
     @validate_types([TextType], offset=1)
-    def __init__(self, name=""):
+    def __init__(self, name=TextType("")):
         """ Initializing from parameters """
         super(Composer, self).__init__()
         self.name = name

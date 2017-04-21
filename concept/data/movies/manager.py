@@ -49,7 +49,7 @@ class MovieManager(Serializable):
 
     def get_serializable_name(self):
         """ XML name of tag """
-        return u"root"
+        return "root"
 
     def add_movie(self, movie):
         """
