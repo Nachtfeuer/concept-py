@@ -29,6 +29,7 @@ from concept.data.movies.composer import Composer
 from concept.data.movies.tag import Tag
 from concept.data.movies.purchase import Purchase
 from concept.tools.decorator import validate_test_responsibility_for
+from concept.tools.compatible import TextType
 
 
 @validate_test_responsibility_for(Movie)
@@ -50,30 +51,30 @@ class TestMovie(unittest.TestCase):
     def test_add_actor(self):
         """testing of Movie.addActor method."""
         movie = Movie()
-        self.assertTrue(movie.add_actor(Actor("John Wayne", "Sean Mercer")))
-        self.assertFalse(movie.add_actor(Actor("John Wayne", "Sean Mercer")))
-        self.assertFalse(movie.add_actor(Composer("Henry Mancini")))
+        self.assertTrue(movie.add_actor(Actor(TextType("John Wayne"), TextType("Sean Mercer"))))
+        self.assertFalse(movie.add_actor(Actor(TextType("John Wayne"), TextType("Sean Mercer"))))
+        self.assertFalse(movie.add_actor(Composer(TextType("Henry Mancini"))))
 
     def test_add_director(self):
         """testing of Movie.add_director method."""
         movie = Movie()
-        self.assertTrue(movie.add_director(Director("Alfred Hitchcock")))
-        self.assertFalse(movie.add_director(Director("Alfred Hitchcock")))
-        self.assertFalse(movie.add_director(Composer("Henry Mancini")))
+        self.assertTrue(movie.add_director(Director(TextType("Alfred Hitchcock"))))
+        self.assertFalse(movie.add_director(Director(TextType("Alfred Hitchcock"))))
+        self.assertFalse(movie.add_director(Composer(TextType("Henry Mancini"))))
 
     def test_add_composer(self):
         """testing of Movie.add_composer method."""
         movie = Movie()
-        self.assertTrue(movie.add_composer(Composer("Henry Mancini")))
-        self.assertFalse(movie.add_composer(Composer("Henry Mancini")))
-        self.assertFalse(movie.add_composer(Director("Alfred Hitchcock")))
+        self.assertTrue(movie.add_composer(Composer(TextType("Henry Mancini"))))
+        self.assertFalse(movie.add_composer(Composer(TextType("Henry Mancini"))))
+        self.assertFalse(movie.add_composer(Director(TextType("Alfred Hitchcock"))))
 
     def test_add_tag(self):
         """testing of Movie.addComposer method."""
         movie = Movie()
-        self.assertTrue(movie.add_tag(Tag("Science Fiction")))
-        self.assertFalse(movie.add_tag(Tag("Science Fiction")))
-        self.assertFalse(movie.add_tag(Director("Alfred Hitchcock")))
+        self.assertTrue(movie.add_tag(Tag(TextType("Science Fiction"))))
+        self.assertFalse(movie.add_tag(Tag(TextType("Science Fiction"))))
+        self.assertFalse(movie.add_tag(Director(TextType("Alfred Hitchcock"))))
 
     def test_get_serializable_name(self):
         """ testing of Movie.get_serializable_name method """
@@ -99,7 +100,7 @@ class TestMovie(unittest.TestCase):
         self.assertEqual(movie_a, movie_b)
         self.assertNotEqual(movie_a, movie_c)
 
-        movie_b.add_director(Director("Alfred Hitchcock"))
+        movie_b.add_director(Director(TextType("Alfred Hitchcock")))
         self.assertNotEqual(movie_a, movie_b)
 
     def test_to_xml(self):
@@ -111,11 +112,13 @@ class TestMovie(unittest.TestCase):
         movie.aspect_ratio = "16:9 - 1.77:1"
         movie.runtime = 94
         movie.publication = 1962
-        movie.add_director(Director("Delbert Mann"))
-        movie.add_actor(Actor("Sean Connery", "James Bond"))
-        movie.add_composer(Composer("Henry Mancini"))
-        movie.add_tag(Tag("Komoedie"))
-        movie.purchase = Purchase(where="Amazon", when="2007-07-18", url="http://amazon.de/dp/B00004X07N")
+        movie.add_director(Director(TextType("Delbert Mann")))
+        movie.add_actor(Actor(TextType("Sean Connery"), TextType("James Bond")))
+        movie.add_composer(Composer(TextType("Henry Mancini")))
+        movie.add_tag(Tag(TextType("Komoedie")))
+        movie.purchase = Purchase(where=TextType("Amazon"),
+                                  when=TextType("2007-07-18"),
+                                  url=TextType("http://amazon.de/dp/B00004X07N"))
 
         expected = "<movie>"\
             + """<actors><actor name="Sean Connery" role="James Bond"/></actors>""" \

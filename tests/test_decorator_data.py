@@ -30,10 +30,10 @@ from concept.tools.decorator import data
 
 class TestDecoratorData(unittest.TestCase):
 
-    """ Testing data decorator. """
+    """Testing data decorator."""
 
     def test_simple_list(self):
-        """ Providing simple list as data call test once. """
+        """Providing simple list as data call test once."""
         @data(values=[1, 2, 3, 4, 5])
         def test1(values):
             """ returns what was provided. """

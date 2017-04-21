@@ -24,6 +24,7 @@
 import unittest
 from concept.data.movies.actor import Actor
 from concept.tools.decorator import validate_test_responsibility_for
+from concept.tools.compatible import TextType
 
 
 @validate_test_responsibility_for(Actor)
@@ -36,13 +37,13 @@ class TestActor(unittest.TestCase):
         self.assertEqual("", actor.name)
         self.assertEqual("", actor.role)
 
-        actor = Actor("Sean Connery", "James Bond")
+        actor = Actor(TextType("Sean Connery"), TextType("James Bond"))
         self.assertEqual("Sean Connery", actor.name)
         self.assertEqual("James Bond", actor.role)
 
     def test_repr(self):
         """ testing of Actor.__repr__ method """
-        actor = Actor("Sean Connery", "James Bond")
+        actor = Actor(TextType("Sean Connery"), TextType("James Bond"))
         self.assertEqual("Actor(name=Sean Connery, role=James Bond)", str(actor))
 
     def test_get_serializable_name(self):
@@ -63,10 +64,10 @@ class TestActor(unittest.TestCase):
 
     def test_equal(self):
         """ testing of Actor.__eq__ method """
-        actorA = Actor("Sean Connery", "James Bond")
-        actorB = Actor("Roger Moore", "James Bond")
-        actorC = Actor("Sean Connery", "Ahmed ben Mohammed el-Raisuli")
-        actorD = Actor("Sean Connery", "James Bond")
+        actorA = Actor(TextType("Sean Connery"), TextType("James Bond"))
+        actorB = Actor(TextType("Roger Moore"), TextType("James Bond"))
+        actorC = Actor(TextType("Sean Connery"), TextType("Ahmed ben Mohammed el-Raisuli"))
+        actorD = Actor(TextType("Sean Connery"), TextType("James Bond"))
 
         self.assertNotEqual(actorA, actorB)
         self.assertNotEqual(actorA, actorC)
@@ -76,7 +77,7 @@ class TestActor(unittest.TestCase):
         self.assertFalse(actorA.__eq__(1234))
 
     def test_to_xml(self):
-        """ testing of Actor.toXML method (base class) """
-        actor = Actor("Sean Connery", "James Bond")
+        """ testing of Actor.to_xml method (base class) """
+        actor = Actor(TextType("Sean Connery"), TextType("James Bond"))
         expected = """<actor name="Sean Connery" role="James Bond"/>"""
         self.assertEqual(expected, actor.to_xml())

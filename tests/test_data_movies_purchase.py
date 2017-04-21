@@ -24,6 +24,7 @@
 import unittest
 from concept.data.movies.purchase import Purchase
 from concept.tools.decorator import validate_test_responsibility_for
+from concept.tools.compatible import TextType
 
 
 @validate_test_responsibility_for(Purchase)
@@ -37,19 +38,21 @@ class TestPurchase(unittest.TestCase):
         self.assertEqual("", purchase.when)
         self.assertEqual("", purchase.url)
 
-        actor = Purchase("Amazon", "2011-11-10", "http://amazon.de/dp/B001CIEOD8")
-        self.assertEqual("Amazon", actor.where)
-        self.assertEqual("2011-11-10", actor.when)
-        self.assertEqual("http://amazon.de/dp/B001CIEOD8", actor.url)
+        purchase = Purchase(TextType("Amazon"), TextType("2011-11-10"),
+                            TextType("http://amazon.de/dp/B001CIEOD8"))
+        self.assertEqual("Amazon", purchase.where)
+        self.assertEqual("2011-11-10", purchase.when)
+        self.assertEqual("http://amazon.de/dp/B001CIEOD8", purchase.url)
 
     def test_repr(self):
         """testing of Purchase.__repr__ method."""
-        purchase = Purchase("Amazon", "2011-11-10", "http://amazon.de/dp/B001CIEOD8")
+        purchase = Purchase(TextType("Amazon"), TextType("2011-11-10"),
+                            TextType("http://amazon.de/dp/B001CIEOD8"))
         expected = "Purchase(where=Amazon, when=2011-11-10, url=http://amazon.de/dp/B001CIEOD8)"
         self.assertEqual(expected, str(purchase))
 
     def test_get_serializable_name(self):
-        """testing of Purchase.getSerializableName method."""
+        """testing of Purchase.get_serializable_name method."""
         purchase = Purchase()
         self.assertEqual("purchase", purchase.get_serializable_name())
 
@@ -66,6 +69,7 @@ class TestPurchase(unittest.TestCase):
 
     def test_to_xml(self):
         """testing of Purchase.to_xml method (base class)."""
-        purchase = Purchase("Amazon", "2011-11-10", "http://amazon.de/dp/B001CIEOD8")
+        purchase = Purchase(TextType("Amazon"), TextType("2011-11-10"),
+                            TextType("http://amazon.de/dp/B001CIEOD8"))
         expected = """<purchase url="http://amazon.de/dp/B001CIEOD8" when="2011-11-10" where="Amazon"/>"""
         self.assertEqual(expected, purchase.to_xml())

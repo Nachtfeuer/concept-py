@@ -24,6 +24,7 @@
 import unittest
 from concept.data.movies.composer import Composer
 from concept.tools.decorator import validate_test_responsibility_for
+from concept.tools.compatible import TextType
 
 
 @validate_test_responsibility_for(Composer)
@@ -35,12 +36,12 @@ class TestComposer(unittest.TestCase):
         composer = Composer()
         self.assertEqual("", composer.name)
 
-        composer = Composer("Henry Mancini")
+        composer = Composer(TextType("Henry Mancini"))
         self.assertEqual("Henry Mancini", composer.name)
 
     def test_repr(self):
         """ testing of Composer.__repr__ method """
-        composer = Composer("Henry Mancini")
+        composer = Composer(TextType("Henry Mancini"))
         self.assertEqual("Composer(name=Henry Mancini)", str(composer))
 
     def test_get_serializable_name(self):
@@ -61,9 +62,9 @@ class TestComposer(unittest.TestCase):
 
     def test_equal(self):
         """testing of Composer.__eq__ method """
-        composerA = Composer("Henry Mancini")
-        composerB = Composer("Jerry Goldsmith")
-        composerC = Composer("Henry Mancini")
+        composerA = Composer(TextType("Henry Mancini"))
+        composerB = Composer(TextType("Jerry Goldsmith"))
+        composerC = Composer(TextType("Henry Mancini"))
 
         self.assertNotEqual(composerA, composerB)
         self.assertNotEqual(composerB, composerC)
@@ -72,7 +73,7 @@ class TestComposer(unittest.TestCase):
         self.assertFalse(composerA.__eq__(1234))
 
     def test_to_xml(self):
-        """ testing of Composer.toXML method (base class) """
-        composer = Composer("Henry Mancini")
+        """ testing of Composer.to_xml method (base class) """
+        composer = Composer(TextType("Henry Mancini"))
         expected = """<composer name="Henry Mancini"/>"""
         self.assertEqual(expected, composer.to_xml())

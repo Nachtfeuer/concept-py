@@ -24,6 +24,7 @@
 import unittest
 from concept.data.movies.tag import Tag
 from concept.tools.decorator import validate_test_responsibility_for
+from concept.tools.compatible import TextType
 
 
 @validate_test_responsibility_for(Tag)
@@ -35,12 +36,12 @@ class TestTag(unittest.TestCase):
         director = Tag()
         self.assertEqual("", director.name)
 
-        tag = Tag("Martial Art")
+        tag = Tag(TextType("Martial Art"))
         self.assertEqual("Martial Art", tag.name)
 
     def test_repr(self):
         """ testing of Tag.__repr__ method """
-        tag = Tag("Martial Art")
+        tag = Tag(TextType("Martial Art"))
         self.assertEqual("Tag(name=Martial Art)", str(tag))
 
     def test_get_serializable_name(self):
@@ -61,9 +62,9 @@ class TestTag(unittest.TestCase):
 
     def test_equal(self):
         """ testing of Tag.__eq__ method """
-        tagA = Tag("Martial Art")
-        tagB = Tag("Science Fiction")
-        tagC = Tag("Martial Art")
+        tagA = Tag(TextType("Martial Art"))
+        tagB = Tag(TextType("Science Fiction"))
+        tagC = Tag(TextType("Martial Art"))
 
         self.assertNotEqual(tagA, tagB)
         self.assertNotEqual(tagB, tagC)
@@ -73,6 +74,6 @@ class TestTag(unittest.TestCase):
 
     def test_to_xml(self):
         """ testing of Tag.to_xml method (base class) """
-        tag = Tag("Science Fiction")
+        tag = Tag(TextType("Science Fiction"))
         expectedXML = """<tag name="Science Fiction"/>"""
         self.assertEqual(expectedXML, tag.to_xml())

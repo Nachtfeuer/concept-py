@@ -24,6 +24,7 @@
 import unittest
 from concept.data.movies.director import Director
 from concept.tools.decorator import validate_test_responsibility_for
+from concept.tools.compatible import TextType
 
 
 @validate_test_responsibility_for(Director)
@@ -35,12 +36,12 @@ class TestComposer(unittest.TestCase):
         director = Director()
         self.assertEqual("", director.name)
 
-        composer = Director("Alfred Hitchcock")
+        composer = Director(TextType("Alfred Hitchcock"))
         self.assertEqual("Alfred Hitchcock", composer.name)
 
     def test_repr(self):
         """ testing of Composer.__repr__ method """
-        director = Director("Alfred Hitchcock")
+        director = Director(TextType("Alfred Hitchcock"))
         self.assertEqual("Director(name=Alfred Hitchcock)", str(director))
 
     def test_get_serializable_name(self):
@@ -61,9 +62,9 @@ class TestComposer(unittest.TestCase):
 
     def test_equal(self):
         """ testing of Actor.__eq__ method """
-        directorA = Director("Alfred Hitchcock")
-        directorB = Director("Billy Wilder")
-        directorC = Director("Alfred Hitchcock")
+        directorA = Director(TextType("Alfred Hitchcock"))
+        directorB = Director(TextType("Billy Wilder"))
+        directorC = Director(TextType("Alfred Hitchcock"))
 
         self.assertNotEqual(directorA, directorB)
         self.assertNotEqual(directorB, directorC)
@@ -73,6 +74,6 @@ class TestComposer(unittest.TestCase):
 
     def test_to_xml(self):
         """ testing of Director.toXML method (base class) """
-        director = Director("Alfred Hitchcock")
+        director = Director(TextType("Alfred Hitchcock"))
         expected = """<director name="Alfred Hitchcock"/>"""
         self.assertEqual(expected, director.to_xml())
