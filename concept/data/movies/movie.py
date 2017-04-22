@@ -33,6 +33,7 @@ from concept.data.movies.actor import Actor
 from concept.data.movies.composer import Composer
 from concept.data.movies.tag import Tag
 from concept.data.movies.purchase import Purchase
+from concept.tools.compatible import TextType
 
 
 # R0902 = about too many fields
@@ -40,7 +41,7 @@ from concept.data.movies.purchase import Purchase
 class Movie(Serializable):
     """ represents one movie (DVD, Blu-ray, ...) """
 
-    def __init__(self, title=u""):
+    def __init__(self, title=TextType("")):
         """ initializing fields only (defaults) """
         super(Movie, self).__init__()
 
