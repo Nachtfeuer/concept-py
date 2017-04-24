@@ -49,4 +49,3 @@ def enum(names):
     space['__iter__'] = lambda self: iter(names)
     space['__getitem__'] = lambda self, key: space[key]
     return type('enum', (object,), space)()
-

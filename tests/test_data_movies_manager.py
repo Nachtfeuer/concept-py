@@ -79,7 +79,7 @@ class TestMovieManager(unittest.TestCase):
 
         self.assertTrue(manager.save_as("testSaveAs.dat", MovieManager.PERSISTENCE_POLICY.PICKLE))
         data = pickle.load(open("testSaveAs.dat", "rb"))
-        self.assertTrue(not None == data)
+        self.assertTrue(data is not None)
         self.assertTrue(isinstance(data, list))
         self.assertEqual(1, len(data))
         self.assertEqual(Movie("test title"), data[0])
@@ -95,7 +95,7 @@ class TestMovieManager(unittest.TestCase):
         self.assertFalse(managerB.read_from("testSaveAs.dat", MovieManager.PERSISTENCE_POLICY.XML))
         self.assertTrue(managerB.read_from("testSaveAs.dat", MovieManager.PERSISTENCE_POLICY.PICKLE))
 
-        self.assertTrue(not None == managerB.movies)
+        self.assertTrue(managerB.movies is not None)
         self.assertTrue(isinstance(managerB.movies, list))
         self.assertEqual(1, len(managerB.movies))
         self.assertEqual(Movie("test title"), managerB.movies[0])
@@ -110,7 +110,7 @@ class TestMovieManager(unittest.TestCase):
         managerB = MovieManager()
         self.assertTrue(managerB.read_from("testSaveAs.json", MovieManager.PERSISTENCE_POLICY.JSON))
 
-        self.assertTrue(not None == managerB.movies)
+        self.assertTrue(managerB.movies is not None)
         self.assertTrue(isinstance(managerB.movies, list))
         self.assertEqual(1, len(managerB.movies))
         self.assertEqual(Movie("test title"), managerB.movies[0])
@@ -134,7 +134,7 @@ class TestMovieManager(unittest.TestCase):
         manager = MovieManager()
         path = os.path.dirname(inspect.getfile(self.__class__))
         manager.read_from(os.path.join(path, "data/movies.pickle"),
-                         MovieManager.PERSISTENCE_POLICY.PICKLE)
+                          MovieManager.PERSISTENCE_POLICY.PICKLE)
 
         movies = manager.get_movies_by_filter("Ice Age")
         self.assertEqual(3, len(movies))

@@ -35,9 +35,9 @@ def findall_3x3():
     :rtype: all magic squares for a 3x3 matrix
     """
     matrix = Matrix(3, 3)
-    expected_sum = 3 * (3**2 + 1) / 2
+    expected_sum = 3 * (3 ** 2 + 1) / 2
 
-    for sequence in itertools.permutations(range(1, 3**2 + 1)):
+    for sequence in itertools.permutations(range(1, 3 ** 2 + 1)):
         matrix.set(sequence)
         is_magic_square = True
 

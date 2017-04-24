@@ -57,7 +57,7 @@ class Square(Function):
 
     def get(self):
         """ returns f(x) = x*x """
-        return self.value.get()**2
+        return self.value.get() ** 2
 
 
 class Sqrt(Function):

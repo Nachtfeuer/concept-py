@@ -69,8 +69,8 @@ class square(function):
         :returns: squared value or even squared return value of another function
         """
         if self.other_function:
-            return self.other_function(value)**2
-        return value**2
+            return self.other_function(value) ** 2
+        return value ** 2
 
     def __repr__(self):
         """string representation of current function."""

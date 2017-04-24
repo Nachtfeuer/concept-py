@@ -33,12 +33,12 @@ class TestLambdaTools(unittest.TestCase):
 
     def test_is_lambda(self):
         """ Testing is_lambda function. """
-        square1 = lambda value: value**2
+        square1 = lambda value: value ** 2
         assert_that(is_lambda(square1), equal_to(True))
 
         def square2(value):
             """ test function for sqaring values. """
-            return value**2
+            return value ** 2
 
         assert_that(is_lambda(square2), equal_to(False))
         assert_that(is_lambda(12345), equal_to(False))

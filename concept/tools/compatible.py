@@ -34,6 +34,7 @@ import sys
 
 if sys.version_info.major == 3:
     TextType = str
+
     def compare(a, b):
         if a is None or b is None:
             return compare(str(a), str(b))
@@ -41,5 +42,6 @@ if sys.version_info.major == 3:
         return (a > b) - (a < b)
 else:
     TextType = unicode
+
     def compare(a, b):
         return cmp(a, b)

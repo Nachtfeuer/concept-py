@@ -49,7 +49,7 @@ class sieve_of_eratosthenes(object):
         value_i = 2
         while value_i <= limit:
             if self.sieve[value_i]:
-                value_j = value_i**2
+                value_j = value_i ** 2
                 while value_j <= self.max_n:
                     self.sieve[value_j] = False
                     value_j += value_i

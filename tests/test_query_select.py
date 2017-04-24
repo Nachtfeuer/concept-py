@@ -58,16 +58,16 @@ class TestQuerySelect(unittest.TestCase):
     def test_select_with_one_transform(self):
         """ Testing select with one 'transform' call. """
         entries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        expected = [n**2 for n in entries]
-        given = select(entries).transform(lambda n: n**2).build()
+        expected = [n ** 2 for n in entries]
+        given = select(entries).transform(lambda n: n ** 2).build()
         assert_that(given, equal_to(expected))
 
     def test_select_with_multiple_transform(self):
         """ Testing select with multiple 'transform' calls. """
         entries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        expected = [n**2 + 1 for n in entries]
+        expected = [n ** 2 + 1 for n in entries]
         given = select(entries) \
-            .transform(lambda n: n**2) \
+            .transform(lambda n: n ** 2) \
             .transform(lambda n: n + 1) \
             .build()
         assert_that(given, equal_to(expected))

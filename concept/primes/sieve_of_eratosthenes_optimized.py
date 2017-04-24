@@ -49,7 +49,7 @@ class sieve_of_eratosthenes_optimized(object):
         value_i = 3
         while value_i <= limit:
             if self.sieve[value_i // 2]:
-                value_j = value_i**2
+                value_j = value_i ** 2
                 offset = 2 * value_i
                 while value_j <= self.max_n:
                     self.sieve[value_j // 2] = False
