@@ -57,6 +57,12 @@ class Movie(Serializable):
         self.tags = []                # list of tags (strings) to allows grouping by category
         self.purchase = Purchase()    # purchase information
 
+    def is_enabled_for_attributes(self):
+        """
+        :rtype: True for writing the fields as attributes of the tag
+        """
+        return True
+
     def add_director(self, director):
         """
         :param: director: another director for given movie

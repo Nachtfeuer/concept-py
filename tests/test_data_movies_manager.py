@@ -28,6 +28,7 @@ import inspect
 
 from concept.tools.decorator import validate_test_responsibility_for
 from concept.data.movies import MovieManager, Movie, Actor
+from concept.tools.compatible import TextType
 
 
 @validate_test_responsibility_for(MovieManager)
@@ -63,16 +64,19 @@ class TestMovieManager(unittest.TestCase):
     def test_save_as(self):
         """ testing of MovieManager.save_as method """
         manager = MovieManager()
-        manager.add_movie(Movie("test title"))
+        manager.add_movie(Movie(title=TextType("test title")))
         self.assertFalse(manager.save_as("testSaveAs.xml", 1234))
         self.assertTrue(manager.save_as("testSaveAs.xml", MovieManager.PERSISTENCE_POLICY.XML))
 
-        expected = "<root><movies>"
-        expected += "<movie><actors></actors><aspect_ratio></aspect_ratio><composers></composers>"
-        expected += "<directors></directors><original></original><publication>0</publication>"
-        expected += """<purchase url="" when="" where=""/><runtime>0</runtime><tags></tags>"""
-        expected += """<title>test title</title><url></url></movie>\n"""
-        expected += "</movies></root>"
+        expected = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>"""
+        expected += "<root><movies>"
+        expected += """<movie aspect_ratio="" original="" publication="0" runtime="0" """
+        expected += """title="test title" url="">"""
+        expected += """<actors></actors><composers></composers>"""
+        expected += "<directors></directors>"
+        expected += """<purchase url="" when="" where=""/><tags></tags>"""
+        expected += """</movie>\n</movies></root>"""
+
         given = open("testSaveAs.xml").read()
         self.assertEqual(expected, given)
         os.remove("testSaveAs.xml")
@@ -92,7 +96,6 @@ class TestMovieManager(unittest.TestCase):
         self.assertTrue(managerA.save_as("testSaveAs.dat", MovieManager.PERSISTENCE_POLICY.PICKLE))
 
         managerB = MovieManager()
-        self.assertFalse(managerB.read_from("testSaveAs.dat", MovieManager.PERSISTENCE_POLICY.XML))
         self.assertTrue(managerB.read_from("testSaveAs.dat", MovieManager.PERSISTENCE_POLICY.PICKLE))
 
         self.assertTrue(managerB.movies is not None)
@@ -115,6 +118,21 @@ class TestMovieManager(unittest.TestCase):
         self.assertEqual(1, len(managerB.movies))
         self.assertEqual(Movie("test title"), managerB.movies[0])
         os.remove("testSaveAs.json")
+
+    def test_read_from_xml(self):
+        """testing of MovieManager.save_as method using XML."""
+        managerA = MovieManager()
+        managerA.add_movie(Movie(title=TextType("test title")))
+        self.assertTrue(managerA.save_as("testReadFrom.xml", MovieManager.PERSISTENCE_POLICY.XML))
+
+        managerB = MovieManager()
+        self.assertTrue(managerB.read_from("testReadFrom.xml", MovieManager.PERSISTENCE_POLICY.XML))
+
+        self.assertTrue(managerB.movies is not None)
+        self.assertTrue(isinstance(managerB.movies, list))
+        self.assertEqual(1, len(managerB.movies))
+        self.assertEqual(Movie(title=TextType("test title")), managerB.movies[0])
+        os.remove("testReadFrom.xml")
 
     def test_iter(self):
         """ testing of MovieManager.__iter__ method """

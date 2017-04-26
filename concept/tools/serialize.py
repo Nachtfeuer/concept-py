@@ -31,6 +31,7 @@ import inspect
 from xml.etree.ElementTree import XMLParser
 from xml.sax.saxutils import escape
 from concept.tools.xml_handler import XMLHandler
+from concept.tools.compatible import TextType
 
 
 class Serializable(object):
@@ -107,10 +108,16 @@ class Serializable(object):
 
         attributes = ""
         counter = 0
+        covered = []
         if self.is_enabled_for_attributes():
             for field in fields:
-                if field in self.__dict__ and not isinstance(self.__dict__[field], list):
+                if field in self.__dict__ and (
+                    isinstance(self.__dict__[field], TextType) or
+                        isinstance(self.__dict__[field], str) or
+                        isinstance(self.__dict__[field], int) or
+                        isinstance(self.__dict__[field], float)):
                     attributes += " %s=\"%s\"" % (field, escape("%s" % self.__dict__[field]))
+                    covered.append(field)
 
         xml = "<%s%s" % (self.get_serializable_name(), attributes)
         for field in fields:
@@ -130,7 +137,7 @@ class Serializable(object):
                 counter += 1
                 xml += "</%s>" % field
             else:
-                if not self.is_enabled_for_attributes():
+                if field not in covered:
                     if counter == 0:
                         xml += ">"
 

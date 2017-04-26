@@ -30,14 +30,21 @@
 """
 from concept.tools.serialize import Serializable
 from concept.data.movies.movie import Movie
+from concept.data.movies.director import Director
+from concept.data.movies.composer import Composer
+from concept.data.movies.tag import Tag
+from concept.data.movies.actor import Actor
+from concept.data.movies.purchase import Purchase
 from concept.tools.enum import enum
+
+import xml.etree.ElementTree as ET
 import pickle
 import jsonpickle
 
 
 class MovieManager(Serializable):
-    """ providing MovieManager class maintaining all movies
-        and providing load and save functionality """
+    """Providing MovieManager class maintaining all movies.
+       And providing load and save functionality."""
 
     PERSISTENCE_POLICY = enum("PICKLE JSON XML")
 
@@ -81,6 +88,7 @@ class MovieManager(Serializable):
         """
         if self.PERSISTENCE_POLICY.XML == policy:
             handle = open(pathAndFileName, "wb")
+            handle.write(b'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>')
             handle.write(self.to_xml().encode('utf8'))
             handle.close()
             return True
@@ -115,12 +123,52 @@ class MovieManager(Serializable):
                 self.movies = jsonpickle.decode(handle.read())
             return True
 
+        if self.PERSISTENCE_POLICY.XML == policy:
+            with open(pathAndFileName, "rb") as handle:
+                self.read_from_xml(handle.read())
+            return True
+
         return False
 
     def get_movies_by_filter(self, search):
         """
-        :param: search: string to use for searching in the title
-        :rtype: movies with a title containing the search string
+        :param search: string to use for searching in the title
+        :rtype movies with a title containing the search string
         """
         search = search.lower()
         return [movie for movie in self.movies if movie.title.lower().find(search) >= 0]
+
+    def read_from_xml(self, xml):
+        """
+        Reading XML data from a XML string.
+
+        :param xml: XML string
+        """
+        document = ET.fromstring(xml)
+        self.movies = []
+        for node in document.iter("movie"):
+            print(node, node.tag, node.attrib)
+            movie = Movie(title=node.attrib['title'])
+            movie.original = node.attrib['original']
+            movie.url = node.attrib['url']
+            movie.aspect_ratio = node.attrib['aspect_ratio']
+            movie.runtime = int(node.attrib['runtime'])
+            movie.publication = int(node.attrib['publication'])
+
+            for subnode in node.iter('director'):
+                movie.add_director(Director(subnode.attrib['name']))
+            for subnode in node.iter('composer'):
+                movie.add_composer(Composer(subnode.attrib['name']))
+            for subnode in node.iter('tag'):
+                movie.add_tag(Tag(subnode.attrib['name']))
+            for subnode in node.iter('actor'):
+                movie.add_actor(Actor(name=subnode.attrib['name'], role=subnode.attrib['role']))
+
+            for subnode in node.iter('purchase'):
+                print(subnode, subnode.tag, subnode.attrib)
+                movie.purchase = Purchase(
+                    where=subnode.attrib['where'],
+                    when=subnode.attrib['when'],
+                    url=subnode.attrib['url'])
+
+            self.add_movie(movie)

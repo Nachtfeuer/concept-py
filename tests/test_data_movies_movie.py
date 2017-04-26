@@ -48,6 +48,11 @@ class TestMovie(unittest.TestCase):
         self.assertEqual([], movie.composers)
         self.assertEqual(0, movie.runtime)
 
+    def test_is_enabled_for_attributes(self):
+        """ testing of Movie.is_enabled_for_attributes method """
+        movie = Movie()
+        self.assertEqual(True, movie.is_enabled_for_attributes())
+
     def test_add_actor(self):
         """testing of Movie.addActor method."""
         movie = Movie()
@@ -119,18 +124,17 @@ class TestMovie(unittest.TestCase):
         movie.purchase = Purchase(where=TextType("Amazon"),
                                   when=TextType("2007-07-18"),
                                   url=TextType("http://amazon.de/dp/B00004X07N"))
-
-        expected = "<movie>"\
+        expected = """<movie """ \
+            + """aspect_ratio="16:9 - 1.77:1" """ \
+            + """original="That Touch of Mink" """ \
+            + """publication="1962" """ \
+            + """runtime="94" """ \
+            + """title="Ein Hauch von Nerz" """ \
+            + """url="http://de.wikipedia.org/wiki/Ein_Hauch_von_Nerz">""" \
             + """<actors><actor name="Sean Connery" role="James Bond"/></actors>""" \
-            + "<aspect_ratio>16:9 - 1.77:1</aspect_ratio>" \
             + """<composers><composer name="Henry Mancini"/></composers>""" \
             + """<directors><director name="Delbert Mann"/></directors>""" \
-            + "<original>That Touch of Mink</original>" \
-            + "<publication>1962</publication>" \
             + """<purchase url="http://amazon.de/dp/B00004X07N" when="2007-07-18" where="Amazon"/>""" \
-            + "<runtime>94</runtime>" \
             + """<tags><tag name="Komoedie"/></tags>""" \
-            + "<title>Ein Hauch von Nerz</title>" \
-            + "<url>http://de.wikipedia.org/wiki/Ein_Hauch_von_Nerz</url>" \
             + "</movie>\n"
         self.assertEqual(expected, movie.to_xml())
