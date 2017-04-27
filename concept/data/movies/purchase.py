@@ -1,4 +1,6 @@
 """
+   Purchase information.
+
 .. module:: purchase
     :platform: Unix, Windows
     :synopis: providing purchase information for a movie
@@ -33,11 +35,11 @@ from concept.tools.compatible import TextType
 
 
 class Purchase(Serializable):
-    """ represents one purchase information of a movie """
+    """Represents one purchase information of a movie."""
 
     @validate_types([TextType, TextType], offset=1)
     def __init__(self, where="", when="", url=""):
-        """ Initializing from parameters """
+        """Initializing from parameters."""
         super(Purchase, self).__init__()
         self.where = where
         self.when = when
@@ -45,10 +47,12 @@ class Purchase(Serializable):
 
     def is_enabled_for_attributes(self):
         """
+        Provide true to store fiels as XML attributes.
+
         :rtype: True for writing the fields as attributes of the tag
         """
         return True
 
     def __repr__(self):
-        """ readable string representation of an instance of this class """
+        """Readable string representation of an instance of this class."""
         return "Purchase(where=%(where)s, when=%(when)s, url=%(url)s)" % self.__dict__

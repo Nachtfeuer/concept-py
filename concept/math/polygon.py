@@ -72,6 +72,7 @@ class Polygon2d(object):
     def translate(self, direction):
         """
         Translate points into dx and dy by given direction.
+
         :param direction: 2d vector or a tuple of two floats for dx and dy
         """
         if isinstance(direction, Vector2d):
@@ -178,7 +179,8 @@ class Polygon2d(object):
 
     def is_valid(self):
         """
-        Verifies that polygon is valid.
+        Verify that polygon is valid.
+
         :returns: True when polygon is valid otherwise False
         """
         return len(self.points) >= 3

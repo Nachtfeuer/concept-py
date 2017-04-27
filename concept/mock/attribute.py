@@ -56,7 +56,7 @@ class Attribute(object):
         self.new_value = new_value
 
     def __repr__(self):
-        """ :return: string representation of an instance of this class. """
+        """:return: string representation of an instance of this class."""
         if self.operation in [self.CREATED, self.READ]:
             text = "Attribute(operation=%(operation)s, name=%(name)s, value=%(given_value)s)"
             return text % self.__dict__
@@ -66,7 +66,7 @@ class Attribute(object):
         return text % self.__dict__
 
     def __eq__(self, other):
-        """ Comparing two attributes two be equal. """
+        """Comparing two attributes two be equal."""
         if not isinstance(other, Attribute):
             return False
         if not self.name == other.name:
@@ -76,7 +76,7 @@ class Attribute(object):
         return self.new_value == other.new_value
 
     def __cmp__(self, other):
-        """ Compare two attributes. """
+        """Compare two attributes."""
         if not isinstance(other, Attribute):
             return compare(str(self), str(other))
 

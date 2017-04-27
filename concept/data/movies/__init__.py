@@ -1,4 +1,6 @@
 """
+   Package movies.
+
 .. package:: movies
     :platform: Unix, Windows
     :synopis: classes managing movie data

@@ -53,7 +53,7 @@ class validator(object):
     """
 
     def __init__(self):
-        """ initializing fields only. """
+        """Initializing fields only."""
         self.valid_values = []
         self.verify_functions = []
 
@@ -84,7 +84,7 @@ class validator(object):
         return self
 
     def build(self):
-        """ :returns: itself for further processing. """
+        """:returns: itself for further processing."""
         return self
 
     def is_valid(self, value):

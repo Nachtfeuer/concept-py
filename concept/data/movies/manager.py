@@ -1,4 +1,6 @@
 """
+   Manager for movies.
+
 .. module:: manager
     :platform: Unix, Windows
     :synopis: providing MovieManager class maintaining all movies
@@ -43,23 +45,28 @@ import jsonpickle
 
 
 class MovieManager(Serializable):
-    """Providing MovieManager class maintaining all movies.
-       And providing load and save functionality."""
+    """
+    Providing MovieManager class maintaining all movies.
+
+    And providing load and save functionality.
+    """
 
     PERSISTENCE_POLICY = enum("PICKLE JSON XML")
 
     def __init__(self):
-        """ initializing fields only (defaults) """
+        """Initializing fields only (defaults)."""
         super(MovieManager, self).__init__()
 
         self.movies = []
 
     def get_serializable_name(self):
-        """ XML name of tag """
+        """XML name of tag."""
         return "root"
 
     def add_movie(self, movie):
         """
+        Adding a new movie.
+
         :param: movie: another movie to add
         :rtype: True if the movie has been successfully added otherwise false.
         """
@@ -76,12 +83,16 @@ class MovieManager(Serializable):
 
     def __iter__(self):
         """
+        Provide iterator for movies.
+
         :rtype: iterator to the list of movies
         """
         return iter(self.movies)
 
     def save_as(self, pathAndFileName, policy):
         """
+        Saving movies using adjusted format (XML, Pickle or JSON).
+
         :param pathAndFileName: path and name of file where to store the movies
         :param policy: the persistence policy on how to save the data (pickle, XML, ...)
         :return: True when successfully saved.
@@ -108,6 +119,8 @@ class MovieManager(Serializable):
 
     def read_from(self, pathAndFileName, policy):
         """
+        Reading movie data from file.
+
         :param pathAndFileName: path and name of file where to read the movies from
         :param policy: the persistence policy on how to read the data (pickle, ...)
         :return: True when successfully red.
@@ -132,6 +145,8 @@ class MovieManager(Serializable):
 
     def get_movies_by_filter(self, search):
         """
+        Provide a list of movies by given filter.
+
         :param search: string to use for searching in the title
         :rtype movies with a title containing the search string
         """

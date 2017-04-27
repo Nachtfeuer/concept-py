@@ -1,4 +1,6 @@
 """
+   Function objects behave as variables.
+
 .. module:: function
     :platform: Unix, Windows
     :synopis: represents functions behaving like variables
@@ -32,55 +34,51 @@ from concept.variables.variable import Var
 
 
 class Function(Var):
-    """ A class as base for function classes keeping a decorated function
-        or variable calculating a value """
+    """class as base for function classes keeping a decorated function or variable calculating a value."""
 
     def __init__(self, value):
-        """ initializing with a variable or function (like this class) """
+        """Initializing with a variable or function (like this class)."""
         if not (isinstance(value, Var) or issubclass(value.__class__, Var)):
             raise TypeError("wrong type")
 
         super(Function, self).__init__(value)
 
     def __repr__(self):
-        """ string representation of this or derived class """
+        """String representation of this or derived class."""
         return "%s(%s)" % (self.__class__.__name__, self.value)
 
 
 class Square(Function):
-    """ A class that calculates the square of the decorated function
-        or variable """
+    """Class that calculates the square of the decorated function or variable."""
 
     def __init__(self, value):
-        """ initializing with a variable or function (like this class) """
+        """Initializing with a variable or function (like this class)."""
         super(Square, self).__init__(value)
 
     def get(self):
-        """ returns f(x) = x*x """
+        """Return f(x) = x*x."""
         return self.value.get() ** 2
 
 
 class Sqrt(Function):
-    """ A class that calculates the square root of the decorated function
-        or variable """
+    """Class that calculates the square root of the decorated function or variable."""
 
     def __init__(self, value):
-        """ initializing with a variable or function (like this class) """
+        """Initializing with a variable or function (like this class)."""
         super(Sqrt, self).__init__(value)
 
     def get(self):
-        """ returns f(x) = sqrt(x) """
+        """Return f(x) = sqrt(x)."""
         return math.sqrt(self.value.get())
 
 
 class Sin(Function):
-    """ A class that calculates the sin of the decorated function
-        or variable """
+    """Class that calculates the sin of the decorated function or variable."""
 
     def __init__(self, value):
-        """ initializing with a variable or function (like this class) """
+        """Initializing with a variable or function (like this class)."""
         super(Sin, self).__init__(value)
 
     def get(self):
-        """ returns f(x) = x*x """
+        """Return f(x) = x*x."""
         return math.sin(self.value.get())

@@ -1,4 +1,6 @@
 """
+   Actor of a movie.
+
 .. module:: actor
     :platform: Unix, Windows
     :synopis: providing one actor of a movie (and his/her role)
@@ -33,11 +35,11 @@ from concept.tools.compatible import TextType
 
 
 class Actor(Serializable):
-    """ represents one actor of a movie """
+    """Represents one actor of a movie."""
 
     @validate_types([TextType, TextType], offset=1)
     def __init__(self, name=TextType(""), role=TextType("")):
-        """ Initializing from parameters """
+        """Initializing from parameters."""
         super(Actor, self).__init__()
 
         self.name = name
@@ -45,12 +47,16 @@ class Actor(Serializable):
 
     def is_enabled_for_attributes(self):
         """
+        Adjusted to true to store fields as XML attributes.
+
         :rtype: True for writing the fields as attributes of the tag
         """
         return True
 
     def __eq__(self, other):
         """
+        Compare current object to be equal with another in type and data.
+
         :param: other: another actor instance (expected)
         :rtype: True if name and role are identical
         """
@@ -60,5 +66,5 @@ class Actor(Serializable):
         return self.name == other.name and self.role == other.role
 
     def __repr__(self):
-        """ readable string representation of an instance of this class """
+        """Readable string representation of an instance of this class."""
         return "Actor(name=%(name)s, role=%(role)s)" % self.__dict__

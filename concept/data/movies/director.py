@@ -1,4 +1,6 @@
 """
+   Director of a movie.
+
 .. module:: director
     :platform: Unix, Windows
     :synopis: providing one director of a movie
@@ -33,22 +35,26 @@ from concept.tools.compatible import TextType
 
 
 class Director(Serializable):
-    """ represents one director of a movie """
+    """Represents one director of a movie."""
 
     @validate_types([TextType], offset=1)
     def __init__(self, name=TextType("")):
-        """ Initializing from parameters """
+        """Initializing from parameters."""
         super(Director, self).__init__()
         self.name = name
 
     def is_enabled_for_attributes(self):
         """
+        Adjusted to true for writing fields as XML attributes.
+
         :rtype: True for writing the fields as attributes of the tag
         """
         return True
 
     def __eq__(self, other):
         """
+        Comparing this object to be equal with another in type and data.
+
         :param: other: another director instance (expected)
         :rtype: True if names are identical
         """
@@ -58,5 +64,5 @@ class Director(Serializable):
         return self.name == other.name
 
     def __repr__(self):
-        """ readable string representation of an instance of this class """
+        """Readable string representation of an instance of this classr."""
         return "Director(name=%(name)s)" % self.__dict__

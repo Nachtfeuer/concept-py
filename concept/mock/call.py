@@ -36,7 +36,7 @@ class Call(object):
     """Represents a method call (history data)."""
 
     def __init__(self, name, *args, **kwargs):
-        """ Store a call. """
+        """Store a call."""
         self.name = name
         self.args = args
         self.kwargs = kwargs
@@ -59,11 +59,11 @@ class Call(object):
         return call + ")"
 
     def __hash__(self):
-        """ hash code for call required for hash containers. """
+        """Hash code for call required for hash containers."""
         return hash((self.name, self.args, frozenset(self.kwargs.items())))
 
     def __eq__(self, other):
-        """ testing two calls to be equal. """
+        """Testing two calls to be equal."""
         if not isinstance(other, Call):
             return False
         if not self.name == other.name:
@@ -76,7 +76,7 @@ class Call(object):
         return True
 
     def __cmp__(self, other):
-        """ comparing two instances. """
+        """Comparing two instances."""
         if not isinstance(other, Call):
             return compare(str(self), str(other))
 

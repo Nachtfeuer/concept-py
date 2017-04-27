@@ -67,7 +67,7 @@ class Vector2d(object):
         return "Vector2d(x=%(x)g, y=%(y)g)" % self.__dict__
 
     def __add__(self, other):
-        """
+        r"""
         Sum of two vectors.
 
         $\vec{a} + \vec{b} = \begin{pmatrix}a_x + b_x\\a_y + b_y\end{pmatrix}$
@@ -75,7 +75,7 @@ class Vector2d(object):
         return Vector2d(self.x + other.x, self.y + other.y)
 
     def __sub__(self, other):
-        """
+        r"""
         Subtraction of two 2d vectors.
 
         :math: `\vec{a} - \vec{b} = \begin{pmatrix}a_x - b_x\\a_y - b_y\end{pmatrix}`
@@ -88,7 +88,7 @@ class Vector2d(object):
         return Vector2d(-self.x, -self.y)
 
     def scalar_product(self, other):
-        """
+        r"""
         Scalar (dot) product of two 2d vectors.
 
         :math: `\vec{a} \cdot \vec{b} = a_x \cdot b_x + a_y \cdot b_y`
@@ -133,9 +133,7 @@ class Vector2d(object):
         return Vector2d(self.x * factor, self.y * factor)
 
     def normalized(self):
-        """
-        Provide a normalized vector (vector length is 1).
-        """
+        """Provide a normalized vector (vector length is 1)."""
         return self.scaled(1.0 / self.length())
 
     def angle(self, other):
@@ -186,8 +184,7 @@ class Vector2d(object):
 
     def is_perpendicular(self, other):
         """
-        Does check whether two vectors are perpendicular to each other
-        which is the case when the scalar product is 0.
+        Check whether two vectors are perpendicular to each other which is the case when scalar product is 0.
 
         :param: other is expected to be another vector
         :rtype: true when the one vector is perpendicular to the other, otherwise false.

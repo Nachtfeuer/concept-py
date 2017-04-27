@@ -1,4 +1,6 @@
 """
+   Package variables.
+
 .. package:: variables
     :platform: Unix, Windows
     :synopis: classes for variable objects

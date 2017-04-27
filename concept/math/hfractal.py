@@ -53,6 +53,7 @@ class HDefinition(object):
     def generate_children(self, shrink_factor=3.0):
         """
         Provide children being further H drawins on each tip of the vertica H line.
+
         :param shrink_factor: each child is usually smaller. The factory define the final size.
         :returns list with four children.
         """
@@ -77,6 +78,7 @@ class HDefinition(object):
 def hfractal(initial_position, initial_direction, shrink_factor, max_depth):
     """
     Generate all H objects depending on given parameters.
+
     :param initial_position: usually the center point (0, 0).
     :param initial_direction: direction and size of the biggest "H".
     :param shrink_factor: float to use to shrink each child.

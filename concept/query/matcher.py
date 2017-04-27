@@ -37,7 +37,7 @@ class Matcher(object):
     """Basic functionality for matching some text."""
 
     def __init__(self, text):
-        """ Initialize with text. """
+        """Initialize with text."""
         self.original_text = text
         self.text = text
 
@@ -86,7 +86,7 @@ class Matcher(object):
 
     def replace(self, regex_expression, repl):
         r"""
-        Replace parts of a the text
+        Replace parts of a the text.
 
         >>> matcher = Matcher('abc\nxyz\n123')
         >>> matcher.replace('\n', "|").text

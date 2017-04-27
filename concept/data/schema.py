@@ -99,14 +99,14 @@ class schema(object):
 
     def build(self):
         """
-        provided for readability.
+        Provided for readability.
 
         :returns: schema instance
         """
         return self
 
     def is_valid(self, data):
-        """ :returns: True when given data fits to given schema. """
+        """:returns: True when given data fits to given schema."""
         if not isinstance(data, dict):
             return False
 

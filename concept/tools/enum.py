@@ -1,4 +1,6 @@
 """
+Provide enum functionality for Python.
+
 .. module:: enum
     :platform: Unix, Windows
     :synopis: simple enum mechanism providing readonly enum type
@@ -30,8 +32,10 @@
 
 
 def enum(names):
-    """ provides a readonly type with constants and
-        automatically assigned values like an enum in C++
+    """
+    Provide a readonly type with constants.
+
+    It automatically assignes values like an enum in C++
 
         >>> POLICIES = enum("PICKLE XML")
         >>> print(POLICIES)

@@ -47,7 +47,7 @@ class Mock(object):
         self.mock_add_call('__init__', *args, **kwargs)
 
     def mock_history(self):
-        """ :returns: history of actions. """
+        """:returns: history of actions."""
         return self.__data['history']
 
     def mock_add_call(self, name, *args, **kwargs):

@@ -46,7 +46,7 @@ class Point2d(object):
         return "Point2d(x=%(x)g, y=%(y)g)" % self.__dict__
 
     def __sub__(self, other):
-        """:returns Vector2d representing direction and distance betwee two points."""
+        """:returns: Vector2d representing direction and distance betwee two points."""
         if isinstance(other, Point2d):
             return Vector2d(self.x - other.x, self.y - other.y)
         if isinstance(other, Vector2d):

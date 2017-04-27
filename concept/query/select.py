@@ -70,7 +70,7 @@ class select(object):
         return self
 
     def build(self):
-        """ Provide final result(s) after applying filters and transformations. """
+        """Provide final result(s) after applying filters and transformations."""
         results = []
         for entry in self.entries:
             ignore = False

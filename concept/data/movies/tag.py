@@ -1,4 +1,6 @@
 """
+   A move tag (group).
+
 .. module:: tag
     :platform: Unix, Windows
     :synopis: providing one tag of a movie
@@ -33,22 +35,26 @@ from concept.tools.compatible import TextType
 
 
 class Tag(Serializable):
-    """ represents one tag of a movie """
+    """Represents one tag of a movie."""
 
     @validate_types([TextType], offset=1)
     def __init__(self, name=""):
-        """ Initializing from parameters """
+        """Initializing from parameters."""
         super(Tag, self).__init__()
         self.name = name
 
     def is_enabled_for_attributes(self):
         """
+        Adjusted to true for writing fields as XML attributes.
+
         :rtype: True for writing the field as attribute of the tag
         """
         return True
 
     def __eq__(self, other):
         """
+        Compare this object to be equal with another in type and data.
+
         :param: other: another tag instance (expected)
         :rtype: True if names are identical
         """
@@ -58,5 +64,5 @@ class Tag(Serializable):
         return self.name == other.name
 
     def __repr__(self):
-        """ readable string representation of an instance of this class """
+        """Readable string representation of an instance of this class."""
         return "Tag(name=%(name)s)" % self.__dict__

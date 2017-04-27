@@ -1,4 +1,6 @@
 """
+   Representing a movie composer.
+
 .. module:: composer
     :platform: Unix, Windows
     :synopis: providing one composer of a movie
@@ -33,22 +35,26 @@ from concept.tools.compatible import TextType
 
 
 class Composer(Serializable):
-    """ represents one composer of a movie """
+    """Represents one composer of a movie."""
 
     @validate_types([TextType], offset=1)
     def __init__(self, name=TextType("")):
-        """ Initializing from parameters """
+        """Initializing from parameters."""
         super(Composer, self).__init__()
         self.name = name
 
     def is_enabled_for_attributes(self):
         """
+        Adusted to true for storing field values as XML attributes.
+
         :rtype: True for writing the fields as attributes of the tag
         """
         return True
 
     def __eq__(self, other):
         """
+        Comparing current composer with another object to be equal in type and data.
+
         :param: other: another composer instance (expected)
         :rtype: True if names are identical
         """
@@ -58,5 +64,5 @@ class Composer(Serializable):
         return self.name == other.name
 
     def __repr__(self):
-        """ readable string representation of an instance of this class """
+        """Readable string representation of an instance of this class."""
         return "Composer(name=%(name)s)" % self.__dict__

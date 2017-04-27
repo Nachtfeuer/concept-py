@@ -36,9 +36,7 @@ class Rectangle2d(object):
     """Math 2d rectangle implementation."""
 
     def __init__(self, position, width, height, direction=Vector2d(1, 0)):
-        """
-        Initialize Rectangle.
-        """
+        """Initialize Rectangle."""
         self.position = position
         self.width = width
         self.height = height
@@ -53,11 +51,11 @@ class Rectangle2d(object):
         return text
 
     def top_left(self):
-        """:returns top left position."""
+        """:returns: top left position."""
         return self.position
 
     def bottom_right(self):
-        """: returns bottom right position."""
+        """:returns: bottom right position."""
         return self.position + \
             (self.direction.scaled(self.width) +
              self.direction.turned_right().scaled(self.height))

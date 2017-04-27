@@ -36,6 +36,7 @@ if sys.version_info.major == 3:
     TextType = str
 
     def compare(a, b):
+        """Compare two values with <0: less, 0: equala and >0: more."""
         if a is None or b is None:
             return compare(str(a), str(b))
 
@@ -44,4 +45,5 @@ else:
     TextType = unicode
 
     def compare(a, b):
+        """Compare two values with <0: less, 0: equala and >0: more."""
         return cmp(a, b)

@@ -1,4 +1,6 @@
 """
+   Wrapper for a value.
+
 .. module:: variable
     :platform: Unix, Windows
     :synopis: represents a wrapper for a value
@@ -31,15 +33,17 @@ from concept.tools.serialize import Serializable
 
 
 class Var(Serializable):
-    """ a variable, represents a wrapper for a value """
+    """A variable, represents a wrapper for a value."""
 
     def __init__(self, value=None):
-        """ initializes with value or None """
+        """Initialize with value or None."""
         super(Var, self).__init__()
         self.value = value
 
     def set(self, value):
         """
+        Change value.
+
         Does change the value of the variable to new value.
         :param: value: new value for variable
         """
@@ -47,12 +51,16 @@ class Var(Serializable):
 
     def get(self):
         """
+        Get current value.
+
         :rtype: returns current value of variable
         """
         return self.value
 
     def __eq__(self, other):
         """
+        Compare current object with another one to be same type with same value.
+
         :param: other: expected to be another variable
         :rtype: True when other is a variable with same value
         """
@@ -61,11 +69,13 @@ class Var(Serializable):
         return self.value == other.get()
 
     def __repr__(self):
-        """ string representation of this class """
+        """String representation of this class."""
         return "Var(%s)" % self.value
 
     def is_enabled_for_attributes(self):
         """
+        Provide true to serialize variable value as attribute.
+
         :rtype: True for writing the field as attribute of the tag
         """
         return True

@@ -1,4 +1,6 @@
 """
+   Representing one movie.
+
 .. module:: movie
     :platform: Unix, Windows
     :synopis: providing data for a movie
@@ -39,10 +41,10 @@ from concept.tools.compatible import TextType
 # R0902 = about too many fields
 # pylint: disable=R0902
 class Movie(Serializable):
-    """ represents one movie (DVD, Blu-ray, ...) """
+    """Representing one movie (DVD, Blu-ray, ...)."""
 
     def __init__(self, title=TextType("")):
-        """ initializing fields only (defaults) """
+        """Initializing fields only (defaults)."""
         super(Movie, self).__init__()
 
         self.title = title            # german title (or your language)
@@ -59,12 +61,16 @@ class Movie(Serializable):
 
     def is_enabled_for_attributes(self):
         """
+        Adjusted to true for writing some fields as XML attributes.
+
         :rtype: True for writing the fields as attributes of the tag
         """
         return True
 
     def add_director(self, director):
         """
+        Adding a new director.
+
         :param: director: another director for given movie
         :rtype: True if the director has been successfully added otherwise false.
         """
@@ -78,6 +84,8 @@ class Movie(Serializable):
 
     def add_actor(self, actor):
         """
+        Adding a new actor.
+
         :param: actor: another actor for given movie
         :rtype: True if the actor has been successfully added otherwise false.
         """
@@ -91,6 +99,8 @@ class Movie(Serializable):
 
     def add_composer(self, composer):
         """
+        Adding a new composer.
+
         :param: composer: another composer for given movie
         :rtype: True if the composer has been successfully added otherwise false.
         """
@@ -104,6 +114,8 @@ class Movie(Serializable):
 
     def add_tag(self, tag):
         """
+        Adding a new tag.
+
         :param: tag: another tag for given movie
         :rtype: True if the tag has been successfully added otherwise false.
         """
@@ -117,6 +129,8 @@ class Movie(Serializable):
 
     def __eq__(self, other):
         """
+        Compare this object to be equal with another in type and data.
+
         :param: other: another movie instance (expected)
         :rtype: True if movies are identical
         """
@@ -135,6 +149,8 @@ class Movie(Serializable):
 
     def to_xml(self):
         """
+        Provide this movie instance as XML string.
+
         :return: Movie as an XML string with a final line break
         """
         return super(Movie, self).to_xml() + "\n"
