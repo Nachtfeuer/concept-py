@@ -38,7 +38,7 @@ class plot(object):
     FILLEDCURVES = 1
 
     def __init__(self, title="", title_font=("", 0), use_grid=True):
-        """ Init fields. """
+        """Init fields."""
         assert isinstance(title, str)
         assert isinstance(title_font, tuple) and len(title_font) == 2
         assert isinstance(title_font[0], str)
@@ -56,20 +56,20 @@ class plot(object):
         self.fill_styles = {}
 
     def set_xlabel(self, label):
-        """ Change x label. """
+        """Change x label."""
         self.xlabel = label
 
     def set_ylabel(self, label):
-        """ Change x label. """
+        """Change x label."""
         self.ylabel = label
 
     def set_xtics(self, xtics):
-        """ Change x tics. """
+        """Change x tics."""
         assert isinstance(xtics, str)
         self.xtics = xtics
 
     def set_ytics(self, ytics):
-        """ Change y tics. """
+        """Change y tics."""
         assert isinstance(ytics, str)
         self.ytics = ytics
 
@@ -109,7 +109,7 @@ class plot(object):
         self.curves.append((title, values, mode))
 
     def get_title_line(self):
-        """ Define the main title and its options. """
+        """Define the main title and its options."""
         line = "\nset title \"%s\"" % self.title
         if self.title_font[1] > 0:
             line += " font "
@@ -122,7 +122,7 @@ class plot(object):
         return line
 
     def __repr__(self):
-        """ Generate gnuplot script part for a plot. """
+        """Generate gnuplot script part for a plot."""
         script = "\n# displaying a plot title"
         script += self.get_title_line()
 

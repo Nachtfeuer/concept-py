@@ -1,6 +1,6 @@
 #!/usr/bin/python
 """
-Visualizing H fractal with tkinter
+Visualizing H fractal with tkinter.
 
 =======
 License
@@ -30,6 +30,7 @@ if __name__ == "__main__":
     from concept.math.point import Point2d
     from concept.math.vector import Vector2d
     from concept.math.hfractal import hfractal
+
 
     class Application(tk.Frame):
         """Simple tk application displaying a H fractal."""

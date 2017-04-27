@@ -42,7 +42,7 @@ else:
 
 class data(object):
     """
-    decorator to provide data to a functor or method.
+    Decorator to provide data to a functor or method.
 
     The default is to get a parameter with name 'values' of type 'list'
     in your final function or method. For consistency reason this parameter
@@ -105,7 +105,7 @@ class data(object):
         :returns: decorator.
         """
         def decorator(*args):
-            """ decorator function. """
+            """The decorator function."""
             if self.single:
                 for value in self.values:
                     arguments = {self.key: [value]}
@@ -120,7 +120,6 @@ class data(object):
 
 
 class validate_test_responsibility_for(object):
-
     """
     Decorator to ensure to test all methods for a given class.
 
@@ -143,7 +142,7 @@ class validate_test_responsibility_for(object):
     """
 
     def __init__(self, testable_class, include_class_name=False):
-        """ store the class for test and checks all methods of that class. """
+        """Store the class for test and checks all methods of that class."""
         if hasattr(testable_class, "decorated_object"):
             testable_class = testable_class.decorated_object
 
@@ -185,13 +184,13 @@ class validate_test_responsibility_for(object):
         return list(classes[the_class].keys())
 
     def __call__(self, test_class):
-        """ called when instantiated; then we have to verify for the required test methods. """
+        """Xalled when instantiated; then we have to verify for the required test methods."""
         self.verify(test_class)
         return test_class
 
     @staticmethod
     def get_test_method(name, prefix=""):
-        """ adjusting final test method name. """
+        """Adjusting final test method name."""
         # no underscores wanted (change "__init__" => "init")
         final_name = name.strip("_").lower()
 
@@ -206,7 +205,7 @@ class validate_test_responsibility_for(object):
         return "test_" + prefix.lower() + final_name
 
     def verify(self, test_class):
-        """ verification that for each testable method a test method does exist. """
+        """Verification that for each testable method a test method does exist."""
         methods_in_test_class\
             = self.get_entries(test_class, inspect.isfunction)\
             + self.get_entries(test_class, inspect.ismethod)
@@ -249,6 +248,8 @@ class validate_types(object):
 
     def __init__(self, ptypes=[], r=NoneType, offset=0):
         """
+        Register assertion information.
+
         :param: ptypes: list of parameter types like "int", "float" or "str"
         :param: e: return type
         :param: offset: number of parameters to ignore (from the beginning
@@ -259,13 +260,16 @@ class validate_types(object):
 
     def __call__(self, function):
         """
+        Validating types.
+
         :param: function: that's the real function which should be decorated
         :rtype: decorator function (wrapper)
         """
         def wrapper(*args, **kwargs):
             """
-            The wrapper checks the types of the parameter of the real function
-            and raises an exception if the type doesn't fit. If fine the
+            The wrapper checks the types of the parameter of the real function.
+
+            It raises an exception if the type doesn't fit. If fine the
             real function is executed and the return value is given back (as usual).
 
             :param: args: any argument
@@ -280,6 +284,8 @@ class validate_types(object):
 
     def check_parameter_types(self, *args):
         """
+        Validating parameter types.
+
         :param: args: any parameter (basically of the wrapped function)
         """
         parameter = self.offset
@@ -292,6 +298,8 @@ class validate_types(object):
 
     def check_return_type(self, value):
         """
+        Validating return type.
+
         :param: value: return value of wrapped function
         """
         if not type(value) == self.return_type:
@@ -300,12 +308,12 @@ class validate_types(object):
 
 
 def singleton(the_class):
-    """ decorator for a class to make a singleton out of it. """
+    """Decorator for a class to make a singleton out of it."""
     class_instances = {}
 
     def get_instance(*args, **kwargs):
         """
-        creating or just return the one and only class instance.
+        Creating or just return the one and only class instance.
 
         The singleton depends on the parameters used in __init__
         """

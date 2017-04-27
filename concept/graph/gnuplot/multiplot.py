@@ -41,7 +41,7 @@ class multiplot(object):
     """
 
     def __init__(self, title, title_font=("", 0), plots_per_row=2):
-        """ Initialize a multiplot object. """
+        """Initialize a multiplot object."""
         assert isinstance(title, str) and len(title) > 0
         assert isinstance(title_font, tuple) and len(title_font) == 2
         assert isinstance(title_font[0], str)
@@ -53,12 +53,12 @@ class multiplot(object):
         self.plot_objects = []
 
     def add_plot(self, plot_obj):
-        """ Adding a plot object. """
+        """Adding a plot object."""
         assert isinstance(plot_obj, plot)
         self.plot_objects.append(plot_obj)
 
     def get_title_code(self):
-        """ Gnuplot script part for title and font. """
+        """Gnuplot script part for title and font."""
         code = "title \"%s\"" % self.title
         if self.title_font[1] > 0:
             code += " font "
@@ -71,7 +71,7 @@ class multiplot(object):
         return code
 
     def __repr__(self):
-        """ Provide gnuplot script for multiplot. """
+        """Provide gnuplot script for multiplot."""
         cols = min(self.plots_per_row, len(self.plot_objects))
         rows = len(self.plot_objects) // cols
         content = "\nset multiplot layout %d, %d %s" % (rows, cols, self.get_title_code())

@@ -30,12 +30,12 @@ class Tetris(object):
         self.shape = self.shape.turned_right()
 
     def move_left(self):
-        """Move current shape one column to the left (when possible)"""
+        """Move current shape one column to the left (when possible)."""
         if self.current_column > 0:
             self.current_column -= 1
 
     def move_right(self):
-        """Move current shape one column to the right (when possible)"""
+        """Move current shape one column to the right (when possible)."""
         if self.current_column + self.shape.width < self.raster.width:
             self.current_column += 1
 
@@ -54,13 +54,13 @@ class Tetris(object):
             return not self.is_collision(self.current_row)
 
     def can_step(self):
-        """Checks whether shape can move down one step."""
+        """Check whether shape can move down one step."""
         if self.current_row + self.shape.height >= self.raster.height:
             return False
         return not self.is_collision(self.current_row + 1)
 
     def is_collision(self, shape_row):
-        """Checks collision between shape and old content in raster."""
+        """Check collision between shape and old content in raster."""
         for scolumn, srow, _ in self.shape.occupied_cells():
             for column, row, _ in self.raster.occupied_cells():
                 if scolumn + self.current_column == column and \

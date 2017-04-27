@@ -1,4 +1,6 @@
 """
+XML for reading a XML file and creating a data hierachy.
+
 .. module:: xml_handler
     :platform: Unix, Windows
     :synopis: used by XMLParser
@@ -30,12 +32,12 @@
 
 
 class XMLHandler(object):
-    """ XML handler used by XMLParser """
+    """XML handler used by XMLParser."""
 
     classes = {}  # global dictionary of registered classes by its names
 
     def __init__(self):
-        """ Initializing fields only """
+        """Initializing fields only."""
         super(XMLHandler, self).__init__()
         self.root = None
         self.current_object = None
@@ -45,6 +47,8 @@ class XMLHandler(object):
     @staticmethod
     def register_class(theClass, name=None):
         """
+        Register a class for creation by tag name.
+
         :param: cls: a class to be registered
         :param: if the name is not set (None) then cls.__name__.lower() is used.
         :return: True when succeeded otherwise False
@@ -60,6 +64,8 @@ class XMLHandler(object):
 
     def start(self, tag, dummy):
         """
+        Indicate start of tag.
+
         :param: tag: name of the tag
         :param: dummy: attributes (names and values) if given
         """
@@ -73,6 +79,8 @@ class XMLHandler(object):
 
     def data(self, content):
         """
+        Provide tag content.
+
         :param: content: string between two tags
         """
         if self.current_object:
@@ -80,10 +88,12 @@ class XMLHandler(object):
 
     def end(self, dummy):
         """
+        Indicate end of tag.
+
         :param: tag: name of the tag
         """
         self.level -= 1
 
     def close(self):
-        """ Called when the processing of the XML is done. """
+        """Called when the processing of the XML is done."""
         pass

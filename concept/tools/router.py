@@ -53,7 +53,7 @@ class Router(object):
     """
 
     def __init__(self):
-        """ initializing fields only. """
+        """Initializing fields only."""
         self.rules = {}
 
     def add(self, rule, function=None):
