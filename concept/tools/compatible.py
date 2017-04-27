@@ -42,8 +42,8 @@ if sys.version_info.major == 3:
 
         return (a > b) - (a < b)
 else:
-    TextType = unicode
+    TextType = unicode  # noqa: F821
 
     def compare(a, b):
         """Compare two values with <0: less, 0: equala and >0: more."""
-        return cmp(a, b)
+        return cmp(a, b)  # noqa: F821

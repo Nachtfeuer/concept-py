@@ -6,7 +6,7 @@ radon == 1.4.2
 pylint == 1.6.5
 pep8 == 1.5.7
 pep257 == 0.7.0
-flake8 == 2.4.1
+flake8 == 3.3.0
 click == 3.3
 PyYAML == 3.11
 Jinja2 == 2.8
