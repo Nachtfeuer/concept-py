@@ -25,3 +25,9 @@ notebooks/.ipynb_checkpoints/
 .noseids
 .vscode/
 .tox/
+concept.*.rst
+concept.rst
+examples.rst
+tests.rst
+modules.rst
+setup.rst
