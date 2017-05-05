@@ -49,7 +49,8 @@ Development on this project:
 
 Current Content
 ---------------
- - enabled Travis CI build (tested with Python 2.7.x, 3.2.x, 3.3.x, 3.4.x, PyPy and PyPy3).
+ - enabled Travis CI build (tested with Python 2.7.x, 3.3.x, 3.4.x, and PyPy).
+   (looking forward to support more versions like 3.6 and pypy with Python 3.5 compatible)
  - enabled for virtual environment
  - math classes
    - prime function/classes
