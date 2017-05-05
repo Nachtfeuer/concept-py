@@ -1,6 +1,6 @@
 nose
 mock == 2.0.0
-pyhamcrest == 1.8.0
+pyhamcrest
 coverage == 3.7.1
 radon == 1.4.2
 pylint == 1.6.5
