@@ -1,10 +1,10 @@
 nose
 mock == 2.0.0
 pyhamcrest
-coverage == 3.7.1
+coverage
 radon == 1.4.2
 pylint == 1.6.5
-pep8 == 1.5.7
+pep8 == 1.7.0
 pep257 == 0.7.0
 flake8 == 3.3.0
 click == 3.3
