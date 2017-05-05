@@ -207,5 +207,6 @@ def main(max_entries, max_tests):
     dump_total_results(previous_results)
     create_gnuplot_statistic(previous_results)
 
+
 if __name__ == "__main__":
     main()
