@@ -28,13 +28,13 @@ import sys
 import platform
 import itertools
 import click
-from concept.math.functions import square, increment, decrement, multiply
+from concept.math.functions import Square, Increment, Decrement, Multiply
 from concept import VERSION
 
 
 @click.command()
 @click.option("--max-number", default=20, help="maximum number for formula (default: 10)")
-def main(max_number):
+def main(max_number=20):
     """
     Sequence generator tool.
 
@@ -44,8 +44,8 @@ def main(max_number):
     print(" ... Python %s" % sys.version.replace("\n", ""))
     print(" ... Platform %s" % platform.platform())
 
-    available_functions = [square(), increment(), increment(offset=2), decrement(),
-                           decrement(offset=2), multiply()]
+    available_functions = [Square(), Increment(), Increment(offset=2), Decrement(),
+                           Decrement(offset=2), Multiply()]
     max_functions = len(available_functions)
 
     for permutation in itertools.permutations(available_functions, max_functions):

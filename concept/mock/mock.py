@@ -137,5 +137,5 @@ class Mock(object):
         """
         if self.__data['reference']:
             return self.__data['reference'].mock_add_call(self.__data['name'], *args, **kwargs)
-        else:
-            return self.mock_add_call(self.__data['name'], *args, **kwargs)
+
+        return self.mock_add_call(self.__data['name'], *args, **kwargs)

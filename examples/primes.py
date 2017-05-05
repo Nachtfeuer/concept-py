@@ -24,6 +24,7 @@ DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+# pylint: disable=redefined-variable-type
 import sys
 import platform
 import click
@@ -61,7 +62,7 @@ def print_primes(primes, columns):
 @click.option("--max-number", default=1000, help="maximum number for sieve (default: 1000)")
 @click.option("--sieve", default="default", help="sieve algorithm (default: standard eratosthenes)")
 @click.option("--columns", default=20, help="number of columns per line (default: 10)")
-def main(max_number, sieve, columns):
+def main(max_number=1000, sieve="default", columns=20):
     """
     Prime generator tool.
 

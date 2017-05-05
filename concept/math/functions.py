@@ -31,7 +31,7 @@
 """
 
 
-class function(object):
+class Function(object):
     """Base class for concrete functions like 'square'."""
 
     def __init__(self, other_function=None):
@@ -43,13 +43,13 @@ class function(object):
         self.other_function = other_function
 
 
-class square(function):
+class Square(Function):
     """
     Providing square of either the return value of a function or a float value itself.
 
-    >>> square()(4)
+    >>> Square()(4)
     16
-    >>> square(square())(4)
+    >>> Square(Square())(4)
     256
     """
 
@@ -59,7 +59,7 @@ class square(function):
 
         :param func: optional another function to be decoratored.
         """
-        super(square, self).__init__(func)
+        super(Square, self).__init__(func)
 
     def __call__(self, value):
         """
@@ -79,13 +79,13 @@ class square(function):
         return "x^2"
 
 
-class increment(function):
+class Increment(Function):
     """
     So basically we have a y=f(x)=x+b function with b=1 as default.
 
-    >>> increment()(9)
+    >>> Increment()(9)
     10
-    >>> increment(increment())(8)
+    >>> Increment(Increment())(8)
     10
     """
 
@@ -96,7 +96,7 @@ class increment(function):
         :param func: another function that can be defined.
         :param offset: the value to increment (default: 1)
         """
-        super(increment, self).__init__(func)
+        super(Increment, self).__init__(func)
         self.offset = offset
 
     def __call__(self, value):
@@ -117,13 +117,13 @@ class increment(function):
         return "(x + %d)" % self.offset
 
 
-class decrement(function):
+class Decrement(Function):
     """
     So basically we have a y=f(x)=x-b function with b=1 as default.
 
-    >>> decrement()(9)
+    >>> Decrement()(9)
     8
-    >>> decrement(decrement())(9)
+    >>> Decrement(Decrement())(9)
     7
     """
 
@@ -134,7 +134,7 @@ class decrement(function):
         :param func: another function that can be defined.
         :param offset: the value to decrement (default: 1)
         """
-        super(decrement, self).__init__(func)
+        super(Decrement, self).__init__(func)
         self.offset = offset
 
     def __call__(self, value):
@@ -155,13 +155,13 @@ class decrement(function):
         return "(x - %d)" % self.offset
 
 
-class multiply(function):
+class Multiply(Function):
     """
     So basically we have a y=f(x)=x*f function with f=2 as default.
 
-    >>> multiply()(2)
+    >>> Multiply()(2)
     4
-    >>> multiply(multiply())(2)
+    >>> Multiply(Multiply())(2)
     8
     """
 
@@ -172,7 +172,7 @@ class multiply(function):
         :param func: another function that can be defined.
         :param factor: the value to multiply (default: 2)
         """
-        super(multiply, self).__init__(func)
+        super(Multiply, self).__init__(func)
         self.factor = factor
 
     def __call__(self, value):

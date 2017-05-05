@@ -34,20 +34,20 @@ class TestDecoratorSingleton(unittest.TestCase):
     def test_simple_singleton(self):
         """ simple singleton with no parameter. """
         @singleton
-        class simple_singelton(object):
+        class SimpleSingleton(object):
 
             """ just a test class. """
 
             pass
 
-        instance_a = simple_singelton()
-        instance_b = simple_singelton()
+        instance_a = SimpleSingleton()
+        instance_b = SimpleSingleton()
         assert_that(instance_a, equal_to(instance_b))
 
     def test_singleton_with_one_value_parameter(self):
         """ simple singleton with one value parameter. """
         @singleton
-        class one_value_singelton(object):
+        class OneValueSingleton(object):
 
             """ just a test class. """
 
@@ -55,9 +55,9 @@ class TestDecoratorSingleton(unittest.TestCase):
                 """ simple one value c'tor. """
                 self.value = value
 
-        instance_a = one_value_singelton(12345)
-        instance_b = one_value_singelton(12345)
-        instance_c = one_value_singelton(54321)
+        instance_a = OneValueSingleton(12345)
+        instance_b = OneValueSingleton(12345)
+        instance_c = OneValueSingleton(54321)
         assert_that(instance_a, equal_to(instance_b))
         assert_that(instance_a.value, equal_to(instance_b.value))
         assert_that(instance_a, is_not(equal_to(instance_c)))
@@ -66,7 +66,7 @@ class TestDecoratorSingleton(unittest.TestCase):
     def test_singleton_with_named_value_parameter(self):
         """ simple singleton with one named value parameter. """
         @singleton
-        class one_value_singelton(object):
+        class OneValueSingleton(object):
 
             """ just a test class. """
 
@@ -74,10 +74,10 @@ class TestDecoratorSingleton(unittest.TestCase):
                 """ simple one value c'tor. """
                 self.value = value
 
-        instance_a = one_value_singelton(value=12345)
-        instance_b = one_value_singelton(value=12345)
-        instance_c = one_value_singelton(value=54321)
-        instance_d = one_value_singelton(12345)
+        instance_a = OneValueSingleton(value=12345)
+        instance_b = OneValueSingleton(value=12345)
+        instance_c = OneValueSingleton(value=54321)
+        instance_d = OneValueSingleton(12345)
         assert_that(instance_a, equal_to(instance_b))
         assert_that(instance_a.value, equal_to(instance_b.value))
         assert_that(instance_a, is_not(equal_to(instance_c)))

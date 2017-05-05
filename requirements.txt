@@ -14,3 +14,4 @@ markdown == 2.6.2
 nose-watch == 0.9.1
 jsonpickle == 0.9.4
 sphinx == 1.5.5
+wheel == 0.29.0

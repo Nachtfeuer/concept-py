@@ -24,14 +24,13 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 import os
-from distutils.core import setup
+from setuptools import setup
 from concept import VERSION
 
 
 def read(fname):
     """ reading a file from current path of this file. """
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
 
 setup(name='concept-py',
       version=VERSION,
@@ -40,7 +39,7 @@ setup(name='concept-py',
       author='Thomas Lehmann',
       author_email='thomas.lehmann.private@googlemail.com',
       license="MIT",
-      requires=['coverage', 'nose', 'radon', "pep8", "pep257"],
+      install_requires=["click", "jsonpickle"],
       packages=['concept', 'concept.primes', 'concept.math',
                 'concept.performance', 'concept.query',
                 'concept.graph.gnuplot', 'concept.tools'],

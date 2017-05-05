@@ -30,6 +30,11 @@
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+# pylint: disable=no-member
+import pickle
+import xml.etree.ElementTree as ET
+import jsonpickle
+
 from concept.tools.serialize import Serializable
 from concept.data.movies.movie import Movie
 from concept.data.movies.director import Director
@@ -38,10 +43,6 @@ from concept.data.movies.tag import Tag
 from concept.data.movies.actor import Actor
 from concept.data.movies.purchase import Purchase
 from concept.tools.enum import enum
-
-import xml.etree.ElementTree as ET
-import pickle
-import jsonpickle
 
 
 class MovieManager(Serializable):
@@ -73,7 +74,7 @@ class MovieManager(Serializable):
         if not isinstance(movie, Movie):
             return False
         # you need to have a title at least
-        if len(movie.title) == 0:
+        if not movie.title:
             return False
         # you cannot add same movie twice
         if movie not in self.movies:
@@ -89,55 +90,55 @@ class MovieManager(Serializable):
         """
         return iter(self.movies)
 
-    def save_as(self, pathAndFileName, policy):
+    def save_as(self, path_and_filename, policy):
         """
         Saving movies using adjusted format (XML, Pickle or JSON).
 
-        :param pathAndFileName: path and name of file where to store the movies
+        :param path_and_filename: path and name of file where to store the movies
         :param policy: the persistence policy on how to save the data (pickle, XML, ...)
         :return: True when successfully saved.
         """
         if self.PERSISTENCE_POLICY.XML == policy:
-            handle = open(pathAndFileName, "wb")
+            handle = open(path_and_filename, "wb")
             handle.write(b'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>')
             handle.write(self.to_xml().encode('utf8'))
             handle.close()
             return True
 
         if self.PERSISTENCE_POLICY.PICKLE == policy:
-            handle = open(pathAndFileName, "wb")
+            handle = open(path_and_filename, "wb")
             pickle.dump(self.movies, handle)
             handle.close()
             return True
 
         if self.PERSISTENCE_POLICY.JSON == policy:
-            with open(pathAndFileName, "w") as handle:
+            with open(path_and_filename, "w") as handle:
                 handle.write(jsonpickle.encode(self.movies))
             return True
 
         return False
 
-    def read_from(self, pathAndFileName, policy):
+    def read_from(self, path_and_filename, policy):
         """
         Reading movie data from file.
 
-        :param pathAndFileName: path and name of file where to read the movies from
+        :param path_and_filename: path and name of file where to read the movies from
         :param policy: the persistence policy on how to read the data (pickle, ...)
         :return: True when successfully red.
         """
         if self.PERSISTENCE_POLICY.PICKLE == policy:
-            handle = open(pathAndFileName, "rb")
+            handle = open(path_and_filename, "rb")
             self.movies = pickle.load(handle)
             handle.close()
             return True
 
         if self.PERSISTENCE_POLICY.JSON == policy:
-            with open(pathAndFileName, "r") as handle:
+            with open(path_and_filename, "r") as handle:
                 self.movies = jsonpickle.decode(handle.read())
             return True
 
         if self.PERSISTENCE_POLICY.XML == policy:
-            with open(pathAndFileName, "rb") as handle:
+            with open(path_and_filename, "rb") as handle:
                 self.read_from_xml(handle.read())
             return True
 

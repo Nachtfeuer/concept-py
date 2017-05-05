@@ -31,3 +31,5 @@ examples.rst
 tests.rst
 modules.rst
 setup.rst
+concept_py.egg-info/
+.eggs/

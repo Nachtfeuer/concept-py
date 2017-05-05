@@ -12,7 +12,7 @@ radon cc -a concept tests examples
 radon cc -a --xml concept tests examples > ccm.xml 2>&1
 
 # creating pylint report
-pylint --rcfile=./.rclint.2.x concept tests examples > pylint.log 2>&1
+pylint --rcfile=./pylint.conf concept tests examples > pylint.log 2>&1
 grep "rated at" pylint.log
 
 # creating pep8 report
