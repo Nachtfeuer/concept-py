@@ -43,6 +43,17 @@ else
                     scl enable rh-python35 "bash -c \"pip install tox\""
                     scl enable rh-python35 "bash -c \"/docker/scripts/run_python.sh RUN\""
                     ;;
+                py36)
+                    yum -y install wget gcc make openssl-devel
+                    wget -q https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
+                    tar -xf $(ls Python*.tar.xz)
+                    cd Python*
+                    ./configure
+                    make && make altinstall
+                    ln -s /usr/local/bin/pip3.6 /usr/local/bin/pip
+                    pip install tox
+                    $0 RUN
+                    ;;
                 pypy)
                     yum -y install wget bzip2
                     echo "${PROMPT}Downloading pypy (Python 2.7 compatible) ..."
