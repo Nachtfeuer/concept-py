@@ -1,40 +1,33 @@
 # Travis configuration
 language: python
 
+python:
+    - "2.7"
+    - "3.3"
+    - "3.4"
+    - "3.5"
+    - "pypy"
+
 # whitelist
 branches:
     only:
         - master
 
-# enable docker
-services:
- - docker
-
-env:
-    matrix:
-     - PYTHON_VERSION=py27
-     - PYTHON_VERSION=py33
-     - PYTHON_VERSION=py34
-     - PYTHON_VERSION=py35
-     - PYTHON_VERSION=py36
-     - PYTHON_VERSION=pypy
-
 before_install:
     - sudo apt-get update -qq
-    - docker version
-    - python -V
-    - pip -V
+    - pip --version
 
 install:
-    - pip install pip --upgrade
+    - sudo apt-get install -qq sloccount
+    - pip install -r requirements.txt
     - pip install coveralls
 
-
-script: scripts/run_python.sh
+script:
+    - ./runAnalyse.sh
+    - ./runTests.sh
 
 after_success:
     - coveralls
-
 
 notifications:
     email:

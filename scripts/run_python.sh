@@ -6,7 +6,7 @@
 PROMPT="run_python.sh :: "
 if [ $# -eq 0 ]; then
     docker run --rm=true -v $PWD:/docker \
-            -e "UID=$(id -u)" \
+            -e "UID=$(id -u)" -e "UPWD=$PWD" \
             -e "PYTHON_VERSION=$PYTHON_VERSION" \
             -i centos:7.3.1611 /docker/scripts/run_python.sh INIT
 else
@@ -105,6 +105,11 @@ else
                 python -V
                 tox -e ${PYTHON_VERSION}
             fi
+
+            sed -i "s:/work/concept/:${UPWD}/concept/:g" .coverage
+            cp .coverage /docker
+            chown -R ${UID} /docker/.coverage
+
             ;;
         BASH)
             docker run --rm=true -v $PWD:/docker \
