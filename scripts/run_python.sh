@@ -5,6 +5,7 @@
 # - http://doc.pypy.org/en/latest/install.html
 PROMPT="run_python.sh :: "
 if [ $# -eq 0 ]; then
+    echo "PWD=$PWD"
     docker run --rm=true -v $PWD:/docker \
             -e "UID=$(id -u)" -e "UPWD=$PWD" \
             -e "PYTHON_VERSION=$PYTHON_VERSION" \
@@ -92,9 +93,14 @@ else
             esac
             ;;
         RUN)
+            echo "${PROMPT} Copy phase ..."
+            echo "${PROMPT} What we have available at /docker outside the container:"
+            ls -al /docker
             mkdir -p /work
             cd /work
             cp -r /docker/* .
+            echo "${PROMPT} What we have available at /work in the container:"
+            ls -al /work
 
             pip -V
             echo "${PROMPT} Run phase ..."
