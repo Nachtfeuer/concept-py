@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -rf docs
 rm -rf dist
 rm -rf build
 rm -f MANIFEST
@@ -14,3 +13,6 @@ rm -f tests.xml
 rm -f `find . -name "*.pyc"`
 rm -f ccm.xml
 rm -rf virt_env
+rm -rf .tox
+rm -rf .eggs
+rm -rf concept_py.egg-info

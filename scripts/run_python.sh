@@ -4,6 +4,11 @@
 # - https://github.com/squeaky-pl/portable-pypy#portable-pypy-distribution-for-linux
 # - http://doc.pypy.org/en/latest/install.html
 PROMPT="run_python.sh :: "
+
+set -euo pipefail
+IFS=$'\n\t'
+
+
 if [ $# -eq 0 ]; then
     echo "PWD=$PWD"
     docker run --rm=true -v $PWD:/docker \
