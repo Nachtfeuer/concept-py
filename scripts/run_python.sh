@@ -24,6 +24,8 @@ else
                     yum -y install centos-release-scl yum-utils
                     yum-config-manager --enable rhel-server-rhscl-7-rpms
                     yum -y install python27
+                    scl enable python27 "bash -c \"pip install pip --upgrade\""
+                    scl enable python27 "bash -c \"pip install setuptools --upgrade\""
                     scl enable python27 "bash -c \"pip install tox\""
                     scl enable python27 "bash -c \"/docker/scripts/run_python.sh RUN\""
                     ;;
@@ -32,6 +34,8 @@ else
                     yum-config-manager --enable rhel-server-rhscl-7-rpms
                     yum -y install python33
                     scl enable python33 "bash -c \"easy_install pip\""
+                    scl enable python33 "bash -c \"pip install pip --upgrade\""
+                    scl enable python33 "bash -c \"pip install setuptools --upgrade\""
                     scl enable python33 "bash -c \"pip install tox\""
                     scl enable python33 "bash -c \"/docker/scripts/run_python.sh RUN\""
                     ;;
@@ -39,6 +43,8 @@ else
                     yum -y install centos-release-scl yum-utils
                     yum-config-manager --enable rhel-server-rhscl-7-rpms
                     yum -y install rh-python34
+                    scl enable rh-python34 "bash -c \"pip install pip --upgrade\""
+                    scl enable rh-python34 "bash -c \"pip install setuptools --upgrade\""
                     scl enable rh-python34 "bash -c \"pip install tox\""
                     scl enable rh-python34 "bash -c \"/docker/scripts/run_python.sh RUN\""
                     ;;
@@ -46,6 +52,8 @@ else
                     yum -y install centos-release-scl yum-utils
                     yum-config-manager --enable rhel-server-rhscl-7-rpms
                     yum -y install rh-python35
+                    scl enable rh-python35 "bash -c \"pip install pip --upgrade\""
+                    scl enable rh-python35 "bash -c \"pip install setuptools --upgrade\""
                     scl enable rh-python35 "bash -c \"pip install tox\""
                     scl enable rh-python35 "bash -c \"/docker/scripts/run_python.sh RUN\""
                     ;;
@@ -57,6 +65,8 @@ else
                     ./configure
                     make && make altinstall
                     ln -s /usr/local/bin/pip3.6 /usr/local/bin/pip
+                    pip install pip --upgrade
+                    pip install setuptools --upgrade
                     pip install tox
                     $0 RUN
                     ;;
@@ -71,6 +81,8 @@ else
                     ln -s /opt/pypy/bin/virtualenv-pypy /usr/local/bin/virtualenv
                     pypy -m ensurepip
                     ln -s /opt/pypy/bin/pip2 /usr/local/bin/pip
+                    pip install pip --upgrade
+                    pip install setuptools --upgrade
                     pip install tox
                     ln -s /opt/pypy/bin/tox /usr/local/bin/tox
                     $0 RUN
@@ -86,6 +98,8 @@ else
                     ln -s /opt/pypy/bin/virtualenv-pypy /usr/local/bin/virtualenv
                     pypy -m ensurepip
                     ln -s /opt/pypy/bin/pip3 /usr/local/bin/pip
+                    pip install pip --upgrade
+                    pip install setuptools --upgrade
                     pip install tox
                     ln -s /opt/pypy/bin/tox /usr/local/bin/tox
                     $0 RUN
