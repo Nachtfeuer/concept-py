@@ -5,13 +5,13 @@
 # - http://doc.pypy.org/en/latest/install.html
 PROMPT="run_python.sh :: "
 
-set -euo pipefail
-IFS=$'\n\t'
-
-
 if [ $# -eq 0 ]; then
+    set -euo pipefail
+    IFS=$'\n\t'
+
     echo "PWD=$PWD"
     docker run --rm=true -v $PWD:/docker \
+            -e "CI=yes" \
             -e "UID=$(id -u)" -e "UPWD=$PWD" \
             -e "PYTHON_VERSION=$PYTHON_VERSION" \
             -i centos:7.3.1611 /docker/scripts/run_python.sh INIT
@@ -24,7 +24,6 @@ else
                     yum -y install centos-release-scl yum-utils
                     yum-config-manager --enable rhel-server-rhscl-7-rpms
                     yum -y install python27
-                    scl enable python27 "bash -c \"pip install pip --upgrade\""
                     scl enable python27 "bash -c \"pip install setuptools --upgrade\""
                     scl enable python27 "bash -c \"pip install tox\""
                     scl enable python27 "bash -c \"/docker/scripts/run_python.sh RUN\""
@@ -122,22 +121,24 @@ else
             ls -al /work
 
             pip -V
-            echo "${PROMPT} Run phase ..."
-            if [ -e /usr/local/bin/pypy ]; then
-                pypy -V
-                tox -e pypy
-            else
-                python -V
-                tox -e ${PYTHON_VERSION}
+
+            if [ "${CI:-}" == "yes" ]; then
+                echo "${PROMPT} Run phase ..."
+                if [ -e /usr/local/bin/pypy ]; then
+                    pypy -V
+                    tox -e pypy
+                else
+                    python -V
+                    tox -e ${PYTHON_VERSION}
+                fi
+
+                sed -i "s:/work/concept/:${UPWD}/concept/:g" .coverage
+                cp .coverage /docker
+                chown -R ${UID} /docker/.coverage
             fi
-
-            sed -i "s:/work/concept/:${UPWD}/concept/:g" .coverage
-            cp .coverage /docker
-            chown -R ${UID} /docker/.coverage
-
             ;;
         BASH)
-            docker run --rm=true -v $PWD:/docker \
+            docker run --name=pydev -v $PWD:/docker \
                     -e "UID=$(id -u)" \
                     -it centos:7.3.1611 bash
             ;;
