@@ -14,9 +14,7 @@ node {
         stage('Get Code') {
             checkout scm
             def gitDetails = getGitDetails(pwd())
-            currentBuild.description = "Python:" + PYTHON_VERSION
-                                     + ", commit:$gitDetails.commit"
-                                     + ", last by:$gitDetails.author"
+            currentBuild.description = "Python:" + PYTHON_VERSION + ", commit:$gitDetails.commit" + ", last by:$gitDetails.author"
         }
 
         stage('Build') {
