@@ -11,7 +11,7 @@ def getGitDetails(path) {
 
 def getDockerDetails() {
     return [
-        version:sh(script: "docker version -f '{{json .}}'|jq -r '.Client.Version'", returnStdout:true):trim()
+        version:sh(script: "docker version -f '{{json .}}'|jq -r '.Client.Version'", returnStdout:true).trim()
     ]
 }
 
