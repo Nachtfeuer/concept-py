@@ -15,7 +15,6 @@ branches:
 
 before_install:
     - sudo apt-get update -qq
-    - docker version
 
 install:
     - sudo apt-get install -qq sloccount
