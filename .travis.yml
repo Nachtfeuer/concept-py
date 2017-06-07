@@ -15,16 +15,15 @@ branches:
 
 before_install:
     - sudo apt-get update -qq
-    - pip --version
+    - docker version
 
 install:
     - sudo apt-get install -qq sloccount
-    - pip install -r requirements.txt
-    - pip install coveralls
+    - python -V
+    - pip -V
+    - pip install coveralls tox-travis
 
-script:
-    - ./runAnalyse.sh
-    - ./runTests.sh
+script: tox
 
 after_success:
     - coveralls

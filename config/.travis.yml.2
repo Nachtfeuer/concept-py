@@ -22,19 +22,17 @@ env:
 before_install:
     - sudo apt-get update -qq
     - docker version
-    - python -V
-    - pip -V
 
 install:
     - pip install pip --upgrade
     - pip install coveralls
-
+    - python -V
+    - pip -V
 
 script: scripts/run_python.sh
 
 after_success:
     - coveralls
-
 
 notifications:
     email:
