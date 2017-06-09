@@ -33,18 +33,12 @@ well documented. Please keep in mind and read:
 
 Quick start
 -----------
-Installing latest released version:
-```
-pip install concept-py
-```
-
 Development on this project:
 ```
+ pip install tox
  git clone https://github.com/Nachtfeuer/concept-py.git
  cd concept-py
- source srcipts/virtual
- ./runAnalyse.sh
- ./runTests.sh
+ tox
 ```
 
 Current Content
