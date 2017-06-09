@@ -145,7 +145,6 @@ else
                     ;;
                 pypy3)
                     init_pypy3;
-                    $0 RUN
                     ;;
                *)
                     echo "${PROMPT}Python version '${PYTHON_VERSION}' not known or not supported!"
