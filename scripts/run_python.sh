@@ -95,7 +95,7 @@ function init_pypy() {
 function init_pypy3() {
     yum -y install wget bzip2
     echo "${PROMPT}Downloading pypy (Python 3.5 compatible) ..."
-    wget -q https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.7.1-beta-linux_x86_64-portable.tar.bz2
+    wget -q https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.8-beta-linux_x86_64-portable.tar.bz2
     echo "${PROMPT}unpacking pypy (Python 3.5 compatible) to /opt ..."
     tar -xvjf $(ls pypy3*.tar.bz2) -C /opt > /dev/null
     ln -s /opt/$(ls /opt|grep pypy) /opt/pypy
