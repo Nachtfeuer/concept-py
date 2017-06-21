@@ -19,4 +19,4 @@ The main adjustments for this curve:
 Just putting a `smooth bezier` in front of the **with filledcurves** the
 simple curve examples looks like following:
 
-![simple curve](images/simple-bezier-curve.png)
+![simple bezier curve](images/smooth-bezier-curve.png)
