@@ -50,7 +50,7 @@ class LogParser(object):
         contants = {}
         for key, value in yaml.load(open(path_and_filename).read()).items():
             if key == "filter" and isinstance(value, list) and \
-               all(isinstance(entry, (TextType, str)) for entry in value):
+               all(isinstance(entry, dict) and "regex" in entry for entry in value):
                 log_filter = value
             elif key == "constants" and isinstance(value, dict) and \
                     all(isinstance(k, (TextType, str)) and
@@ -59,7 +59,7 @@ class LogParser(object):
 
         for pos, entry in enumerate(log_filter):
             for key, value in contants.items():
-                log_filter[pos] = log_filter[pos].replace("${%s}" % key, value)
+                log_filter[pos]['regex'] = log_filter[pos]['regex'].replace("${%s}" % key, value)
 
         return LogParser(log_filter)
 
@@ -67,8 +67,8 @@ class LogParser(object):
         """:returns: True when string did contain at least one match."""
         success = False
         for line in content.split("\n"):
-            for expression in self.log_filter:
-                match = re.match(expression, line)
+            for current_log_filter in self.log_filter:
+                match = re.match(current_log_filter['regex'], line)
                 if match:
                     now = datetime.now()
                     # default date and time information

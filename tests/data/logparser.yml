@@ -7,7 +7,7 @@ constants:
     second: (?P<second>[0-9]{2})
 
 filter:
-    - ${day}\.${month}\.${year} ${hour}:${minute}:${second}(?P<text>.*)
-    - ${hour}:${minute}:${second} no date
-    - ${hour}:${minute} no date and incomplete time
+    - {regex: '${day}\.${month}\.${year} ${hour}:${minute}:${second}(?P<text>.*)'}
+    - {regex: '${hour}:${minute}:${second} no date'}
+    - {regex: '${hour}:${minute} no date and incomplete time'}
 

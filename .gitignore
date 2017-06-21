@@ -33,3 +33,6 @@ modules.rst
 setup.rst
 concept_py.egg-info/
 .eggs/
+logparser.gp
+logparser.gp.png
+logparser.gp.svg
