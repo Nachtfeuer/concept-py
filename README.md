@@ -38,14 +38,14 @@ Development on this project:
  pip install tox
  git clone https://github.com/Nachtfeuer/concept-py.git
  cd concept-py
- tox
+ # py27 or one of py33, py34, py35, py36, pypy, pypy3
+ tox -e py27
 ```
 
 Current Content
 ---------------
- - enabled Travis CI build (tested with Python 2.7.x, 3.3.x, 3.4.x, and PyPy).
-   (looking forward to support more versions like 3.6 and pypy with Python 3.5 compatible)
- - enabled for virtual environment
+ - enabled Travis CI build - tested with Python 2.7.x, 3.3.x, 3.4.x, 3.5, 3.6, PyPy and PyPy3.
+ - enabled for virtual environment (tox)
  - math classes
    - prime function/classes
      - is_prime and sieve_of_eratosthenes and its optimized version
