@@ -8,7 +8,7 @@ pep8 == 1.7.0
 pep257 == 0.7.0
 flake8 == 3.3.0
 click == 3.3
-PyYAML == 3.12
+PyYAML == 5.4
 Jinja2 == 2.8
 markdown == 2.6.2
 nose-watch == 0.9.1
